@@ -118,6 +118,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
           
           {/* Atelier Badge */}
           <div 
+            data-edit-id="hero-eyebrow"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -155,6 +156,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
 
           {/* Headline in Elegant Serif */}
           <h1 
+            data-edit-id="hero-headline"
             style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(2.9rem, 6.2vw, 4.9rem)',
@@ -174,6 +176,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
 
           {/* Subline */}
           <p 
+            data-edit-id="hero-subline"
             style={{
               fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
               color: 'rgba(250, 247, 242, 0.88)',
@@ -187,7 +190,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
           </p>
 
           {/* Minimalist High-End Buttons */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+          <div data-edit-id="hero-buttons" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
             
             {/* Primary Button */}
             <button 

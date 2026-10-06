@@ -285,11 +285,12 @@ export default function Footer({ onNavigate, onOpenCustom }) {
           </div>
 
           {/* Policy Links */}
-          <div style={{ display: 'flex', gap: '1.2rem' }}>
+          <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Shipping & Insurance</button>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Lifetime Warranty</button>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Returns & Resizing</button>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Privacy Policy</button>
+            <a href="/admin/" style={{ color: 'inherit', textDecoration: 'none', opacity: 0.6 }} title="Staff Concierge Portal">Admin Studio ✦</a>
           </div>
 
           {/* Payment Badges */}

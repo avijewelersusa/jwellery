@@ -36,10 +36,22 @@ import FloatingActionBar from './components/FloatingActionBar';
 
 import { fetchProducts } from './services/supabase';
 import { getCurrentUser, logoutUser } from './services/authService';
+import { initStudioBridge } from './services/studioBridge';
 
 export default function App() {
   // Navigation View State: 'home', 'custom', 'shop', 'product-detail', 'checkout', 'about', 'contact', 'policies', 'admin', 'account'
-  const [currentView, setCurrentView] = useState('home');
+  const [currentView, setCurrentView] = useState(() => {
+    const path = (window.location.pathname || '').toLowerCase();
+    const hash = (window.location.hash || '').toLowerCase();
+    if (path.includes('/admin') || hash === '#admin') return 'admin';
+    if (path.includes('/custom') || hash === '#custom') return 'custom';
+    if (path.includes('/shop') || hash === '#shop') return 'shop';
+    if (path.includes('/about') || hash === '#about') return 'about';
+    if (path.includes('/contact') || hash === '#contact') return 'contact';
+    if (path.includes('/policies') || hash === '#policies') return 'policies';
+    if (path.includes('/account') || hash === '#account') return 'account';
+    return 'home';
+  });
 
   // Client Authentication State
   const [currentUser, setCurrentUser] = useState(() => getCurrentUser());
@@ -137,6 +149,13 @@ export default function App() {
 
     return () => observer.disconnect();
   }, [currentView, products]);
+
+  // Visual Studio Bridge Listener (iframe postMessage integration)
+  useEffect(() => {
+    initStudioBridge((viewId) => {
+      navigateTo(viewId);
+    });
+  }, []);
 
   // Cart Actions
   const handleAddToCart = (productWithVariants) => {

@@ -239,7 +239,10 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
             <h2>Avi Jewelers Administrative Suite</h2>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.8rem' }}>
+          <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+            <a href="/admin/" target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-sm" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Sparkles size={13} /> Launch Full Admin Studio (/admin/) ↗
+            </a>
             <button onClick={onBackToStore} className="btn btn-outline btn-sm">
               View Live Storefront
             </button>

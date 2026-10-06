@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avi Jewelers — Admin Studio</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <!-- Clean modern sans and editorial serif fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. DEVICE CONVENIENCE PIN LOCK SCREEN
+       ========================================================================= -->
+  <div id="pin-lock-screen" class="pin-lock-container">
+    <div class="pin-lock-box">
+      <div style="display: flex; justify-content: center; margin-bottom: 14px;">
+        <img src="/images/avi-jewelers-logo.png" alt="Avi Jewelers" class="admin-logo-img" style="height: 38px;">
+      </div>
+      <h2 style="font-family: var(--admin-font-serif); font-size: 22px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px;">
+        Avi Jewelers — Admin Studio
+      </h2>
+      <p style="font-size: 11px; color: var(--admin-text-muted); margin-bottom: 20px;">
+        Chicago Atelier Concierge Portal • Enter Device Passcode
+      </p>
+
+      <form id="pin-form">
+        <input 
+          type="password" 
+          id="pin-input" 
+          maxlength="8" 
+          placeholder="••••" 
+          autocomplete="off"
+          style="text-align: center; font-size: 24px; letter-spacing: 8px; padding: 12px; margin-bottom: 12px;"
+          autofocus
+        >
+        <div id="pin-error" style="color: #FFFFFF; font-size: 11px; margin-bottom: 14px; min-height: 16px; border: 1px dashed #555; padding: 4px; display: none;"></div>
+        
+        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; padding: 12px;">
+          Unlock Atelier Dashboard
+        </button>
+      </form>
+
+      <div style="margin-top: 18px; font-size: 11px; color: var(--admin-text-muted);">
+        Default Passcode: <strong>2026</strong> • <a href="/" style="color: #FFFFFF; text-decoration: underline;">Return to Storefront</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN STUDIO APPLICATION SHELL
+       ========================================================================= -->
+  <div id="admin-root" style="display: none;">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <img src="/images/avi-jewelers-logo.png" alt="Avi Jewelers" class="admin-logo-img">
+        <div>
+          <div class="admin-brand-title">AVI JEWELERS</div>
+          <div class="admin-brand-sub">Admin Studio • Chicago</div>
+        </div>
+      </div>
+
+      <nav class="admin-sidebar-nav">
+        <div class="nav-section-title">Storefront & Merchandising</div>
+        <a class="admin-nav-item active" data-view="overview">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <a class="admin-nav-item" data-view="studio">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Visual Studio ✦
+        </a>
+        <a class="admin-nav-item" data-view="pages">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+          Pages Directory
+        </a>
+
+        <div class="nav-section-title">Jewelry Commerce</div>
+        <a class="admin-nav-item" data-view="products">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 6 15 11 20 12 16 16 17 21 12 18 7 21 8 16 4 12 9 11 12 6"/></svg>
+          Products Catalog
+          <span class="admin-nav-counter" id="counter-products">0</span>
+        </a>
+        <a class="admin-nav-item" data-view="inventory">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Inventory & Stock
+        </a>
+        <a class="admin-nav-item" data-view="orders">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Client Orders
+          <span class="admin-nav-counter" id="counter-orders">0</span>
+        </a>
+
+        <div class="nav-section-title">Bespoke Concierge & CRM</div>
+        <a class="admin-nav-item" data-view="inquiries">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Custom Inquiries
+          <span class="admin-nav-counter" id="counter-inquiries">0</span>
+        </a>
+        <a class="admin-nav-item" data-view="appointments">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Consultations
+          <span class="admin-nav-counter" id="counter-appointments">0</span>
+        </a>
+
+        <div class="nav-section-title">Configuration</div>
+        <a class="admin-nav-item" data-view="settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings & Backups
+        </a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="/" target="_blank" class="admin-btn admin-btn-secondary admin-btn-sm" style="flex: 1;">
+          ↗ Storefront
+        </a>
+        <button id="btn-lock-sidebar" class="admin-btn-icon" title="Lock Session" style="margin-left: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="admin-main-viewport">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="admin-header">
+        <h1 id="view-title" class="admin-header-title">Overview Dashboard</h1>
+        
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="admin-header-status">
+            <span id="cloud-indicator" class="status-indicator-dot"></span>
+            <span id="cloud-status-text">Supabase Live</span>
+          </div>
+
+          <button id="btn-change-pin" class="admin-btn admin-btn-secondary admin-btn-sm">
+            Change PIN
+          </button>
+        </div>
+      </header>
+
+      <!-- CONTENT SECTIONS (SWITCHED VIA TABS) -->
+      <div class="admin-content-scroll">
+        
+        <!-- =========================================================
+             VIEW 1: OVERVIEW DASHBOARD
+             ========================================================= -->
+        <section id="view-overview" class="view-panel">
+          
+          <div class="admin-metrics-grid">
+            <div class="metric-box">
+              <div class="metric-label">Paid Net Sales</div>
+              <div id="metric-sales" class="metric-value">$8,714</div>
+              <div class="metric-meta">USD ($) • America/Chicago</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Completed Orders</div>
+              <div id="metric-orders" class="metric-value">2</div>
+              <div class="metric-meta">FedEx Armored Dispatched</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Custom Ring Inquiries</div>
+              <div id="metric-inquiries" class="metric-value">2</div>
+              <div class="metric-meta">Bespoke atelier submissions</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Showroom & Zoom Appts</div>
+              <div id="metric-appts" class="metric-value">2</div>
+              <div class="metric-meta">Jewelers Row & Virtual</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div class="admin-card-title">Recent Atelier Orders</div>
+                <button class="admin-btn admin-btn-secondary admin-btn-sm" data-nav="orders">View All</button>
+              </div>
+              <div id="overview-orders-table" class="admin-table-wrapper">
+                <!-- Dynamically injected -->
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div class="admin-card-title">Pending Bespoke Inquiries</div>
+                <button class="admin-btn admin-btn-secondary admin-btn-sm" data-nav="inquiries">Manage CRM</button>
+              </div>
+              <div id="overview-inquiries-list">
+                <!-- Dynamically injected -->
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- =========================================================
+             VIEW 2: VISUAL STUDIO (ELEMENTOR-STYLE)
+             ========================================================= -->
+        <section id="view-studio" class="view-panel" style="display: none; height: calc(100vh - 110px); padding: 0;">
+          <div class="visual-studio-container">
+            
+            <div style="flex: 1; display: flex; flex-direction: column; height: 100%;">
+              <!-- Top Studio Toolbar -->
+              <div class="studio-toolbar">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <select id="studio-page-select" style="width: 220px; padding: 5px 8px; font-size: 11px;">
+                    <!-- Pages Injected -->
+                  </select>
+
+                  <div style="display: flex; border: 1px solid var(--admin-border); border-radius: 4px; overflow: hidden;">
+                    <button id="bp-desktop" class="admin-btn-icon" title="Desktop 100%" style="border: none;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </button>
+                    <button id="bp-laptop" class="admin-btn-icon" title="Laptop (1024px)" style="border: none;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                    </button>
+                    <button id="bp-tablet" class="admin-btn-icon" title="Tablet (768px)" style="border: none;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </button>
+                    <button id="bp-mobile" class="admin-btn-icon" title="Mobile (390px)" style="border: none;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button id="btn-studio-undo" class="admin-btn-icon" title="Undo"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg></button>
+                  <button id="btn-studio-redo" class="admin-btn-icon" title="Redo"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 14 20 9 15 4"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg></button>
+                  <button id="btn-studio-save-draft" class="admin-btn admin-btn-secondary admin-btn-sm">Save Draft</button>
+                  <button id="btn-studio-publish" class="admin-btn admin-btn-primary admin-btn-sm">Publish ✦</button>
+                </div>
+              </div>
+
+              <!-- Iframe Stage -->
+              <div class="studio-stage">
+                <div id="studio-frame-container" class="studio-frame-wrapper" style="width: 100%;">
+                  <iframe id="studio-preview-iframe" class="studio-frame" src="/?preview=true&preview_mode=studio"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inspector Panel -->
+            <div class="studio-inspector">
+              <div class="inspector-tabs">
+                <div class="inspector-tab active" data-tab="content">Content</div>
+                <div class="inspector-tab" data-tab="style">Style</div>
+                <div class="inspector-tab" data-tab="advanced">Advanced</div>
+              </div>
+
+              <div class="inspector-body">
+                <div id="inspector-no-selection" style="color: var(--admin-text-muted); font-size: 11px; text-align: center; margin-top: 40px;">
+                  Hover and click any section on the storefront preview to inspect & edit.
+                </div>
+
+                <div id="inspector-controls" style="display: none;">
+                  <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--admin-text-muted); margin-bottom: 6px;">Selected Target</div>
+                  <div id="inspector-selected-id" style="font-weight: 600; font-size: 13px; margin-bottom: 16px; word-break: break-all;"></div>
+
+                  <!-- Tab 1: Content -->
+                  <div id="tab-pane-content">
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Element Text / HTML</label>
+                    <textarea id="inspector-text-input" rows="4" style="margin-bottom: 12px;"></textarea>
+
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Link URL (Optional)</label>
+                    <input type="text" id="inspector-link-input" placeholder="https://..." style="margin-bottom: 12px;">
+                  </div>
+
+                  <!-- Tab 2: Style -->
+                  <div id="tab-pane-style" style="display: none;">
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Font Size</label>
+                    <input type="text" id="inspector-font-size" placeholder="e.g. 24px" style="margin-bottom: 10px;">
+
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Alignment</label>
+                    <select id="inspector-text-align" style="margin-bottom: 10px;">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                    </select>
+
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Color (Neutral Grayscale)</label>
+                    <select id="inspector-color-select" style="margin-bottom: 10px;">
+                      <option value="#FFFFFF">Pure White (#FFFFFF)</option>
+                      <option value="#B3B3B3">Light Gray (#B3B3B3)</option>
+                      <option value="#8C8C8C">Muted Gray (#8C8C8C)</option>
+                      <option value="#000000">Deep Black (#000000)</option>
+                    </select>
+                  </div>
+
+                  <!-- Tab 3: Advanced -->
+                  <div id="tab-pane-advanced" style="display: none;">
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Padding</label>
+                    <input type="text" id="inspector-padding" placeholder="e.g. 10px 20px" style="margin-bottom: 10px;">
+
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Custom CSS Classes</label>
+                    <input type="text" id="inspector-classes" placeholder="e.g. reveal-on-scroll" style="margin-bottom: 10px;">
+                  </div>
+                </div>
+
+                <!-- Navigator Section List -->
+                <div style="margin-top: 30px; border-top: 1px solid var(--admin-border); padding-top: 14px;">
+                  <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--admin-text-muted); margin-bottom: 10px;">Available Edit Nodes</div>
+                  <div id="inspector-navigator-list" style="display: flex; flex-direction: column; gap: 4px; font-size: 11px;">
+                    <!-- Injected -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 3: PAGES DIRECTORY
+             ========================================================= -->
+        <section id="view-pages" class="view-panel" style="display: none;">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div class="admin-card-title">Registered Storefront Templates & Views</div>
+            </div>
+            <div id="pages-table-wrapper" class="admin-table-wrapper">
+              <!-- Dynamically injected -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 4: PRODUCTS CATALOG (WOOCOMMERCE-STYLE)
+             ========================================================= -->
+        <section id="view-products" class="view-panel" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <input type="text" id="product-search" placeholder="Search title, SKU, cut..." style="width: 260px;">
+              <select id="product-filter-category" style="width: 180px;">
+                <option value="all">All Categories</option>
+                <option value="engagement-rings">Engagement Rings</option>
+                <option value="wedding-bands">Wedding Bands</option>
+                <option value="bracelets">Tennis Bracelets</option>
+                <option value="earrings">Earrings</option>
+                <option value="necklaces">Necklaces</option>
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <button id="btn-export-csv" class="admin-btn admin-btn-secondary admin-btn-sm">Export CSV</button>
+              <button id="btn-import-csv-open" class="admin-btn admin-btn-secondary admin-btn-sm">Import CSV</button>
+              <button id="btn-add-product" class="admin-btn admin-btn-primary admin-btn-sm">+ Add Jewelry Piece</button>
+            </div>
+          </div>
+
+          <div id="products-table-wrapper" class="admin-table-wrapper">
+            <!-- Dynamically injected -->
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 5: INVENTORY & STOCK
+             ========================================================= -->
+        <section id="view-inventory" class="view-panel" style="display: none;">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div class="admin-card-title">Stock Levels & Atelier Movement Control</div>
+            </div>
+            <div id="inventory-table-wrapper" class="admin-table-wrapper">
+              <!-- Dynamically injected -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 6: CLIENT ORDERS
+             ========================================================= -->
+        <section id="view-orders" class="view-panel" style="display: none;">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div class="admin-card-title">Client Orders & Armored Dispatches</div>
+            </div>
+            <div id="orders-table-wrapper" class="admin-table-wrapper">
+              <!-- Dynamically injected -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 7: BESPOKE CUSTOM INQUIRIES CRM
+             ========================================================= -->
+        <section id="view-inquiries" class="view-panel" style="display: none;">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div class="admin-card-title">Bespoke Design Submissions & Status Workflow</div>
+            </div>
+            <div id="inquiries-crm-container" style="display: flex; flex-direction: column; gap: 16px;">
+              <!-- Dynamically injected -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 8: CONSULTATIONS
+             ========================================================= -->
+        <section id="view-appointments" class="view-panel" style="display: none;">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div class="admin-card-title">Jewelers Row Showroom & Zoom Consultations</div>
+            </div>
+            <div id="appointments-table-wrapper" class="admin-table-wrapper">
+              <!-- Dynamically injected -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             VIEW 9: SETTINGS & BACKUPS
+             ========================================================= -->
+        <section id="view-settings" class="view-panel" style="display: none;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div class="admin-card-title">Atelier Profile & Legal Settings</div>
+              </div>
+              <form id="settings-form" style="display: flex; flex-direction: column; gap: 12px;">
+                <div>
+                  <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Brand Display Name</label>
+                  <input type="text" id="setting-brand-name" value="Avi Jewelers USA">
+                </div>
+                <div>
+                  <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Showroom Address</label>
+                  <input type="text" id="setting-address" value="5 S Wabash Ave, Suite 710, Chicago, IL 60603">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <div>
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Phone (Call / Text)</label>
+                    <input type="text" id="setting-phone" value="(331) 575-4525">
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Official Concierge Email</label>
+                    <input type="email" id="setting-email" value="avijewelersusa@gmail.com">
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <div>
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Currency</label>
+                    <input type="text" id="setting-currency" value="USD ($)" readonly>
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Timezone</label>
+                    <input type="text" id="setting-timezone" value="America/Chicago" readonly>
+                  </div>
+                </div>
+                <button type="submit" class="admin-btn admin-btn-primary admin-btn-sm" style="margin-top: 8px;">
+                  Save Atelier Settings
+                </button>
+              </form>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <div class="admin-card-title">Supabase Cloud Database Status</div>
+              </div>
+              <p style="font-size: 12px; color: var(--admin-text-secondary); margin-bottom: 12px;">
+                Active authoritative project credentials connected:
+              </p>
+              <div style="background-color: #000; border: 1px solid var(--admin-border); padding: 12px; border-radius: 4px; font-family: monospace; font-size: 11px; margin-bottom: 16px; word-break: break-all;">
+                <div><strong>Endpoint:</strong> https://cfmmelqvbyatrfqqoajz.supabase.co</div>
+                <div style="margin-top: 4px;"><strong>Publishable Key:</strong> sb_publishable_mjnZp...</div>
+              </div>
+
+              <div class="admin-card-title" style="margin-bottom: 8px; font-size: 14px;">Versioned Backup & Safe Restore</div>
+              <p style="font-size: 11px; color: var(--admin-text-muted); margin-bottom: 14px;">
+                Export all catalog, orders, and overrides to a single JSON archive, or restore with dry-run inspection.
+              </p>
+              
+              <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+                <button id="btn-export-backup" class="admin-btn admin-btn-secondary admin-btn-sm">
+                  Download Full JSON Backup
+                </button>
+                <label class="admin-btn admin-btn-secondary admin-btn-sm" style="cursor: pointer;">
+                  Upload & Restore Backup
+                  <input type="file" id="backup-file-input" accept=".json" style="display: none;">
+                </label>
+              </div>
+
+              <div style="border-top: 1px solid var(--admin-border); padding-top: 12px; margin-top: 12px;">
+                <button id="btn-reset-cache" class="admin-btn admin-btn-danger admin-btn-sm">
+                  Reset Namespaced Local Cache
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       MODALS
+       ========================================================= -->
+  <!-- Product Edit Modal -->
+  <div id="product-modal" class="admin-modal-overlay" style="display: none;">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="product-modal-title" style="font-family: var(--admin-font-serif); font-size: 18px;">Edit Jewelry Piece</h3>
+        <button id="btn-close-product-modal" class="admin-btn-icon">✕</button>
+      </div>
+      <form id="product-modal-form" class="admin-modal-body">
+        <input type="hidden" id="prod-form-id">
+        
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Piece Title *</label>
+            <input type="text" id="prod-form-title" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Category</label>
+              <select id="prod-form-category">
+                <option value="engagement-rings">Engagement Rings</option>
+                <option value="wedding-bands">Wedding Bands</option>
+                <option value="bracelets">Tennis Bracelets</option>
+                <option value="earrings">Earrings</option>
+                <option value="necklaces">Necklaces</option>
+              </select>
+            </div>
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Cut / Shape</label>
+              <select id="prod-form-shape">
+                <option value="round">Round Brilliant</option>
+                <option value="oval">Oval Cut</option>
+                <option value="emerald">Emerald Cut</option>
+                <option value="radiant">Radiant Cut</option>
+                <option value="pear">Pear Shape</option>
+                <option value="cushion">Cushion Cut</option>
+                <option value="princess">Princess Cut</option>
+                <option value="marquise">Marquise Cut</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Retail Price ($) *</label>
+              <input type="number" id="prod-form-price" required>
+            </div>
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Compare-At Price ($)</label>
+              <input type="number" id="prod-form-compare-price">
+            </div>
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Stock Quantity</label>
+              <input type="number" id="prod-form-stock" value="10">
+            </div>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Stone Type / Certification</label>
+            <select id="prod-form-stone">
+              <option value="lab-diamond">IGI Certified Lab Diamond</option>
+              <option value="moissanite">GRA Certified Moissanite</option>
+              <option value="natural-diamond">Natural Diamond</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Carat / Specs Weight</label>
+              <input type="text" id="prod-form-carat" placeholder="e.g. 2.50 Carat">
+            </div>
+            <div>
+              <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Lead Time</label>
+              <input type="text" id="prod-form-leadtime" value="Ships in 2-3 weeks">
+            </div>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Primary High-Res Image URL *</label>
+            <input type="url" id="prod-form-image" required>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Description</label>
+            <textarea id="prod-form-description" rows="3"></textarea>
+          </div>
+
+          <div style="display: flex; gap: 20px;">
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer;">
+              <input type="checkbox" id="prod-form-bestseller">
+              <span>Flag as Best Seller</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer;">
+              <input type="checkbox" id="prod-form-featured" checked>
+              <span>Featured on Homepage</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="admin-modal-footer" style="padding: 16px 0 0; margin-top: 14px;">
+          <button type="button" id="btn-cancel-product" class="admin-btn admin-btn-secondary admin-btn-sm">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary admin-btn-sm">Save Jewelry Piece</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CSV Import Modal -->
+  <div id="csv-modal" class="admin-modal-overlay" style="display: none;">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 style="font-family: var(--admin-font-serif); font-size: 18px;">Bulk CSV Importer</h3>
+        <button id="btn-close-csv-modal" class="admin-btn-icon">✕</button>
+      </div>
+      <div class="admin-modal-body">
+        <p style="font-size: 12px; color: var(--admin-text-secondary); margin-bottom: 12px;">
+          Paste CSV rows with headers: <code>title,category,shape,stoneType,price,compareAtPrice,sku,stock_quantity,carat,primaryImage</code>
+        </p>
+        <textarea id="csv-paste-area" rows="10" placeholder="title,category,shape,stoneType,price..."></textarea>
+      </div>
+      <div class="admin-modal-footer">
+        <button id="btn-load-sample-csv" class="admin-btn admin-btn-secondary admin-btn-sm">Load Sample Rows</button>
+        <button id="btn-run-csv-import" class="admin-btn admin-btn-primary admin-btn-sm">Import Catalog Rows</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change PIN Modal -->
+  <div id="change-pin-modal" class="admin-modal-overlay" style="display: none;">
+    <div class="admin-modal" style="max-width: 360px;">
+      <div class="admin-modal-header">
+        <h3 style="font-family: var(--admin-font-serif); font-size: 17px;">Update Passcode</h3>
+        <button id="btn-close-pin-modal" class="admin-btn-icon">✕</button>
+      </div>
+      <form id="change-pin-form" class="admin-modal-body" style="display: flex; flex-direction: column; gap: 10px;">
+        <div>
+          <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Current Passcode</label>
+          <input type="password" id="input-curr-pin" required>
+        </div>
+        <div>
+          <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">New Passcode (Min 4 digits)</label>
+          <input type="password" id="input-new-pin" required>
+        </div>
+        <div id="change-pin-msg" style="display: none; font-size: 11px; padding: 4px; border: 1px dashed #666;"></div>
+        <button type="submit" class="admin-btn admin-btn-primary admin-btn-sm" style="margin-top: 6px;">
+          Save Passcode
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="admin-toast-container"></div>
+
+  <!-- Load Main Application Controller -->
+  <script type="module" src="/admin/app.js"></script>
+</body>
+</html>
