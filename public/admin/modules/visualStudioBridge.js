@@ -1,4 +1,4 @@
-// Avi Jewelers — Elementor-Style Visual Studio Bridge (ES6 Module)
+// Avi Jewelers — Universal Visual Studio Bridge (ES6 Module)
 import { supabaseAdapter } from './supabaseClient.js';
 import { storageAdapter } from './storageAdapter.js';
 
@@ -19,12 +19,14 @@ class VisualStudioBridge {
     this.currentPage = 'home';
     this.currentBreakpoint = 'desktop'; // desktop | laptop | tablet | mobile
     this.selectedElementId = null;
+    this.selectedElementSelector = null;
+    this.selectedElementData = null;
     this.iframeElement = null;
     this.overrides = storageAdapter.getItem('site_overrides', {});
     this.draftOverrides = { ...this.overrides };
     this.historyStack = [];
     this.historyIndex = -1;
-    this.elementTree = [];
+    this.sections = [];
     this.listeners = [];
 
     this.setupWindowListener();
@@ -46,14 +48,27 @@ class VisualStudioBridge {
       if (!data || typeof data !== 'object') return;
 
       if (data.type === 'AVI_STUDIO_READY') {
-        this.elementTree = data.availableEditIds || [];
+        this.sections = data.sections || [];
         this.applyAllOverridesToIframe();
-        this.notify('ready');
+        this.notify('ready', this.sections);
       }
 
       if (data.type === 'AVI_STUDIO_ELEMENT_CLICKED') {
         this.selectedElementId = data.elementId;
+        this.selectedElementSelector = data.selector;
+        this.selectedElementData = data;
         this.notify('element_selected', data);
+      }
+
+      if (data.type === 'AVI_STUDIO_INLINE_CHANGE') {
+        if (data.elementId) {
+          if (!this.draftOverrides[data.elementId]) this.draftOverrides[data.elementId] = {};
+          this.draftOverrides[data.elementId].content = data.content;
+          if (data.final) {
+            this.recordHistory();
+          }
+          this.notify('inline_change', data);
+        }
       }
     });
   }
@@ -74,26 +89,30 @@ class VisualStudioBridge {
     this.notify('breakpoint_changed', bp);
   }
 
-  selectElement(elementId) {
+  selectElement(elementId, selector = null) {
     this.selectedElementId = elementId;
+    this.selectedElementSelector = selector;
     if (this.iframeElement && this.iframeElement.contentWindow) {
       this.iframeElement.contentWindow.postMessage({
         type: 'AVI_STUDIO_SELECT',
-        elementId
+        elementId,
+        selector
       }, '*');
     }
-    this.notify('element_selected', { elementId });
+    this.notify('element_selected', { elementId, selector });
   }
 
+  // Update text / heading content
   updateElementContent(elementId, content) {
     if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
     this.draftOverrides[elementId].content = content;
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
 
-    // Send to iframe
     if (this.iframeElement && this.iframeElement.contentWindow) {
       this.iframeElement.contentWindow.postMessage({
         type: 'AVI_STUDIO_UPDATE_CONTENT',
         elementId,
+        selector: this.selectedElementSelector,
         content
       }, '*');
     }
@@ -102,16 +121,101 @@ class VisualStudioBridge {
     this.notify('draft_updated');
   }
 
+  // Update image source (<img>)
+  updateImageSrc(elementId, src) {
+    if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
+    this.draftOverrides[elementId].src = src;
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
+
+    if (this.iframeElement && this.iframeElement.contentWindow) {
+      this.iframeElement.contentWindow.postMessage({
+        type: 'AVI_STUDIO_UPDATE_IMAGE_SRC',
+        elementId,
+        selector: this.selectedElementSelector,
+        src
+      }, '*');
+    }
+
+    this.recordHistory();
+    this.notify('draft_updated');
+  }
+
+  // Update background image (CSS backgroundImage)
+  updateBackgroundImage(elementId, bgUrl, bgSize = 'cover', bgPos = 'center') {
+    if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
+    this.draftOverrides[elementId].bgUrl = bgUrl;
+    this.draftOverrides[elementId].bgSize = bgSize;
+    this.draftOverrides[elementId].bgPos = bgPos;
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
+
+    if (this.iframeElement && this.iframeElement.contentWindow) {
+      this.iframeElement.contentWindow.postMessage({
+        type: 'AVI_STUDIO_UPDATE_BG_IMAGE',
+        elementId,
+        selector: this.selectedElementSelector,
+        bgUrl,
+        bgSize,
+        bgPos
+      }, '*');
+    }
+
+    this.recordHistory();
+    this.notify('draft_updated');
+  }
+
+  // Update background color
+  updateBackgroundColor(elementId, bgColor) {
+    if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
+    this.draftOverrides[elementId].bgColor = bgColor;
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
+
+    if (this.iframeElement && this.iframeElement.contentWindow) {
+      this.iframeElement.contentWindow.postMessage({
+        type: 'AVI_STUDIO_UPDATE_BG_COLOR',
+        elementId,
+        selector: this.selectedElementSelector,
+        bgColor
+      }, '*');
+    }
+
+    this.recordHistory();
+    this.notify('draft_updated');
+  }
+
+  // Update icon SVG properties
+  updateIconProperties(elementId, icon) {
+    if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
+    this.draftOverrides[elementId].icon = {
+      ...(this.draftOverrides[elementId].icon || {}),
+      ...icon
+    };
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
+
+    if (this.iframeElement && this.iframeElement.contentWindow) {
+      this.iframeElement.contentWindow.postMessage({
+        type: 'AVI_STUDIO_UPDATE_ICON',
+        elementId,
+        selector: this.selectedElementSelector,
+        icon: this.draftOverrides[elementId].icon
+      }, '*');
+    }
+
+    this.recordHistory();
+    this.notify('draft_updated');
+  }
+
+  // Update CSS styles
   updateElementStyle(elementId, styles) {
     if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
     if (!this.draftOverrides[elementId].styles) this.draftOverrides[elementId].styles = {};
     Object.assign(this.draftOverrides[elementId].styles, styles);
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
 
-    // Send to iframe
     if (this.iframeElement && this.iframeElement.contentWindow) {
       this.iframeElement.contentWindow.postMessage({
         type: 'AVI_STUDIO_UPDATE_STYLE',
         elementId,
+        selector: this.selectedElementSelector,
         styles: this.draftOverrides[elementId].styles
       }, '*');
     }
@@ -120,22 +224,114 @@ class VisualStudioBridge {
     this.notify('draft_updated');
   }
 
+  // Update attributes (href, alt, target)
+  updateAttribute(elementId, attribute, value) {
+    if (!this.draftOverrides[elementId]) this.draftOverrides[elementId] = {};
+    if (!this.draftOverrides[elementId].attributes) this.draftOverrides[elementId].attributes = {};
+    this.draftOverrides[elementId].attributes[attribute] = value;
+    this.draftOverrides[elementId].selector = this.selectedElementSelector;
+
+    if (this.iframeElement && this.iframeElement.contentWindow) {
+      this.iframeElement.contentWindow.postMessage({
+        type: 'AVI_STUDIO_UPDATE_ATTR',
+        elementId,
+        selector: this.selectedElementSelector,
+        attribute,
+        value
+      }, '*');
+    }
+
+    this.recordHistory();
+    this.notify('draft_updated');
+  }
+
+  // Reset element overrides
+  resetElement(elementId) {
+    if (this.draftOverrides[elementId]) {
+      delete this.draftOverrides[elementId];
+    }
+    if (this.overrides[elementId]) {
+      delete this.overrides[elementId];
+      storageAdapter.setItem('site_overrides', this.overrides);
+      localStorage.setItem('avi_site_overrides', JSON.stringify(this.overrides));
+    }
+
+    if (this.iframeElement && this.iframeElement.contentWindow) {
+      this.iframeElement.contentWindow.postMessage({
+        type: 'AVI_STUDIO_RESET_ELEMENT',
+        elementId
+      }, '*');
+    }
+
+    this.recordHistory();
+    this.notify('draft_updated');
+  }
+
   applyAllOverridesToIframe() {
+    if (!this.iframeElement || !this.iframeElement.contentWindow) return;
+
     Object.keys(this.draftOverrides).forEach(elId => {
       const item = this.draftOverrides[elId];
       if (item.content !== undefined) {
         this.iframeElement.contentWindow.postMessage({
           type: 'AVI_STUDIO_UPDATE_CONTENT',
           elementId: elId,
+          selector: item.selector,
           content: item.content
+        }, '*');
+      }
+      if (item.src) {
+        this.iframeElement.contentWindow.postMessage({
+          type: 'AVI_STUDIO_UPDATE_IMAGE_SRC',
+          elementId: elId,
+          selector: item.selector,
+          src: item.src
+        }, '*');
+      }
+      if (item.bgUrl !== undefined) {
+        this.iframeElement.contentWindow.postMessage({
+          type: 'AVI_STUDIO_UPDATE_BG_IMAGE',
+          elementId: elId,
+          selector: item.selector,
+          bgUrl: item.bgUrl,
+          bgSize: item.bgSize,
+          bgPos: item.bgPos
+        }, '*');
+      }
+      if (item.bgColor !== undefined) {
+        this.iframeElement.contentWindow.postMessage({
+          type: 'AVI_STUDIO_UPDATE_BG_COLOR',
+          elementId: elId,
+          selector: item.selector,
+          bgColor: item.bgColor
+        }, '*');
+      }
+      if (item.icon) {
+        this.iframeElement.contentWindow.postMessage({
+          type: 'AVI_STUDIO_UPDATE_ICON',
+          elementId: elId,
+          selector: item.selector,
+          icon: item.icon
         }, '*');
       }
       if (item.styles) {
         this.iframeElement.contentWindow.postMessage({
           type: 'AVI_STUDIO_UPDATE_STYLE',
           elementId: elId,
+          selector: item.selector,
           styles: item.styles
         }, '*');
+      }
+      if (item.attributes) {
+        Object.keys(item.attributes).forEach(attr => {
+          this.iframeElement.contentWindow.postMessage({
+            type: 'AVI_STUDIO_UPDATE_ATTR',
+            elementId: elId,
+            selector: item.selector,
+            attribute: attr,
+            value: item.attributes[attr]
+          }, '*');
+        });
       }
     });
   }
@@ -172,16 +368,23 @@ class VisualStudioBridge {
   async publishOverrides() {
     this.overrides = { ...this.draftOverrides };
     storageAdapter.setItem('site_overrides', this.overrides);
-    // Also save in storefront accessible standard key
     localStorage.setItem('avi_site_overrides', JSON.stringify(this.overrides));
 
-    // Sync to Supabase Cloud if online
+    // Sync to Supabase Cloud
     try {
       const records = Object.keys(this.overrides).map(elId => ({
         element_id: elId,
         page_key: this.currentPage,
         content: this.overrides[elId].content || '',
-        styles: this.overrides[elId].styles || {},
+        styles: {
+          ...(this.overrides[elId].styles || {}),
+          src: this.overrides[elId].src,
+          bgUrl: this.overrides[elId].bgUrl,
+          bgColor: this.overrides[elId].bgColor,
+          icon: this.overrides[elId].icon,
+          selector: this.overrides[elId].selector,
+          attributes: this.overrides[elId].attributes
+        },
         is_published: true
       }));
 

@@ -299,14 +299,30 @@ class AdminStudioApp {
     // Element Selection Listener from Iframe
     visualStudioBridge.subscribe((event, data) => {
       if (event === 'ready') {
-        this.renderNavigatorList(visualStudioBridge.elementTree);
+        this.renderNavigatorList(data || visualStudioBridge.sections);
       }
       if (event === 'element_selected') {
         this.populateInspector(data);
       }
+      if (event === 'inline_change') {
+        const textInput = document.getElementById('inspector-text-input');
+        if (textInput && visualStudioBridge.selectedElementId === data.elementId) {
+          textInput.value = data.textContent || data.content || '';
+        }
+      }
     });
 
-    // Inspector Input Handlers
+    // Reset Element Overrides button
+    const btnReset = document.getElementById('btn-inspector-reset');
+    if (btnReset) {
+      btnReset.addEventListener('click', () => {
+        if (visualStudioBridge.selectedElementId && confirm('Reset custom edits on this element?')) {
+          visualStudioBridge.resetElement(visualStudioBridge.selectedElementId);
+        }
+      });
+    }
+
+    // Content: Text / Heading input
     const textInput = document.getElementById('inspector-text-input');
     textInput.addEventListener('input', () => {
       if (visualStudioBridge.selectedElementId) {
@@ -314,6 +330,167 @@ class AdminStudioApp {
       }
     });
 
+    // Content: Image Src & Preview
+    const imgSrcInput = document.getElementById('inspector-img-src');
+    const imgPreview = document.getElementById('inspector-img-preview');
+    imgSrcInput.addEventListener('input', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateImageSrc(visualStudioBridge.selectedElementId, imgSrcInput.value);
+        if (imgSrcInput.value) {
+          imgPreview.src = imgSrcInput.value;
+          imgPreview.style.display = 'block';
+        } else {
+          imgPreview.style.display = 'none';
+        }
+      }
+    });
+
+    // Content: Image Local File Upload
+    const imgFileInput = document.getElementById('inspector-img-file');
+    const btnUploadImg = document.getElementById('btn-upload-img');
+    if (btnUploadImg && imgFileInput) {
+      btnUploadImg.addEventListener('click', () => imgFileInput.click());
+      imgFileInput.addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (file && visualStudioBridge.selectedElementId) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const dataUrl = event.target.result;
+            imgSrcInput.value = dataUrl;
+            imgPreview.src = dataUrl;
+            imgPreview.style.display = 'block';
+            visualStudioBridge.updateImageSrc(visualStudioBridge.selectedElementId, dataUrl);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // Content: Image Alt Text
+    const imgAltInput = document.getElementById('inspector-img-alt');
+    imgAltInput.addEventListener('input', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateAttribute(visualStudioBridge.selectedElementId, 'alt', imgAltInput.value);
+      }
+    });
+
+    // Content: Image Object Fit
+    const imgFitSelect = document.getElementById('inspector-img-fit');
+    imgFitSelect.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { objectFit: imgFitSelect.value });
+      }
+    });
+
+    // Content: Background Image URL
+    const bgSrcInput = document.getElementById('inspector-bg-src');
+    const bgSizeSelect = document.getElementById('inspector-bg-size');
+    const bgPosSelect = document.getElementById('inspector-bg-pos');
+
+    bgSrcInput.addEventListener('input', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateBackgroundImage(visualStudioBridge.selectedElementId, bgSrcInput.value, bgSizeSelect.value, bgPosSelect.value);
+      }
+    });
+
+    // Content: Background Local File Upload
+    const bgFileInput = document.getElementById('inspector-bg-file');
+    const btnUploadBg = document.getElementById('btn-upload-bg');
+    if (btnUploadBg && bgFileInput) {
+      btnUploadBg.addEventListener('click', () => bgFileInput.click());
+      bgFileInput.addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (file && visualStudioBridge.selectedElementId) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const dataUrl = event.target.result;
+            bgSrcInput.value = dataUrl;
+            visualStudioBridge.updateBackgroundImage(visualStudioBridge.selectedElementId, dataUrl, bgSizeSelect.value, bgPosSelect.value);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // Clear Background Image button
+    const btnClearBg = document.getElementById('btn-clear-bg-img');
+    if (btnClearBg) {
+      btnClearBg.addEventListener('click', () => {
+        if (visualStudioBridge.selectedElementId) {
+          bgSrcInput.value = '';
+          visualStudioBridge.updateBackgroundImage(visualStudioBridge.selectedElementId, '');
+        }
+      });
+    }
+
+    bgSizeSelect.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { backgroundSize: bgSizeSelect.value });
+      }
+    });
+
+    bgPosSelect.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { backgroundPosition: bgPosSelect.value });
+      }
+    });
+
+    // Content: Background Color
+    const bgColorPicker = document.getElementById('inspector-bg-color-picker');
+    const bgColorText = document.getElementById('inspector-bg-color-text');
+    if (bgColorPicker && bgColorText) {
+      bgColorPicker.addEventListener('input', () => {
+        bgColorText.value = bgColorPicker.value;
+        if (visualStudioBridge.selectedElementId) {
+          visualStudioBridge.updateBackgroundColor(visualStudioBridge.selectedElementId, bgColorPicker.value);
+        }
+      });
+      bgColorText.addEventListener('input', () => {
+        if (visualStudioBridge.selectedElementId) {
+          visualStudioBridge.updateBackgroundColor(visualStudioBridge.selectedElementId, bgColorText.value);
+        }
+      });
+    }
+
+    // Content: Icon / SVG properties
+    const iconFillInput = document.getElementById('inspector-icon-fill');
+    const iconStrokeInput = document.getElementById('inspector-icon-stroke');
+    const iconSizeInput = document.getElementById('inspector-icon-size');
+    const iconStrokeWidthInput = document.getElementById('inspector-icon-stroke-width');
+
+    const updateIcon = () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateIconProperties(visualStudioBridge.selectedElementId, {
+          fill: iconFillInput.value,
+          stroke: iconStrokeInput.value,
+          width: iconSizeInput.value,
+          height: iconSizeInput.value,
+          strokeWidth: iconStrokeWidthInput.value
+        });
+      }
+    };
+    if (iconFillInput) iconFillInput.addEventListener('input', updateIcon);
+    if (iconStrokeInput) iconStrokeInput.addEventListener('input', updateIcon);
+    if (iconSizeInput) iconSizeInput.addEventListener('input', updateIcon);
+    if (iconStrokeWidthInput) iconStrokeWidthInput.addEventListener('input', updateIcon);
+
+    // Content: Link / Href & Target
+    const linkInput = document.getElementById('inspector-link-input');
+    const linkTargetCheck = document.getElementById('inspector-link-target');
+    linkInput.addEventListener('input', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateAttribute(visualStudioBridge.selectedElementId, 'href', linkInput.value);
+      }
+    });
+    if (linkTargetCheck) {
+      linkTargetCheck.addEventListener('change', () => {
+        if (visualStudioBridge.selectedElementId) {
+          visualStudioBridge.updateAttribute(visualStudioBridge.selectedElementId, 'target', linkTargetCheck.checked ? '_blank' : '');
+        }
+      });
+    }
+
+    // Style: Font Size
     const fontSizeInput = document.getElementById('inspector-font-size');
     fontSizeInput.addEventListener('change', () => {
       if (visualStudioBridge.selectedElementId && fontSizeInput.value) {
@@ -321,6 +498,23 @@ class AdminStudioApp {
       }
     });
 
+    // Style: Font Weight
+    const fontWeightSelect = document.getElementById('inspector-font-weight');
+    fontWeightSelect.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { fontWeight: fontWeightSelect.value });
+      }
+    });
+
+    // Style: Font Family
+    const fontFamilySelect = document.getElementById('inspector-font-family');
+    fontFamilySelect.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId && fontFamilySelect.value !== 'inherit') {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { fontFamily: fontFamilySelect.value });
+      }
+    });
+
+    // Style: Text Align
     const textAlignSelect = document.getElementById('inspector-text-align');
     textAlignSelect.addEventListener('change', () => {
       if (visualStudioBridge.selectedElementId) {
@@ -328,40 +522,231 @@ class AdminStudioApp {
       }
     });
 
+    // Style: Text Color
+    const colorPicker = document.getElementById('inspector-color-picker');
+    const colorText = document.getElementById('inspector-color-text');
     const colorSelect = document.getElementById('inspector-color-select');
-    colorSelect.addEventListener('change', () => {
-      if (visualStudioBridge.selectedElementId) {
-        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { color: colorSelect.value });
-      }
-    });
 
+    if (colorPicker && colorText) {
+      colorPicker.addEventListener('input', () => {
+        colorText.value = colorPicker.value;
+        if (visualStudioBridge.selectedElementId) {
+          visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { color: colorPicker.value });
+        }
+      });
+      colorText.addEventListener('input', () => {
+        if (visualStudioBridge.selectedElementId) {
+          visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { color: colorText.value });
+        }
+      });
+    }
+    if (colorSelect) {
+      colorSelect.addEventListener('change', () => {
+        if (visualStudioBridge.selectedElementId && colorSelect.value) {
+          colorText.value = colorSelect.value;
+          visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { color: colorSelect.value });
+        }
+      });
+    }
+
+    // Style: Padding
     const paddingInput = document.getElementById('inspector-padding');
     paddingInput.addEventListener('change', () => {
       if (visualStudioBridge.selectedElementId && paddingInput.value) {
         visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { padding: paddingInput.value });
       }
     });
+
+    // Style: Margin
+    const marginInput = document.getElementById('inspector-margin');
+    marginInput.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId && marginInput.value) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { margin: marginInput.value });
+      }
+    });
+
+    // Style: Border Radius
+    const radiusInput = document.getElementById('inspector-radius');
+    radiusInput.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId && radiusInput.value) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { borderRadius: radiusInput.value });
+      }
+    });
+
+    // Style: Border
+    const borderInput = document.getElementById('inspector-border');
+    borderInput.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId && borderInput.value) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { border: borderInput.value });
+      }
+    });
+
+    // Style: Opacity
+    const opacityInput = document.getElementById('inspector-opacity');
+    const opacityVal = document.getElementById('inspector-opacity-val');
+    opacityInput.addEventListener('input', () => {
+      if (opacityVal) opacityVal.innerText = opacityInput.value;
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { opacity: opacityInput.value });
+      }
+    });
+
+    // Advanced: Letter Spacing
+    const letterSpacingInput = document.getElementById('inspector-letter-spacing');
+    letterSpacingInput.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { letterSpacing: letterSpacingInput.value });
+      }
+    });
+
+    // Advanced: Line Height
+    const lineHeightInput = document.getElementById('inspector-line-height');
+    lineHeightInput.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { lineHeight: lineHeightInput.value });
+      }
+    });
+
+    // Advanced: Text Transform
+    const transformSelect = document.getElementById('inspector-transform');
+    transformSelect.addEventListener('change', () => {
+      if (visualStudioBridge.selectedElementId) {
+        visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, { textTransform: transformSelect.value });
+      }
+    });
+
+    // Advanced: Raw CSS Style
+    const rawStyleInput = document.getElementById('inspector-raw-style');
+    if (rawStyleInput) {
+      rawStyleInput.addEventListener('change', () => {
+        if (visualStudioBridge.selectedElementId && rawStyleInput.value) {
+          try {
+            const parts = rawStyleInput.value.split(';').filter(Boolean);
+            const styleObj = {};
+            parts.forEach(p => {
+              const [k, v] = p.split(':');
+              if (k && v) {
+                const camelKey = k.trim().replace(/-([a-z])/g, g => g[1].toUpperCase());
+                styleObj[camelKey] = v.trim();
+              }
+            });
+            visualStudioBridge.updateElementStyle(visualStudioBridge.selectedElementId, styleObj);
+          } catch (err) {
+            console.warn('Invalid raw style string');
+          }
+        }
+      });
+    }
   }
 
   populateInspector(data) {
     document.getElementById('inspector-no-selection').style.display = 'none';
     document.getElementById('inspector-controls').style.display = 'block';
-    document.getElementById('inspector-selected-id').innerText = data.elementId || 'Selected Node';
     
+    // Set Header Badge & ID
+    const badge = document.getElementById('inspector-type-badge');
+    badge.innerText = (data.elementType || data.tagName || 'ELEMENT').toUpperCase();
+    document.getElementById('inspector-selected-id').innerText = data.elementId || 'Selected Element';
+
+    // Populate Breadcrumbs
+    const bc = document.getElementById('inspector-breadcrumbs');
+    if (bc && data.breadcrumbs && data.breadcrumbs.length > 0) {
+      bc.innerHTML = data.breadcrumbs.map((b, idx) => `
+        <span style="background: #181818; border: 1px solid var(--admin-border); padding: 2px 6px; border-radius: 3px; cursor: pointer; color: ${b.id === data.elementId ? '#FFFFFF' : '#8C8C8C'}; font-weight: ${b.id === data.elementId ? '600' : '400'};" data-bc-id="${b.id}" data-bc-selector="${b.selector || ''}">
+          ${b.label}
+        </span>
+      `).join('<span style="color:#444">/</span>');
+      bc.querySelectorAll('[data-bc-id]').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const id = chip.getAttribute('data-bc-id');
+          const sel = chip.getAttribute('data-bc-selector');
+          visualStudioBridge.selectElement(id, sel);
+        });
+      });
+    }
+
+    // Determine element characteristics
+    const isImage = data.elementType === 'image' || data.tagName === 'img';
+    const isIcon = data.elementType === 'icon' || data.tagName === 'svg';
+    const isLink = data.elementType === 'link' || data.elementType === 'button' || Boolean(data.href);
+
+    // Show/hide blocks
+    document.getElementById('ctrl-text-block').style.display = (!isImage && !isIcon) ? 'block' : 'none';
+    document.getElementById('ctrl-image-block').style.display = isImage ? 'block' : 'none';
+    document.getElementById('ctrl-bg-block').style.display = 'block'; // Always available for all elements/containers
+    document.getElementById('ctrl-icon-block').style.display = isIcon ? 'block' : 'none';
+    document.getElementById('ctrl-link-block').style.display = isLink ? 'block' : 'none';
+
+    // Populate Text
     const textInput = document.getElementById('inspector-text-input');
     textInput.value = data.textContent || '';
+
+    // Populate Image
+    if (isImage) {
+      const imgSrc = document.getElementById('inspector-img-src');
+      imgSrc.value = data.src || '';
+      const imgPrev = document.getElementById('inspector-img-preview');
+      if (data.src) {
+        imgPrev.src = data.src;
+        imgPrev.style.display = 'block';
+      } else {
+        imgPrev.style.display = 'none';
+      }
+      document.getElementById('inspector-img-alt').value = data.alt || '';
+      if (data.objectFit) document.getElementById('inspector-img-fit').value = data.objectFit;
+    }
+
+    // Populate Background
+    const bgSrc = document.getElementById('inspector-bg-src');
+    bgSrc.value = data.bgImage || '';
+    if (data.bgSize) document.getElementById('inspector-bg-size').value = data.bgSize;
+    if (data.bgPos) document.getElementById('inspector-bg-pos').value = data.bgPos;
+    const bgColorText = document.getElementById('inspector-bg-color-text');
+    if (bgColorText) bgColorText.value = data.bgColor || '';
+
+    // Populate Icon
+    if (isIcon) {
+      const iconFill = document.getElementById('inspector-icon-fill');
+      if (iconFill) iconFill.value = data.iconFill || '';
+      const iconStroke = document.getElementById('inspector-icon-stroke');
+      if (iconStroke) iconStroke.value = data.iconStroke || '';
+      const iconSize = document.getElementById('inspector-icon-size');
+      if (iconSize) iconSize.value = data.iconWidth ? `${data.iconWidth}px` : '';
+      const iconStrokeWidth = document.getElementById('inspector-icon-stroke-width');
+      if (iconStrokeWidth) iconStrokeWidth.value = data.iconStrokeWidth || '';
+    }
+
+    // Populate Link / Href
+    const linkInput = document.getElementById('inspector-link-input');
+    linkInput.value = data.href || '';
+    const linkTarget = document.getElementById('inspector-link-target');
+    if (linkTarget) linkTarget.checked = (data.target === '_blank');
+
+    // Populate Styles
+    document.getElementById('inspector-font-size').value = data.fontSize || '';
+    const colorText = document.getElementById('inspector-color-text');
+    if (colorText) colorText.value = data.color || '';
+    document.getElementById('inspector-padding').value = data.padding || '';
+    document.getElementById('inspector-margin').value = data.margin || '';
+    document.getElementById('inspector-radius').value = data.borderRadius || '';
+    document.getElementById('inspector-border').value = data.border || '';
+    document.getElementById('inspector-opacity').value = data.opacity || '1';
+    const opacityVal = document.getElementById('inspector-opacity-val');
+    if (opacityVal) opacityVal.innerText = data.opacity || '1.0';
+    if (data.letterSpacing) document.getElementById('inspector-letter-spacing').value = data.letterSpacing;
+    if (data.lineHeight) document.getElementById('inspector-line-height').value = data.lineHeight;
   }
 
-  renderNavigatorList(nodes) {
+  renderNavigatorList(sections) {
     const list = document.getElementById('inspector-navigator-list');
-    if (!nodes || nodes.length === 0) {
-      list.innerHTML = `<span style="color: var(--admin-text-muted);">No editable sections registered</span>`;
+    if (!sections || sections.length === 0) {
+      list.innerHTML = `<span style="color: var(--admin-text-muted);">Click on any element on the storefront to edit</span>`;
       return;
     }
-    list.innerHTML = nodes.map(n => `
-      <div style="padding: 6px 8px; background-color: #141414; border: 1px solid var(--admin-border); border-radius: 3px; cursor: pointer; display: flex; justify-content: space-between;" data-nav-element="${n}">
-        <span>${n}</span>
-        <span style="color: var(--admin-text-muted);">✦</span>
+    list.innerHTML = sections.map(s => `
+      <div style="padding: 7px 10px; background-color: #141414; border: 1px solid var(--admin-border); border-radius: 3px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" data-nav-element="${s.id}">
+        <span style="font-weight: 500;">${s.label || s.id}</span>
+        <span style="font-size: 10px; color: var(--admin-text-muted); text-transform: uppercase;">${s.tag}</span>
       </div>
     `).join('');
 

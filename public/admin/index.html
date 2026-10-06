@@ -255,51 +255,266 @@
               </div>
 
               <div class="inspector-body">
-                <div id="inspector-no-selection" style="color: var(--admin-text-muted); font-size: 11px; text-align: center; margin-top: 40px;">
-                  Hover and click any section on the storefront preview to inspect & edit.
+                <div id="inspector-no-selection" style="color: var(--admin-text-muted); font-size: 11px; text-align: center; margin-top: 40px; line-height: 1.6;">
+                  ✦ Click ANY element on the preview canvas to inspect & edit.<br>
+                  <span style="font-size: 10px; opacity: 0.7;">Headings, texts, images, backgrounds, icons, buttons & sections.</span>
                 </div>
 
                 <div id="inspector-controls" style="display: none;">
-                  <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--admin-text-muted); margin-bottom: 6px;">Selected Target</div>
-                  <div id="inspector-selected-id" style="font-weight: 600; font-size: 13px; margin-bottom: 16px; word-break: break-all;"></div>
+                  <!-- Hierarchy Breadcrumbs -->
+                  <div style="margin-bottom: 10px;">
+                    <div style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--admin-text-muted); margin-bottom: 4px;">DOM Hierarchy</div>
+                    <div id="inspector-breadcrumbs" style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 10px;">
+                      <!-- Breadcrumbs injected dynamically -->
+                    </div>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span id="inspector-type-badge" class="badge-monochrome badge-published">ELEMENT</span>
+                    <button id="btn-inspector-reset" class="admin-btn admin-btn-secondary admin-btn-sm" style="font-size: 9px; padding: 2px 6px;">Reset</button>
+                  </div>
+                  <div id="inspector-selected-id" style="font-weight: 500; font-size: 10px; margin-bottom: 14px; word-break: break-all; color: #FFFFFF; background: #000; padding: 6px; border: 1px solid var(--admin-border); border-radius: 3px; font-family: monospace;"></div>
 
                   <!-- Tab 1: Content -->
                   <div id="tab-pane-content">
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Element Text / HTML</label>
-                    <textarea id="inspector-text-input" rows="4" style="margin-bottom: 12px;"></textarea>
+                    
+                    <!-- Text / Heading Content Block -->
+                    <div id="ctrl-text-block" style="margin-bottom: 14px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                        <label style="font-size: 10px; text-transform: uppercase; font-weight: 600;">Text / Heading Content</label>
+                        <span style="font-size: 9px; color: var(--admin-text-muted);">Double-click on canvas to type</span>
+                      </div>
+                      <textarea id="inspector-text-input" rows="4" placeholder="Enter text..." style="margin-bottom: 6px;"></textarea>
+                    </div>
 
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Link URL (Optional)</label>
-                    <input type="text" id="inspector-link-input" placeholder="https://..." style="margin-bottom: 12px;">
+                    <!-- Image Block (for <img> elements) -->
+                    <div id="ctrl-image-block" style="margin-bottom: 14px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; font-weight: 600; margin-bottom: 4px;">Image Source</label>
+                      <input type="url" id="inspector-img-src" placeholder="https://..." style="margin-bottom: 6px;">
+                      
+                      <!-- Local Image File Upload -->
+                      <input type="file" id="inspector-img-file" accept="image/*" style="display: none;">
+                      <button type="button" id="btn-upload-img" class="admin-btn admin-btn-secondary admin-btn-sm" style="width: 100%; margin-bottom: 8px; font-size: 10px;">
+                        📁 Upload / Select Local Image
+                      </button>
+
+                      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+                        <img id="inspector-img-preview" src="" alt="" style="width: 44px; height: 44px; object-fit: cover; border: 1px solid var(--admin-border); border-radius: 3px; display: none;">
+                        <div style="flex: 1;">
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted);">Image Alt Text</label>
+                          <input type="text" id="inspector-img-alt" placeholder="Descriptive alt text">
+                        </div>
+                      </div>
+                      <div>
+                        <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted); margin-bottom: 3px;">Object Fit</label>
+                        <select id="inspector-img-fit">
+                          <option value="cover">Cover (Fill container)</option>
+                          <option value="contain">Contain (Preserve ratio)</option>
+                          <option value="fill">Fill</option>
+                          <option value="none">None</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Background Visuals Block (for ANY container, section, div, card, hero, banner) -->
+                    <div id="ctrl-bg-block" style="margin-bottom: 14px; border: 1px solid var(--admin-border); border-radius: 4px; padding: 10px; background: rgba(255,255,255,0.02);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label style="font-size: 10px; text-transform: uppercase; font-weight: 600;">Background Image & Layer</label>
+                        <button type="button" id="btn-clear-bg-img" style="background: none; border: none; color: #8C8C8C; font-size: 9px; cursor: pointer; text-decoration: underline;">Clear</button>
+                      </div>
+                      <input type="url" id="inspector-bg-src" placeholder="https://..." style="margin-bottom: 6px;">
+                      
+                      <!-- Local Background File Upload -->
+                      <input type="file" id="inspector-bg-file" accept="image/*" style="display: none;">
+                      <button type="button" id="btn-upload-bg" class="admin-btn admin-btn-secondary admin-btn-sm" style="width: 100%; margin-bottom: 8px; font-size: 10px;">
+                        📁 Upload / Select Local Background
+                      </button>
+
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+                        <div>
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted);">Size</label>
+                          <select id="inspector-bg-size">
+                            <option value="cover">Cover</option>
+                            <option value="contain">Contain</option>
+                            <option value="auto">Auto</option>
+                            <option value="100% 100%">100% 100%</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted);">Position</label>
+                          <select id="inspector-bg-pos">
+                            <option value="center">Center</option>
+                            <option value="top">Top</option>
+                            <option value="bottom">Bottom</option>
+                            <option value="left">Left</option>
+                            <option value="right">Right</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted); margin-bottom: 3px;">Background Color</label>
+                        <div style="display: flex; gap: 6px; align-items: center;">
+                          <input type="color" id="inspector-bg-color-picker" value="#000000" style="width: 28px; height: 28px; padding: 0; border: 1px solid var(--admin-border); cursor: pointer; background: none;">
+                          <input type="text" id="inspector-bg-color-text" placeholder="e.g. #141210 or transparent" style="flex: 1; font-size: 11px;">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Icon / SVG Block -->
+                    <div id="ctrl-icon-block" style="margin-bottom: 14px; border: 1px solid var(--admin-border); border-radius: 4px; padding: 10px; background: rgba(255,255,255,0.02); display: none;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; font-weight: 600; margin-bottom: 6px;">Icon / SVG Graphic</label>
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+                        <div>
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted); margin-bottom: 3px;">Fill Color</label>
+                          <input type="text" id="inspector-icon-fill" placeholder="#FFFFFF or none">
+                        </div>
+                        <div>
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted); margin-bottom: 3px;">Stroke Color</label>
+                          <input type="text" id="inspector-icon-stroke" placeholder="#FFFFFF or currentColor">
+                        </div>
+                      </div>
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                        <div>
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted); margin-bottom: 3px;">Icon Size (px)</label>
+                          <input type="text" id="inspector-icon-size" placeholder="e.g. 24px">
+                        </div>
+                        <div>
+                          <label style="display: block; font-size: 9px; text-transform: uppercase; color: var(--admin-text-muted); margin-bottom: 3px;">Stroke Width</label>
+                          <input type="text" id="inspector-icon-stroke-width" placeholder="e.g. 1.5">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Link / Action Block -->
+                    <div id="ctrl-link-block" style="margin-bottom: 14px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; font-weight: 600; margin-bottom: 4px;">Link URL / Action Target</label>
+                      <input type="text" id="inspector-link-input" placeholder="e.g. /#shop or tel:3315754525" style="margin-bottom: 6px;">
+                      <label style="display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--admin-text-muted); cursor: pointer;">
+                        <input type="checkbox" id="inspector-link-target">
+                        Open in New Tab (_blank)
+                      </label>
+                    </div>
+
                   </div>
 
                   <!-- Tab 2: Style -->
                   <div id="tab-pane-style" style="display: none;">
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Font Size</label>
-                    <input type="text" id="inspector-font-size" placeholder="e.g. 24px" style="margin-bottom: 10px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Font Size</label>
+                        <input type="text" id="inspector-font-size" placeholder="e.g. 18px">
+                      </div>
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Font Weight</label>
+                        <select id="inspector-font-weight">
+                          <option value="300">Light (300)</option>
+                          <option value="400">Regular (400)</option>
+                          <option value="500">Medium (500)</option>
+                          <option value="600">Semibold (600)</option>
+                          <option value="700">Bold (700)</option>
+                        </select>
+                      </div>
+                    </div>
 
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Alignment</label>
-                    <select id="inspector-text-align" style="margin-bottom: 10px;">
-                      <option value="left">Left</option>
-                      <option value="center">Center</option>
-                      <option value="right">Right</option>
-                    </select>
+                    <div style="margin-bottom: 10px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Font Family</label>
+                      <select id="inspector-font-family">
+                        <option value="inherit">Default (Inherit)</option>
+                        <option value="var(--font-serif)">Cormorant Garamond (Serif)</option>
+                        <option value="var(--font-sans)">Manrope (Clean Sans)</option>
+                        <option value="'Playfair Display', serif">Playfair Display</option>
+                      </select>
+                    </div>
 
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Color (Neutral Grayscale)</label>
-                    <select id="inspector-color-select" style="margin-bottom: 10px;">
-                      <option value="#FFFFFF">Pure White (#FFFFFF)</option>
-                      <option value="#B3B3B3">Light Gray (#B3B3B3)</option>
-                      <option value="#8C8C8C">Muted Gray (#8C8C8C)</option>
-                      <option value="#000000">Deep Black (#000000)</option>
-                    </select>
+                    <div style="margin-bottom: 10px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Alignment</label>
+                      <select id="inspector-text-align">
+                        <option value="left">Left</option>
+                        <option value="center">Center</option>
+                        <option value="right">Right</option>
+                        <option value="justify">Justify</option>
+                      </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Color</label>
+                        <div style="display: flex; gap: 4px; align-items: center;">
+                          <input type="color" id="inspector-color-picker" value="#FFFFFF" style="width: 26px; height: 26px; padding: 0; border: 1px solid var(--admin-border); cursor: pointer; background: none;">
+                          <input type="text" id="inspector-color-text" placeholder="#FFFFFF" style="flex: 1; font-size: 11px;">
+                        </div>
+                      </div>
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Color Presets</label>
+                        <select id="inspector-color-select">
+                          <option value="">Custom / Select</option>
+                          <option value="#FFFFFF">Pure White (#FFFFFF)</option>
+                          <option value="#D4AF37">Luxury Gold (#D4AF37)</option>
+                          <option value="#B3B3B3">Light Gray (#B3B3B3)</option>
+                          <option value="#8C8C8C">Muted Gray (#8C8C8C)</option>
+                          <option value="#000000">Deep Black (#000000)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Padding</label>
+                        <input type="text" id="inspector-padding" placeholder="e.g. 12px 24px">
+                      </div>
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Margin</label>
+                        <input type="text" id="inspector-margin" placeholder="e.g. 0 0 16px">
+                      </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Border Radius</label>
+                        <input type="text" id="inspector-radius" placeholder="e.g. 4px, 999px">
+                      </div>
+                      <div>
+                        <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Border</label>
+                        <input type="text" id="inspector-border" placeholder="e.g. 1px solid #444">
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">
+                        <span>Opacity</span>
+                        <span id="inspector-opacity-val">1.0</span>
+                      </div>
+                      <input type="range" id="inspector-opacity" min="0.05" max="1" step="0.05" value="1" style="width: 100%;">
+                    </div>
                   </div>
 
                   <!-- Tab 3: Advanced -->
                   <div id="tab-pane-advanced" style="display: none;">
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Padding</label>
-                    <input type="text" id="inspector-padding" placeholder="e.g. 10px 20px" style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 10px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Letter Spacing</label>
+                      <input type="text" id="inspector-letter-spacing" placeholder="e.g. 0.05em, 2px">
+                    </div>
 
-                    <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Custom CSS Classes</label>
-                    <input type="text" id="inspector-classes" placeholder="e.g. reveal-on-scroll" style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 10px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Line Height</label>
+                      <input type="text" id="inspector-line-height" placeholder="e.g. 1.2, 28px">
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Text Transform</label>
+                      <select id="inspector-transform">
+                        <option value="none">None</option>
+                        <option value="uppercase">Uppercase</option>
+                        <option value="capitalize">Capitalize</option>
+                        <option value="lowercase">Lowercase</option>
+                      </select>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                      <label style="display: block; font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">Custom CSS Styles (raw)</label>
+                      <input type="text" id="inspector-raw-style" placeholder="e.g. box-shadow: 0 4px 20px rgba(0,0,0,0.5)">
+                    </div>
                   </div>
                 </div>
 

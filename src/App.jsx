@@ -36,7 +36,7 @@ import FloatingActionBar from './components/FloatingActionBar';
 
 import { fetchProducts } from './services/supabase';
 import { getCurrentUser, logoutUser } from './services/authService';
-import { initStudioBridge } from './services/studioBridge';
+import { initStudioBridge, applyStoredOverrides } from './services/studioBridge';
 
 export default function App() {
   // Navigation View State: 'home', 'custom', 'shop', 'product-detail', 'checkout', 'about', 'contact', 'policies', 'admin', 'account'
@@ -156,6 +156,13 @@ export default function App() {
       navigateTo(viewId);
     });
   }, []);
+
+  // Re-apply stored overrides on every view navigation
+  useEffect(() => {
+    applyStoredOverrides();
+    const t = setTimeout(() => applyStoredOverrides(), 100);
+    return () => clearTimeout(t);
+  }, [currentView]);
 
   // Cart Actions
   const handleAddToCart = (productWithVariants) => {
