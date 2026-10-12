@@ -27,6 +27,7 @@ export default function Header({
   openWishlist, 
   wishlistCount, 
   openSearch, 
+  selectedCategory = 'all',
   setSelectedCategory,
   setSelectedShape,
   onOpenCustom,
@@ -66,9 +67,9 @@ export default function Header({
   };
 
   const handleNavClick = (view, category = null, shape = null) => {
-    setCurrentView(view);
-    if (category !== undefined) setSelectedCategory(category);
-    if (shape !== undefined) setSelectedShape(shape);
+    setCurrentView(view, category, shape);
+    if (category !== undefined && category !== null) setSelectedCategory(category);
+    if (shape !== undefined && shape !== null) setSelectedShape(shape);
     setActiveMegaMenu(null);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -124,7 +125,7 @@ export default function Header({
                 style={{ color: '#FFFFFF', cursor: 'pointer', fontSize: '0.71rem', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 500 }}
               >
                 <User size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
-                <span>Client: {currentUser.firstName || currentUser.name.split(' ')[0]}</span>
+                <span>My Account: {currentUser.firstName || currentUser.name.split(' ')[0]}</span>
               </button>
             ) : (
               <button 
@@ -132,16 +133,9 @@ export default function Header({
                 style={{ color: 'rgba(255,255,255,0.9)', cursor: 'pointer', fontSize: '0.71rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
               >
                 <User size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
-                <span>Client Sign In / Register</span>
+                <span>Login / Register</span>
               </button>
             )}
-            <span style={{ opacity: 0.35 }}>•</span>
-            <button 
-              onClick={() => handleNavClick('admin')}
-              style={{ color: 'rgba(255,255,255,0.6)', cursor: 'pointer', fontSize: '0.71rem' }}
-            >
-              Staff Portal
-            </button>
           </div>
 
         </div>
@@ -394,7 +388,7 @@ export default function Header({
           >
             <button
               onClick={() => handleNavClick('shop', 'engagement-rings')}
-              className={`category-nav-link ${currentView === 'shop' ? 'active' : ''}`}
+              className={`category-nav-link ${currentView === 'shop' && selectedCategory === 'engagement-rings' ? 'active' : ''}`}
               style={{
                 fontSize: '0.69rem',
                 letterSpacing: '0.13em',
@@ -418,7 +412,7 @@ export default function Header({
           >
             <button
               onClick={() => handleNavClick('shop', 'wedding-bands')}
-              className="category-nav-link"
+              className={`category-nav-link ${currentView === 'shop' && selectedCategory === 'wedding-bands' ? 'active' : ''}`}
               style={{
                 fontSize: '0.69rem',
                 letterSpacing: '0.13em',
@@ -442,7 +436,7 @@ export default function Header({
           >
             <button
               onClick={() => handleNavClick('shop', 'bracelets')}
-              className="category-nav-link"
+              className={`category-nav-link ${currentView === 'shop' && selectedCategory === 'bracelets' ? 'active' : ''}`}
               style={{
                 fontSize: '0.69rem',
                 letterSpacing: '0.13em',
@@ -466,7 +460,7 @@ export default function Header({
           >
             <button
               onClick={() => handleNavClick('shop', 'earrings')}
-              className="category-nav-link"
+              className={`category-nav-link ${currentView === 'shop' && selectedCategory === 'earrings' ? 'active' : ''}`}
               style={{
                 fontSize: '0.69rem',
                 letterSpacing: '0.13em',
@@ -490,7 +484,7 @@ export default function Header({
           >
             <button
               onClick={() => handleNavClick('shop', 'necklaces')}
-              className="category-nav-link"
+              className={`category-nav-link ${currentView === 'shop' && selectedCategory === 'necklaces' ? 'active' : ''}`}
               style={{
                 fontSize: '0.69rem',
                 letterSpacing: '0.13em',
@@ -509,7 +503,7 @@ export default function Header({
           {/* 6. All Fine Jewelry */}
           <button
             onClick={() => handleNavClick('shop', 'all')}
-            className="category-nav-link"
+            className={`category-nav-link ${currentView === 'shop' && (selectedCategory === 'all' || !selectedCategory) ? 'active' : ''}`}
             style={{
               fontSize: '0.69rem',
               letterSpacing: '0.13em',
@@ -524,7 +518,7 @@ export default function Header({
           {/* 7. About Atelier */}
           <button
             onClick={() => handleNavClick('about')}
-            className="category-nav-link"
+            className={`category-nav-link ${currentView === 'about' ? 'active' : ''}`}
             style={{
               fontSize: '0.69rem',
               letterSpacing: '0.13em',
@@ -539,7 +533,7 @@ export default function Header({
           {/* 8. Contact Showroom */}
           <button
             onClick={() => handleNavClick('contact')}
-            className="category-nav-link"
+            className={`category-nav-link ${currentView === 'contact' ? 'active' : ''}`}
             style={{
               fontSize: '0.69rem',
               letterSpacing: '0.13em',

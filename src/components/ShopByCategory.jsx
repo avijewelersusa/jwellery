@@ -62,7 +62,7 @@ export default function ShopByCategory({ onSelectCategory }) {
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(to top, rgba(20,20,20,0.85) 0%, rgba(20,20,20,0.2) 55%, transparent 100%)'
+                  background: 'linear-gradient(to top, rgba(12,12,12,0.92) 0%, rgba(12,12,12,0.5) 60%, rgba(12,12,12,0.15) 100%)'
                 }}
               />
 
@@ -78,20 +78,22 @@ export default function ShopByCategory({ onSelectCategory }) {
               >
                 <h3 
                   style={{
-                    color: '#FAF7F2',
+                    color: '#FFFFFF',
                     fontSize: '1.5rem',
                     marginBottom: '0.35rem',
-                    fontFamily: 'var(--font-serif)'
+                    fontFamily: 'var(--font-serif)',
+                    textShadow: '0 2px 6px rgba(0,0,0,0.7)'
                   }}
                 >
                   {category.name}
                 </h3>
                 <p 
                   style={{
-                    fontSize: '0.8rem',
-                    color: 'rgba(250, 247, 242, 0.85)',
-                    marginBottom: '0.8rem',
-                    lineHeight: 1.4
+                    fontSize: '0.82rem',
+                    color: 'rgba(255, 255, 255, 0.92)',
+                    marginBottom: '0.85rem',
+                    lineHeight: 1.45,
+                    textShadow: '0 1px 4px rgba(0,0,0,0.7)'
                   }}
                 >
                   {category.description}
@@ -100,12 +102,18 @@ export default function ShopByCategory({ onSelectCategory }) {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
-                    fontSize: '0.74rem',
-                    letterSpacing: '0.12em',
+                    gap: '0.45rem',
+                    fontSize: '0.76rem',
+                    letterSpacing: '0.14em',
                     textTransform: 'uppercase',
-                    color: 'var(--gold-muted)',
-                    fontWeight: 600
+                    color: '#FFFFFF',
+                    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                    backdropFilter: 'blur(4px)',
+                    padding: '0.35rem 0.75rem',
+                    borderRadius: '999px',
+                    border: '1px solid rgba(255, 255, 255, 0.35)',
+                    fontWeight: 600,
+                    textShadow: '0 1px 3px rgba(0,0,0,0.5)'
                   }}
                 >
                   Discover Collection <ArrowRight size={13} />

@@ -50,6 +50,7 @@ export default function ProductDetailPage({
   const [activeImage, setActiveImage] = useState(product.primaryImage);
   const [quantity, setQuantity] = useState(1);
   const [isCopied, setIsCopied] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
   const [activeTab, setActiveTab] = useState('specs'); // 'specs' | 'inclusions' | 'delivery' | 'warranty'
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
 
@@ -87,6 +88,8 @@ export default function ProductDetailPage({
       selectedSize,
       quantity
     });
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
   };
 
   const handleInstantBuy = () => {
@@ -442,12 +445,20 @@ export default function ProductDetailPage({
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '0.5rem',
-                    borderColor: 'var(--text-charcoal)',
-                    color: 'var(--text-charcoal)'
+                    borderColor: 'var(--text-charcoal)'
                   }}
                 >
-                  <ShoppingBag size={16} />
-                  Add to Luxury Bag
+                  {isAdded ? (
+                    <>
+                      <Check size={16} />
+                      Added to Bag!
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingBag size={16} />
+                      Add to Luxury Bag
+                    </>
+                  )}
                 </button>
 
                 <button

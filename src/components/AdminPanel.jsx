@@ -27,21 +27,27 @@ import {
   fetchCustomInquiries, 
   updateInquiryStatus, 
   fetchAppointments,
+  fetchOrders,
+  updateOrderStatus,
   isSupabaseConfigured
 } from '../services/supabase';
 import { DIAMOND_SHAPES, CATEGORIES } from '../data/jewelryData';
+import { ShoppingBag, Package, Check, ArrowRight } from 'lucide-react';
 
 export default function AdminPanel({ onBackToStore, onRefreshProducts }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState('');
   const [authError, setAuthError] = useState('');
-  const [activeTab, setActiveTab] = useState('products'); // 'products', 'inquiries', 'appointments', 'csv'
+  const [activeTab, setActiveTab] = useState('orders'); // 'orders', 'products', 'inquiries', 'appointments', 'csv'
 
   // Data states
   const [productsList, setProductsList] = useState([]);
+  const [ordersList, setOrdersList] = useState([]);
   const [inquiriesList, setInquiriesList] = useState([]);
   const [appointmentsList, setAppointmentsList] = useState([]);
   const [searchProductQuery, setSearchProductQuery] = useState('');
+  const [searchOrderQuery, setSearchOrderQuery] = useState('');
+  const [selectedOrderDetails, setSelectedOrderDetails] = useState(null);
 
   // Product Editing / Adding State
   const [isEditingProduct, setIsEditingProduct] = useState(false);
@@ -89,6 +95,8 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
     setInquiriesList(inqs);
     const appts = await fetchAppointments();
     setAppointmentsList(appts);
+    const ords = await fetchOrders();
+    setOrdersList(ords);
   };
 
   useEffect(() => {
@@ -96,6 +104,24 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
       loadData();
     }
   }, [isAuthenticated]);
+
+  // Real-time synchronization listeners
+  useEffect(() => {
+    const handleOrdersSync = (e) => {
+      if (e.detail) setOrdersList(e.detail);
+    };
+    const handleCatalogSync = (e) => {
+      if (e.detail) setProductsList(e.detail);
+    };
+
+    window.addEventListener('avi_orders_updated', handleOrdersSync);
+    window.addEventListener('avi_catalog_updated', handleCatalogSync);
+
+    return () => {
+      window.removeEventListener('avi_orders_updated', handleOrdersSync);
+      window.removeEventListener('avi_catalog_updated', handleCatalogSync);
+    };
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -123,22 +149,47 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
     }
   };
 
-  const handleStatusChange = async (refId, newStatus) => {
-    const updated = await updateInquiryStatus(refId, newStatus);
-    setInquiriesList(updated);
+  const handleOrderStatusChange = async (orderId, newStatus) => {
+    const updated = await updateOrderStatus(orderId, newStatus);
+    setOrdersList(updated);
   };
 
-  const handleImportCsv = async () => {
-    try {
-      if (!csvText.trim()) throw new Error('Please enter or paste CSV content.');
-      const allUpdated = await importProductsFromCsv(csvText);
-      setProductsList(allUpdated);
-      setCsvFeedback(`Successfully imported products! Catalog now contains ${allUpdated.length} items.`);
-      if (onRefreshProducts) onRefreshProducts(allUpdated);
-    } catch (err) {
-      setCsvFeedback(`Error importing CSV: ${err.message}`);
+  const handleImageFileUpload = (e, field) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (uploadEvent) => {
+      const base64Data = uploadEvent.target.result;
+      setEditingProduct(prev => ({
+        ...prev,
+        [field]: base64Data
+      }));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const toggleMetalOption = (metal) => {
+    const current = editingProduct.metalOptions || [];
+    if (current.includes(metal)) {
+      setEditingProduct({
+        ...editingProduct,
+        metalOptions: current.filter(m => m !== metal)
+      });
+    } else {
+      setEditingProduct({
+        ...editingProduct,
+        metalOptions: [...current, metal]
+      });
     }
   };
+
+  const filteredOrders = ordersList.filter(o => 
+    (o.orderId || '').toLowerCase().includes(searchOrderQuery.toLowerCase()) ||
+    (o.customerName || '').toLowerCase().includes(searchOrderQuery.toLowerCase()) ||
+    (o.customerEmail || '').toLowerCase().includes(searchOrderQuery.toLowerCase()) ||
+    (o.status || '').toLowerCase().includes(searchOrderQuery.toLowerCase())
+  );
 
   const filteredProducts = productsList.filter(p => 
     p.name.toLowerCase().includes(searchProductQuery.toLowerCase()) ||
@@ -263,6 +314,7 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
           }}
         >
           {[
+            { id: 'orders', label: `Client Orders (${ordersList.length})` },
             { id: 'products', label: `Products Catalog (${productsList.length})` },
             { id: 'inquiries', label: `Custom Ring Inquiries (${inquiriesList.length})` },
             { id: 'appointments', label: `Consultations (${appointmentsList.length})` },
@@ -275,17 +327,268 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
                 padding: '0.85rem 1.4rem',
                 fontSize: '0.86rem',
                 fontWeight: activeTab === tab.id ? 600 : 450,
-                color: activeTab === tab.id ? 'var(--gold-hover)' : 'var(--text-muted)',
-                borderBottom: activeTab === tab.id ? '2px solid var(--gold-primary)' : '2px solid transparent',
+                color: activeTab === tab.id ? 'var(--text-charcoal)' : 'var(--text-muted)',
+                borderBottom: activeTab === tab.id ? '2px solid var(--text-charcoal)' : '2px solid transparent',
                 backgroundColor: activeTab === tab.id ? '#FFFFFF' : 'transparent',
                 borderRadius: '4px 4px 0 0',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                cursor: 'pointer'
               }}
             >
               {tab.label}
             </button>
           ))}
         </div>
+
+        {/* =========================================================
+            TAB 0: CLIENT ORDERS MANAGEMENT
+           ========================================================= */}
+        {activeTab === 'orders' && (
+          <div>
+            {/* Top Toolbar */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ position: 'relative', width: '340px' }}>
+                <Search size={16} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                <input 
+                  type="text"
+                  value={searchOrderQuery}
+                  onChange={(e) => setSearchOrderQuery(e.target.value)}
+                  placeholder="Search orders by ID, client, or email..."
+                  style={{
+                    width: '100%',
+                    padding: '0.65rem 0.75rem 0.65rem 2.2rem',
+                    border: '1px solid var(--border-soft)',
+                    borderRadius: '4px',
+                    fontSize: '0.84rem',
+                    backgroundColor: '#FFFFFF'
+                  }}
+                />
+              </div>
+
+              <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                Showing <strong>{filteredOrders.length}</strong> active client orders
+              </div>
+            </div>
+
+            {/* Orders Table */}
+            <div style={{ backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-soft)', overflowX: 'auto' }}>
+              {filteredOrders.length === 0 ? (
+                <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+                  <Package size={36} style={{ margin: '0 auto 0.75rem', opacity: 0.5 }} />
+                  <p>No client orders matching this search.</p>
+                </div>
+              ) : (
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.84rem', textAlign: 'left' }}>
+                  <thead>
+                    <tr style={{ backgroundColor: 'var(--bg-cream-tint)', borderBottom: '1px solid var(--border-soft)', color: 'var(--text-charcoal)' }}>
+                      <th style={{ padding: '0.85rem 1rem' }}>Order ID & Date</th>
+                      <th style={{ padding: '0.85rem 1rem' }}>Client Details</th>
+                      <th style={{ padding: '0.85rem 1rem' }}>Items Ordered</th>
+                      <th style={{ padding: '0.85rem 1rem' }}>Total</th>
+                      <th style={{ padding: '0.85rem 1rem' }}>Atelier Status</th>
+                      <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredOrders.map(order => (
+                      <tr key={order.orderId} style={{ borderBottom: '1px solid var(--border-soft)' }}>
+                        <td style={{ padding: '0.85rem 1rem' }}>
+                          <div style={{ fontWeight: 700, letterSpacing: '0.04em' }}>#{order.orderId}</div>
+                          <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+                            {new Date(order.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </div>
+                          {order.trackingNumber && (
+                            <div style={{ fontSize: '0.68rem', color: 'var(--text-charcoal-light)', fontFamily: 'monospace', marginTop: '0.2rem' }}>
+                              {order.trackingNumber}
+                            </div>
+                          )}
+                        </td>
+
+                        <td style={{ padding: '0.85rem 1rem' }}>
+                          <div style={{ fontWeight: 600 }}>{order.customerName}</div>
+                          <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>{order.customerEmail}</div>
+                          {order.phone && <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>{order.phone}</div>}
+                        </td>
+
+                        <td style={{ padding: '0.85rem 1rem' }}>
+                          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                            {(order.items || []).slice(0, 3).map((item, idx) => (
+                              <img 
+                                key={idx} 
+                                src={item.image} 
+                                alt={item.name} 
+                                title={`${item.name} (${item.metal || 'Gold'})`}
+                                style={{ width: '38px', height: '38px', borderRadius: '4px', objectFit: 'cover', border: '1px solid var(--border-soft)' }} 
+                              />
+                            ))}
+                            {(order.items || []).length > 3 && (
+                              <span style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+                                +{(order.items || []).length - 3} more
+                              </span>
+                            )}
+                          </div>
+                          <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
+                            {(order.items || []).reduce((acc, i) => acc + (i.quantity || 1), 0)} piece(s)
+                          </div>
+                        </td>
+
+                        <td style={{ padding: '0.85rem 1rem' }}>
+                          <div style={{ fontWeight: 700, fontSize: '0.92rem' }}>
+                            ${(order.total || 0).toLocaleString()}
+                          </div>
+                          <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                            {order.paymentMethod ? order.paymentMethod.split(' ')[0] : 'Card'}
+                          </div>
+                        </td>
+
+                        <td style={{ padding: '0.85rem 1rem' }}>
+                          <select
+                            value={order.status || 'In Atelier Queue'}
+                            onChange={(e) => handleOrderStatusChange(order.orderId, e.target.value)}
+                            style={{
+                              padding: '0.35rem 0.65rem',
+                              fontSize: '0.76rem',
+                              borderRadius: '4px',
+                              border: '1px solid var(--border-soft)',
+                              backgroundColor: order.status === 'Delivered' ? '#E8F5E9' : order.status?.includes('FedEx') ? '#E3F2FD' : '#FFF8E1',
+                              color: order.status === 'Delivered' ? '#2E7D32' : order.status?.includes('FedEx') ? '#1565C0' : '#8D6E63',
+                              fontWeight: 600,
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <option value="In Atelier Queue">In Atelier Queue</option>
+                            <option value="Precious Metal Casting & CAD">Precious Metal Casting & CAD</option>
+                            <option value="Hand Stone Setting & Polish">Hand Stone Setting & Polish</option>
+                            <option value="IGI Certification & Vault Audit">IGI Certification & Vault Audit</option>
+                            <option value="FedEx Armored Overnight Dispatch">FedEx Armored Overnight Dispatch</option>
+                            <option value="Delivered">Delivered</option>
+                          </select>
+                        </td>
+
+                        <td style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>
+                          <button
+                            onClick={() => setSelectedOrderDetails(order)}
+                            className="btn btn-outline btn-sm"
+                            style={{ fontSize: '0.74rem', padding: '0.35rem 0.75rem' }}
+                          >
+                            <Eye size={12} /> View Dossier
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+
+            {/* Selected Order Dossier Modal */}
+            {selectedOrderDetails && (
+              <div 
+                style={{
+                  position: 'fixed',
+                  inset: 0,
+                  zIndex: 9999,
+                  backgroundColor: 'rgba(0,0,0,0.65)',
+                  backdropFilter: 'blur(4px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '1.5rem'
+                }}
+                onClick={() => setSelectedOrderDetails(null)}
+              >
+                <div 
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '8px',
+                    border: '1px solid var(--border-soft)',
+                    maxWidth: '680px',
+                    width: '100%',
+                    maxHeight: '90vh',
+                    overflowY: 'auto',
+                    padding: '2rem',
+                    position: 'relative',
+                    boxShadow: 'var(--shadow-modal)'
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.2rem', paddingBottom: '0.8rem', borderBottom: '1px solid var(--border-soft)' }}>
+                    <div>
+                      <span className="eyebrow">Client Order Dossier</span>
+                      <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem' }}>
+                        Order #{selectedOrderDetails.orderId}
+                      </h3>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                        Placed on {new Date(selectedOrderDetails.createdAt).toLocaleString()}
+                      </div>
+                    </div>
+                    <button 
+                      onClick={() => setSelectedOrderDetails(null)}
+                      style={{ padding: '0.4rem', cursor: 'pointer', border: 'none', background: 'none' }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem', marginBottom: '1.5rem', fontSize: '0.82rem' }}>
+                    <div style={{ backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px' }}>
+                      <div style={{ fontWeight: 600, marginBottom: '0.3rem', color: 'var(--text-charcoal)' }}>Client Details</div>
+                      <div>Name: <strong>{selectedOrderDetails.customerName}</strong></div>
+                      <div>Email: {selectedOrderDetails.customerEmail}</div>
+                      <div>Phone: {selectedOrderDetails.phone || 'Not provided'}</div>
+                    </div>
+
+                    <div style={{ backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px' }}>
+                      <div style={{ fontWeight: 600, marginBottom: '0.3rem', color: 'var(--text-charcoal)' }}>Insured Shipping Address</div>
+                      <div>{selectedOrderDetails.shippingAddress?.street}</div>
+                      <div>{selectedOrderDetails.shippingAddress?.city}, {selectedOrderDetails.shippingAddress?.state} {selectedOrderDetails.shippingAddress?.zip}</div>
+                      <div style={{ marginTop: '0.3rem', color: 'var(--text-muted)', fontSize: '0.76rem' }}>Carrier: {selectedOrderDetails.carrier}</div>
+                    </div>
+                  </div>
+
+                  <h4 style={{ fontSize: '0.92rem', marginBottom: '0.8rem', fontWeight: 600 }}>
+                    Purchased Jewelry Pieces ({selectedOrderDetails.items?.length || 0})
+                  </h4>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '1.5rem' }}>
+                    {(selectedOrderDetails.items || []).map((item, idx) => (
+                      <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'center', padding: '0.8rem', border: '1px solid var(--border-soft)', borderRadius: '4px' }}>
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          style={{ width: '64px', height: '64px', borderRadius: '4px', objectFit: 'cover' }} 
+                        />
+                        <div style={{ flex: 1, minWidth: 0, fontSize: '0.82rem' }}>
+                          <div style={{ fontWeight: 600 }}>{item.name}</div>
+                          <div style={{ color: 'var(--text-muted)', fontSize: '0.76rem' }}>
+                            Metal: <strong>{item.metal}</strong> {item.ringSize ? `• Size: ${item.ringSize}` : ''}
+                          </div>
+                          {item.certificateNumber && (
+                            <div style={{ color: '#2E7D32', fontSize: '0.74rem' }}>
+                              Certificate: {item.certificateNumber}
+                            </div>
+                          )}
+                          <div style={{ fontWeight: 600, marginTop: '0.2rem' }}>
+                            Qty: {item.quantity || 1} × ${item.price?.toLocaleString()}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ borderTop: '1px solid var(--border-soft)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Payment Method: {selectedOrderDetails.paymentMethod}</div>
+                    </div>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: 'var(--font-serif)' }}>
+                      Total: ${selectedOrderDetails.total?.toLocaleString()}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* =========================================================
             TAB 1: PRODUCTS CATALOG
@@ -532,29 +835,138 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
                       </div>
                     </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.3rem' }}>
-                        Primary Image URL *
-                      </label>
+                    {/* Primary Image with Local Upload Option */}
+                    <div style={{ backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--border-soft)' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                        <label style={{ fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase' }}>
+                          Primary Piece Image *
+                        </label>
+                        <label 
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.35rem',
+                            fontSize: '0.74rem',
+                            backgroundColor: '#FFFFFF',
+                            border: '1px solid var(--border-soft)',
+                            padding: '0.35rem 0.65rem',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontWeight: 600,
+                            color: 'var(--text-charcoal)'
+                          }}
+                        >
+                          <Upload size={13} /> Upload from Device
+                          <input 
+                            type="file" 
+                            accept="image/*" 
+                            onChange={(e) => handleImageFileUpload(e, 'primaryImage')}
+                            style={{ display: 'none' }}
+                          />
+                        </label>
+                      </div>
+
                       <input 
-                        type="url" 
+                        type="text" 
                         required
                         value={editingProduct.primaryImage} 
                         onChange={(e) => setEditingProduct({ ...editingProduct, primaryImage: e.target.value })}
-                        style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-soft)', borderRadius: '4px' }}
+                        placeholder="Image URL or upload from device"
+                        style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-soft)', borderRadius: '4px', backgroundColor: '#FFFFFF', fontSize: '0.82rem' }}
                       />
+
+                      {editingProduct.primaryImage && (
+                        <div style={{ marginTop: '0.65rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <img 
+                            src={editingProduct.primaryImage} 
+                            alt="Primary Preview" 
+                            style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', border: '1px solid var(--border-soft)' }} 
+                          />
+                          <span style={{ fontSize: '0.74rem', color: '#2E7D32', fontWeight: 600 }}>✓ Primary Image Ready</span>
+                        </div>
+                      )}
                     </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.3rem' }}>
-                        Secondary Image URL (Hover View)
-                      </label>
+                    {/* Secondary Image with Local Upload Option */}
+                    <div style={{ backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--border-soft)' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                        <label style={{ fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase' }}>
+                          Secondary Image (Hover / Detail View)
+                        </label>
+                        <label 
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.35rem',
+                            fontSize: '0.74rem',
+                            backgroundColor: '#FFFFFF',
+                            border: '1px solid var(--border-soft)',
+                            padding: '0.35rem 0.65rem',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontWeight: 600,
+                            color: 'var(--text-charcoal)'
+                          }}
+                        >
+                          <Upload size={13} /> Upload from Device
+                          <input 
+                            type="file" 
+                            accept="image/*" 
+                            onChange={(e) => handleImageFileUpload(e, 'secondaryImage')}
+                            style={{ display: 'none' }}
+                          />
+                        </label>
+                      </div>
+
                       <input 
-                        type="url" 
+                        type="text" 
                         value={editingProduct.secondaryImage || ''} 
                         onChange={(e) => setEditingProduct({ ...editingProduct, secondaryImage: e.target.value })}
-                        style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-soft)', borderRadius: '4px' }}
+                        placeholder="Secondary Image URL or upload from device"
+                        style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-soft)', borderRadius: '4px', backgroundColor: '#FFFFFF', fontSize: '0.82rem' }}
                       />
+
+                      {editingProduct.secondaryImage && (
+                        <div style={{ marginTop: '0.65rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <img 
+                            src={editingProduct.secondaryImage} 
+                            alt="Secondary Preview" 
+                            style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', border: '1px solid var(--border-soft)' }} 
+                          />
+                          <span style={{ fontSize: '0.74rem', color: '#2E7D32', fontWeight: 600 }}>✓ Secondary Image Ready</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Available Metal Options */}
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                        Available Metal Choices for This Piece
+                      </label>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+                        {['14k White Gold', '14k Yellow Gold', '14k Rose Gold', 'Platinum', '18k Yellow Gold'].map(metal => {
+                          const isChecked = (editingProduct.metalOptions || []).includes(metal);
+                          return (
+                            <button
+                              type="button"
+                              key={metal}
+                              onClick={() => toggleMetalOption(metal)}
+                              style={{
+                                padding: '0.45rem 0.85rem',
+                                borderRadius: '4px',
+                                fontSize: '0.78rem',
+                                border: isChecked ? '1px solid var(--text-charcoal)' : '1px solid var(--border-soft)',
+                                backgroundColor: isChecked ? 'var(--text-charcoal)' : '#FFFFFF',
+                                color: isChecked ? '#FFFFFF' : 'var(--text-charcoal)',
+                                cursor: 'pointer',
+                                fontWeight: isChecked ? 600 : 400
+                              }}
+                            >
+                              {isChecked ? `✓ ${metal}` : `+ ${metal}`}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
 
                     <div>

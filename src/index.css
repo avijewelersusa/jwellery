@@ -222,24 +222,40 @@ img {
   background: transparent;
   color: var(--text-charcoal);
   border: 1px solid var(--text-charcoal);
+  transition: all 0.25s ease;
 }
 
 .btn-outline:hover {
-  background-color: var(--text-charcoal);
-  color: #FFFFFF;
+  background-color: var(--text-charcoal) !important;
+  color: #FFFFFF !important;
+  border-color: var(--text-charcoal) !important;
   transform: translateY(-2px);
+}
+
+.btn-outline:hover *,
+.btn-outline:hover svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 .btn-outline-gold {
   background: transparent;
   color: var(--text-charcoal);
   border: 1px solid var(--text-charcoal);
+  transition: all 0.25s ease;
 }
 
 .btn-outline-gold:hover {
-  background-color: var(--text-charcoal);
-  color: #FFFFFF;
+  background-color: var(--text-charcoal) !important;
+  color: #FFFFFF !important;
+  border-color: var(--text-charcoal) !important;
   transform: translateY(-2px);
+}
+
+.btn-outline-gold:hover *,
+.btn-outline-gold:hover svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
 }
 
 .btn-white {
@@ -713,7 +729,8 @@ html {
 .mosaic-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(18, 18, 18, 0.82) 0%, rgba(18, 18, 18, 0.3) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.94) 0%, rgba(12, 12, 12, 0.62) 55%, rgba(12, 12, 12, 0.82) 100%);
+  backdrop-filter: blur(2px);
   display: flex;
   flex-direction: column;
   justifyContent: flex-end;
@@ -723,37 +740,47 @@ html {
   color: #FFFFFF;
 }
 
-.mosaic-photo-card:hover .mosaic-overlay {
+.mosaic-photo-card:hover .mosaic-overlay,
+.mosaic-photo-card:focus-within .mosaic-overlay {
   opacity: 1;
 }
 
 .mosaic-tag {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
-  margin-bottom: 0.25rem;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  display: block;
 }
 
 .mosaic-title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 400;
+  font-size: 1.25rem;
+  font-weight: 500;
   color: #FFFFFF;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.6rem;
   line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
 .mosaic-action {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.18);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  width: fit-content;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .mosaic-hero-card {

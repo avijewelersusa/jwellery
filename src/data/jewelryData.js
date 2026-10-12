@@ -128,7 +128,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -142,7 +141,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-002",
     "name": "Princess cut 3 carat Moissanite Ring in 14K gold",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "princess",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -155,10 +154,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_dc50e86533d54fd8bab86e2bc7947c7e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_3e1c88bf60744192b1f1d6a73e1e92f4~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "3 carat",
     "color": "D-F Colorless",
@@ -185,8 +182,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_79a5ab119f7144cd803ed71267785588~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "5.00 ctw",
@@ -213,10 +208,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_02c9ec5776934faea5702affd1f8815e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_02c9ec5776934faea5702affd1f8815e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "5.00 ctw",
     "color": "D-F Colorless",
@@ -273,7 +266,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "5.00 ctw",
@@ -300,10 +292,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_a8de28fd2798492cb8411716bbe723c8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a8de28fd2798492cb8411716bbe723c8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "5.00 ctw",
     "color": "D-F Colorless",
@@ -330,8 +320,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_3167d41ce0ce4f1ba990d0afe67a0374~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -358,10 +346,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_87e0faa90bf9469c809cf1a4e023efc2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1b6079dde6984d748b59420d4b48538a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -418,7 +404,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -445,10 +430,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_3c3eae0ada6e491faae1460ccf762e6f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_9bdfc4ab3e5449e5a3a78af5c38165e0~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -475,8 +458,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_d1069153e5c842aaacdf8c6ef144dddf~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -503,10 +484,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_4d8408f600254828947a077f3744d67a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_c5a4920aa39d48ffb39f09caf1b5f908~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -519,7 +498,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-015",
     "name": "14 K gold Oval Halo Moissanite Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "oval",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -548,7 +527,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-016",
     "name": "14 K Gold Solitaire Moissanite Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -563,7 +542,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -590,10 +568,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_e6f1c6e1271e418a917e0acd1d4ef8a9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -620,8 +596,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -648,10 +622,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_651d0bd647b14b2ca4604cfee7953419~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -708,7 +680,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -735,10 +706,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_64a256c0564e49a2aa6e7ccb76485e07~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_64a256c0564e49a2aa6e7ccb76485e07~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -765,8 +734,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_39f4277be92147cc86ef27f1a4ea364b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -793,10 +760,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_e89c28aad62e47a783d44b9913ade88a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_e89c28aad62e47a783d44b9913ade88a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "1.5 carat",
     "color": "D-F Colorless",
@@ -853,7 +818,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -880,10 +844,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_51ea48b2e0d84b0fa7960a715100edc9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_d9dff9d3bd13477e9ee60378f38fd0ef~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -910,8 +872,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_5741c6cf804a4781b7e5a8e50b2c9b88~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -938,10 +898,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_b0ef76107a9c449fb87687b45b40d8fb~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a55ce8ab2c0e42a8b64bc975d1500ffa~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -998,7 +956,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1025,10 +982,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_1de24fee616740c09c09ae7cd87b9148~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1f8663314f884b44bb0903842d431c6f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1055,8 +1010,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1185f75a54b7456f949b6cb10328f40a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1070,7 +1023,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-034",
     "name": "14K Gold 2 Carat Moissanite Solitaire Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1083,10 +1036,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_6f9093fa717e43819b0a8a3ff4480050~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_56a6fa9b596c4a75948d500dab4dc292~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2 Carat",
     "color": "D-F Colorless",
@@ -1099,7 +1050,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-035",
     "name": "14K Gold 2 Carat Halo Moissanite Solitaire Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1128,7 +1079,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-036",
     "name": "14K Gold 2 Carat Halo Moissanite Solitaire Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1143,7 +1094,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2 Carat",
@@ -1157,7 +1107,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-037",
     "name": "14K Gold 2 Carat Moissanite Solitaire Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1170,10 +1120,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_3f503c9dd83442319d29e01816658bfd~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_ba0436e6f25c4c53949a375514a4b384~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2 Carat",
     "color": "D-F Colorless",
@@ -1186,7 +1134,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-038",
     "name": "14K Gold 2 Carat Moissanite XX Solitaire Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1200,8 +1148,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_feb2da98fed1494e8238aaac4c6ae919~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2 Carat",
@@ -1215,7 +1161,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-039",
     "name": "14K Gold 2 Carat Moissanite Solitaire Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1228,10 +1174,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_92c2c1d9d5034cb5bdb2a4eb9c54f8bb~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_92217a57018542f89b3082a97cef7865~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2 Carat",
     "color": "D-F Colorless",
@@ -1244,7 +1188,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-040",
     "name": "14 K Princess cut Gold Halo Moissanite Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "princess",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1273,7 +1217,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-041",
     "name": "14 K gold Halo Moissanite Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "round",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1288,7 +1232,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1302,7 +1245,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-042",
     "name": "14 K White Gold 1 Carat Moissanite Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "princess",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1315,10 +1258,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_4bcfe2cb3cc7426c88283c9f31469405~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_6cdf8891eede4519a435c1a147f33b2d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "1 Carat",
     "color": "D-F Colorless",
@@ -1345,8 +1286,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_3f8be734d9234cf58ab38027357c5d65~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1360,7 +1299,7 @@ export const INITIAL_PRODUCTS = [
   {
     "id": "avi-044",
     "name": "14K Gold Princess Cut Moissanite Ring",
-    "category": "engagement-rings",
+    "category": "wedding-bands",
     "shape": "princess",
     "stoneType": "moissanite",
     "badge": "GRA Certified Moissanite",
@@ -1373,10 +1312,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_4f655d9f98194c88893ea3babc00f1e5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_970bfcbffdff4309aacff1286ae3e224~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1433,7 +1370,6 @@ export const INITIAL_PRODUCTS = [
     "metalOptions": [
       "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1460,10 +1396,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_2ded8d24c25840f397df3e8469191894~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a9ecf1e8e6094c14b779d9969c2b9785~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
       "14k Yellow Gold",
-      "14k Rose Gold",
-      "Platinum"
+      "18k Yellow Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1490,8 +1424,6 @@ export const INITIAL_PRODUCTS = [
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_b9f834f22d274f40b4077fce62e68b46~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
       "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1518,10 +1450,8 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_590060b6c90944d4986a3062ad28e18d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_590060b6c90944d4986a3062ad28e18d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
       "14k Rose Gold",
-      "Platinum"
+      "14k White Gold"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1561,7 +1491,6 @@ export const INITIAL_PRODUCTS = [
     "description": "2 Ct, 16+2 Solid 14 K White Gold"
   }
 ];
-
 export const CUSTOM_SHOWCASE = [
   {
     id: "showcase-1",

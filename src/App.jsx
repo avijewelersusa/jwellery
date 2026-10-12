@@ -29,6 +29,7 @@ import AccountPage from './components/AccountPage';
 import AuthModal from './components/AuthModal';
 
 import ProductDetailModal from './components/ProductDetailModal';
+import PromotionalBannerModal from './components/PromotionalBannerModal';
 import CartDrawer from './components/CartDrawer';
 import WishlistDrawer from './components/WishlistDrawer';
 import SearchModal from './components/SearchModal';
@@ -120,6 +121,14 @@ export default function App() {
       }
     }
     loadCatalog();
+
+    const handleCatalogUpdate = (e) => {
+      if (e.detail && Array.isArray(e.detail)) {
+        setProducts(e.detail);
+      }
+    };
+    window.addEventListener('avi_catalog_updated', handleCatalogUpdate);
+    return () => window.removeEventListener('avi_catalog_updated', handleCatalogUpdate);
   }, []);
 
   // Save Cart & Wishlist
@@ -304,6 +313,7 @@ export default function App() {
         openWishlist={() => setWishlistOpen(true)}
         wishlistCount={wishlistIds.length}
         openSearch={() => setSearchOpen(true)}
+        selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         setSelectedShape={setSelectedShape}
         onOpenCustom={() => navigateTo('custom')}
@@ -574,6 +584,9 @@ export default function App() {
         initialMode={authModalMode}
         messagePrompt={authModalPrompt}
       />
+
+      {/* Promotional $100 Off + Free E-Book Popup Modal */}
+      <PromotionalBannerModal />
 
       {/* Floating Action Button for Mobile Calling & WhatsApp */}
       <FloatingActionBar />

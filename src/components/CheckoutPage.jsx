@@ -19,6 +19,7 @@ import {
   User
 } from 'lucide-react';
 import { saveUserOrder } from '../services/authService';
+import { saveOrder } from '../services/supabase';
 
 export default function CheckoutPage({ 
   cartItems = [], 
@@ -107,16 +108,25 @@ export default function CheckoutPage({
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
+
+    // Enforce authentication gate: User must be signed in or registered
+    if (!currentUser) {
+      if (openAuthModal) {
+        openAuthModal('login', 'Please sign in or create an atelier account to complete and secure your fine jewelry order.');
+      }
+      return;
+    }
+
     setIsProcessing(true);
     setTimeout(() => {
       const generatedOrder = `AVI-${Math.floor(100000 + Math.random() * 900000)}`;
       setOrderNumber(generatedOrder);
 
-      // Save order to persistent user history & Supabase
-      saveUserOrder({
+      const orderPayload = {
         orderId: generatedOrder,
-        customerEmail: formData.email,
-        customerName: `${formData.firstName} ${formData.lastName}`.trim() || 'Valued Client',
+        customerEmail: currentUser.email || formData.email,
+        customerName: `${formData.firstName} ${formData.lastName}`.trim() || currentUser.name || 'Valued Client',
+        phone: formData.phone || currentUser.phone || '',
         shippingAddress: {
           street: formData.address + (formData.apt ? `, ${formData.apt}` : ''),
           city: formData.city,
@@ -144,7 +154,11 @@ export default function CheckoutPage({
           image: item.primaryImage || item.image,
           certificateNumber: `IGI-LG${Math.floor(100000000 + Math.random() * 900000000)}`
         }))
-      });
+      };
+
+      // Save order to persistent user history & central admin database
+      saveUserOrder(orderPayload);
+      saveOrder(orderPayload);
 
       setIsProcessing(false);
       setOrderComplete(true);
@@ -624,9 +638,61 @@ export default function CheckoutPage({
 
             </div>
 
+            {/* Authentication Requirement Gate */}
+            {!currentUser && (
+              <div 
+                style={{
+                  backgroundColor: 'var(--bg-cream-tint)',
+                  border: '1px solid var(--border-soft)',
+                  borderRadius: '6px',
+                  padding: '1.25rem',
+                  marginBottom: '1rem',
+                  textAlign: 'center'
+                }}
+              >
+                <div 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.45rem',
+                    fontWeight: 600,
+                    color: 'var(--text-charcoal)',
+                    marginBottom: '0.35rem',
+                    fontSize: '0.86rem',
+                    letterSpacing: '0.04em'
+                  }}
+                >
+                  <Lock size={15} /> Atelier Client Account Required
+                </div>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-charcoal-light)', marginBottom: '0.9rem', lineHeight: 1.45 }}>
+                  For insured FedEx armored transit, vault inspection, and IGI certificate registration, orders must be placed under an active client account.
+                </p>
+                <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <button 
+                    type="button" 
+                    onClick={() => openAuthModal && openAuthModal('login', 'Sign in to complete your fine jewelry order.')}
+                    className="btn btn-sm"
+                    style={{ backgroundColor: 'var(--text-charcoal)', color: '#FFFFFF', padding: '0.65rem 1.25rem', fontSize: '0.78rem' }}
+                  >
+                    Sign In to Proceed
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={() => openAuthModal && openAuthModal('register', 'Register an account to complete your fine jewelry order.')}
+                    className="btn btn-outline btn-sm"
+                    style={{ padding: '0.65rem 1.25rem', fontSize: '0.78rem', borderColor: 'var(--text-charcoal)' }}
+                  >
+                    Create Free Account
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Place Order CTA */}
             <button
-              type="submit"
+              type={currentUser ? "submit" : "button"}
+              onClick={!currentUser ? () => openAuthModal && openAuthModal('login', 'Please sign in or register to complete and secure your order.') : undefined}
               disabled={isProcessing}
               className="btn btn-lg"
               style={{
@@ -643,7 +709,12 @@ export default function CheckoutPage({
               }}
             >
               <Lock size={16} />
-              {isProcessing ? 'Securing Insured Order...' : `Place Insured Order — $${grandTotal.toLocaleString()}`}
+              {isProcessing 
+                ? 'Securing Insured Order...' 
+                : currentUser 
+                  ? `Place Insured Order — $${grandTotal.toLocaleString()}`
+                  : `Sign In / Register to Place Order — $${grandTotal.toLocaleString()}`
+              }
             </button>
 
             <div style={{ textAlign: 'center', fontSize: '0.74rem', color: 'var(--text-muted)' }}>

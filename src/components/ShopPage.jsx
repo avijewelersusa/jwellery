@@ -1,5 +1,5 @@
 // Avi Jewelers USA — Luxury Shop & Collection Page with Attractive Accordion Sidebar Filters
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Filter, 
   ChevronDown, 
@@ -38,6 +38,19 @@ export default function ShopPage({
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [addedId, setAddedId] = useState(null);
 
+  // Synchronize category and shape when changed from navigation bar
+  useEffect(() => {
+    if (initialCategory) {
+      setSelectedCategory(initialCategory);
+    }
+  }, [initialCategory]);
+
+  useEffect(() => {
+    if (initialShape) {
+      setSelectedShape(initialShape);
+    }
+  }, [initialShape]);
+
   // Accordion collapsed state for filter sections
   const [openSections, setOpenSections] = useState({
     category: true,
@@ -69,7 +82,11 @@ export default function ShopPage({
       }
       // Metal
       if (selectedMetal !== 'all') {
-        if (!product.metalOptions || !product.metalOptions.some(m => m.toLowerCase().includes(selectedMetal.toLowerCase()))) {
+        const query = selectedMetal.toLowerCase();
+        const inOptions = product.metalOptions && product.metalOptions.some(m => m.toLowerCase().includes(query));
+        const inPrimary = product.primaryMetal && product.primaryMetal.toLowerCase().includes(query);
+        const inText = (product.name + ' ' + (product.description || '')).toLowerCase().includes(query);
+        if (!inOptions && !inPrimary && !inText) {
           return false;
         }
       }
@@ -104,26 +121,7 @@ export default function ShopPage({
 
   const hasActiveFilters = selectedCategory !== 'all' || selectedShape !== 'all' || selectedStoneType !== 'all' || selectedMetal !== 'all' || priceFilter !== 'all' || readyToShipOnly;
 
-  const handleQuickAdd = (product, e) => {
-    e.stopPropagation();
-    onAddToCart({
-      ...product,
-      selectedMetal: product.metalOptions ? product.metalOptions[0] : "14k White Gold",
-      selectedSize: "6.5"
-    });
-    setAddedId(product.id);
-    setTimeout(() => setAddedId(null), 1800);
-  };
-
-  const handleCardClick = (product) => {
-    if (onSelectProduct) {
-      onSelectProduct(product);
-    } else if (onQuickView) {
-      onQuickView(product);
-    }
-  };
-
-  // Category counts
+  // Category & Metal counts
   const categoryCounts = useMemo(() => {
     const counts = {};
     products.forEach(p => {
@@ -131,6 +129,36 @@ export default function ShopPage({
     });
     return counts;
   }, [products]);
+
+  const metalCounts = useMemo(() => {
+    const counts = { all: products.length, white: 0, yellow: 0, rose: 0, platinum: 0 };
+    products.forEach(p => {
+      const opts = (p.metalOptions || []).map(m => m.toLowerCase()).join(' ') + ' ' + (p.name || '').toLowerCase() + ' ' + (p.description || '').toLowerCase();
+      if (opts.includes('white')) counts.white++;
+      if (opts.includes('yellow') || opts.includes('gold')) counts.yellow++;
+      if (opts.includes('rose')) counts.rose++;
+      if (opts.includes('platinum')) counts.platinum++;
+    });
+    return counts;
+  }, [products]);
+
+  const handleQuickAdd = (product, e) => {
+    e.stopPropagation();
+    let chosenMetal = "14k White Gold";
+    if (selectedMetal === 'yellow') chosenMetal = "14k Yellow Gold";
+    else if (selectedMetal === 'rose') chosenMetal = "14k Rose Gold";
+    else if (selectedMetal === 'platinum') chosenMetal = "Platinum";
+    else if (selectedMetal === 'white') chosenMetal = "14k White Gold";
+    else if (product.metalOptions && product.metalOptions.length > 0) chosenMetal = product.metalOptions[0];
+
+    onAddToCart({
+      ...product,
+      selectedMetal: chosenMetal,
+      selectedSize: "6.5"
+    });
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1800);
+  };
 
   return (
     <div className="shop-page" style={{ backgroundColor: 'var(--bg-warm-ivory)', minHeight: '100vh', padding: '2.5rem 0 5rem' }}>
@@ -565,20 +593,22 @@ export default function ShopPage({
               </div>
 
               {openSections.metal && (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem', fontSize: '0.75rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.4rem', fontSize: '0.78rem' }}>
                   {[
-                    { id: 'all', label: 'All Metals' },
-                    { id: 'white', label: 'White Gold' },
-                    { id: 'yellow', label: 'Yellow Gold' },
-                    { id: 'rose', label: 'Rose Gold' },
-                    { id: 'platinum', label: 'Platinum' }
+                    { id: 'all', label: 'All Metals', count: metalCounts.all },
+                    { id: 'white', label: 'White Gold', count: metalCounts.white },
+                    { id: 'yellow', label: 'Yellow Gold', count: metalCounts.yellow },
+                    { id: 'rose', label: 'Rose Gold', count: metalCounts.rose },
+                    { id: 'platinum', label: 'Platinum', count: metalCounts.platinum }
                   ].map(m => (
                     <button
                       key={m.id}
                       onClick={() => setSelectedMetal(m.id)}
                       style={{
-                        padding: '0.45rem',
-                        textAlign: 'center',
+                        padding: '0.5rem 0.75rem',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
                         borderRadius: '4px',
                         border: selectedMetal === m.id ? '1px solid var(--text-charcoal)' : '1px solid var(--border-soft)',
                         backgroundColor: selectedMetal === m.id ? 'var(--text-charcoal)' : '#FFFFFF',
@@ -587,7 +617,10 @@ export default function ShopPage({
                         cursor: 'pointer'
                       }}
                     >
-                      {m.label}
+                      <span>{m.label}</span>
+                      <span style={{ fontSize: '0.72rem', opacity: selectedMetal === m.id ? 0.9 : 0.6 }}>
+                        ({m.count})
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -785,6 +818,15 @@ export default function ShopPage({
                               ${product.compareAtPrice.toLocaleString()}
                             </span>
                           )}
+                        </div>
+
+                        <div style={{ fontSize: '0.68rem', color: 'var(--text-charcoal-light)', marginTop: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexWrap: 'wrap' }}>
+                          <span style={{ fontWeight: 600, color: 'var(--text-charcoal)' }}>Metals:</span>
+                          {(product.metalOptions || ['14k White Gold', '14k Yellow Gold']).slice(0, 3).map((m, idx) => (
+                            <span key={idx} style={{ backgroundColor: 'var(--bg-cream-tint)', padding: '0.1rem 0.35rem', borderRadius: '2px', fontSize: '0.64rem' }}>
+                              {m.replace('14k ', '').replace('18k ', '')}
+                            </span>
+                          ))}
                         </div>
 
                         <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>

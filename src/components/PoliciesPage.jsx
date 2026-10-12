@@ -4,8 +4,8 @@ import { Truck, ShieldCheck, RefreshCw, Sparkles, CheckCircle2 } from 'lucide-re
 
 export default function PoliciesPage({ onStartCustom }) {
   return (
-    <div className="policies-page" style={{ backgroundColor: 'var(--bg-warm-ivory)', minHeight: '100vh', padding: '4rem 0 6rem' }}>
-      <div className="container" style={{ maxWidth: '880px' }}>
+    <div className="policies-page" style={{ backgroundColor: 'var(--bg-warm-ivory)', minHeight: '100vh', padding: '2.5rem 0 5rem' }}>
+      <div className="container">
         
         {/* Header */}
         <div className="section-header" style={{ marginBottom: '3.5rem' }}>

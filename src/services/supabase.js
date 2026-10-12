@@ -15,11 +15,12 @@ export const supabase = isSupabaseConfigured
 
 // LocalStorage Keys for persistent fallback
 const STORAGE_KEYS = {
-  PRODUCTS: 'avi_jewelers_products_v5',
+  PRODUCTS: 'avi_jewelers_products_v7',
   INQUIRIES: 'avi_jewelers_inquiries_v1',
   APPOINTMENTS: 'avi_jewelers_appointments_v1',
   SHOWCASE: 'avi_jewelers_showcase_v2',
-  TESTIMONIALS: 'avi_jewelers_testimonials_v1'
+  TESTIMONIALS: 'avi_jewelers_testimonials_v1',
+  ORDERS: 'avi_jewelers_orders_v1'
 };
 
 // Helper to safely get local items
@@ -45,16 +46,19 @@ function setLocalItem(key, data) {
 
 // Initialize seed data if empty, and sanitize any legacy cached broken links
 export function initStoreData() {
-  // Purge legacy v1 cache if exists to ensure immediate fresh images
+  // Purge legacy cache
   if (localStorage.getItem('avi_jewelers_products_v1')) {
     localStorage.removeItem('avi_jewelers_products_v1');
   }
-  if (localStorage.getItem('avi_jewelers_showcase_v1')) {
-    localStorage.removeItem('avi_jewelers_showcase_v1');
-  }
 
   if (!localStorage.getItem(STORAGE_KEYS.PRODUCTS)) {
-    setLocalItem(STORAGE_KEYS.PRODUCTS, INITIAL_PRODUCTS);
+    // Check if there was custom admin items in v5
+    const v5Items = getLocalItem('avi_jewelers_products_v5', []);
+    const customItems = v5Items.filter(p => !p.id.startsWith('avi-') || parseInt(p.id.replace('avi-', ''), 10) > 50 || p.id.includes('new') || p.id.includes('prod'));
+    
+    // Merge INITIAL_PRODUCTS with any custom created products
+    const merged = [...customItems, ...INITIAL_PRODUCTS];
+    setLocalItem(STORAGE_KEYS.PRODUCTS, merged);
   } else {
     // Check if stored products contains any broken legacy URL and auto-repair
     const existing = getLocalItem(STORAGE_KEYS.PRODUCTS, []);
@@ -104,28 +108,40 @@ export async function fetchProducts() {
 
 export async function saveProduct(product) {
   const currentProducts = await fetchProducts();
-  const existingIndex = currentProducts.findIndex(p => p.id === product.id);
-  let updatedProducts;
+  const prodId = product.id && product.id.toString().trim() ? product.id.toString().trim() : `avi-${Date.now().toString().slice(-6)}`;
+  const existingIndex = currentProducts.findIndex(p => p.id === prodId);
+  
+  const formattedProduct = {
+    ...product,
+    id: prodId,
+    name: product.name || product.title || 'Bespoke Fine Jewelry Piece',
+    title: product.name || product.title || 'Bespoke Fine Jewelry Piece',
+    price: parseFloat(product.price) || 0,
+    compareAtPrice: product.compareAtPrice ? parseFloat(product.compareAtPrice) : 0,
+    metalOptions: Array.isArray(product.metalOptions) && product.metalOptions.length > 0 
+      ? product.metalOptions 
+      : ["14k Yellow Gold", "14k White Gold", "14k Rose Gold", "Platinum"],
+    updatedAt: new Date().toISOString()
+  };
 
+  let updatedProducts;
   if (existingIndex >= 0) {
     updatedProducts = [...currentProducts];
-    updatedProducts[existingIndex] = { ...updatedProducts[existingIndex], ...product, updatedAt: new Date().toISOString() };
+    updatedProducts[existingIndex] = { ...updatedProducts[existingIndex], ...formattedProduct };
   } else {
-    const newId = product.id || `avi-${Date.now().toString().slice(-4)}`;
-    const newProduct = {
-      ...product,
-      id: newId,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
-    updatedProducts = [newProduct, ...currentProducts];
+    formattedProduct.createdAt = new Date().toISOString();
+    updatedProducts = [formattedProduct, ...currentProducts];
   }
 
   setLocalItem(STORAGE_KEYS.PRODUCTS, updatedProducts);
 
+  try {
+    window.dispatchEvent(new CustomEvent('avi_catalog_updated', { detail: updatedProducts }));
+  } catch (e) {}
+
   if (isSupabaseConfigured && supabase) {
     try {
-      await supabase.from('products').upsert(product);
+      await supabase.from('products').upsert(formattedProduct);
     } catch (err) {
       console.error('Supabase saveProduct error:', err);
     }
@@ -138,6 +154,10 @@ export async function deleteProduct(productId) {
   const currentProducts = await fetchProducts();
   const filtered = currentProducts.filter(p => p.id !== productId);
   setLocalItem(STORAGE_KEYS.PRODUCTS, filtered);
+
+  try {
+    window.dispatchEvent(new CustomEvent('avi_catalog_updated', { detail: filtered }));
+  } catch (e) {}
 
   if (isSupabaseConfigured && supabase) {
     try {
@@ -367,4 +387,175 @@ export async function fetchAppointments() {
       createdAt: new Date(Date.now() - 86400000).toISOString()
     }
   ]);
+}
+
+// ==========================================
+// ORDERS MANAGEMENT API (/admin Orders Tab)
+// ==========================================
+
+export async function fetchOrders() {
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (!error && data && data.length > 0) {
+        return data.map(o => ({
+          ...o,
+          orderId: o.orderId || o.id,
+          customerName: o.customerName || o.customer_name || 'Valued Client',
+          customerEmail: o.customerEmail || o.customer_email || '',
+          phone: o.phone || o.customer_phone || '',
+          shippingAddress: o.shippingAddress || o.shipping_address || {},
+          items: o.items || [],
+          total: Number(o.total || 0),
+          createdAt: o.createdAt || o.created_at
+        }));
+      }
+    } catch (err) {
+      console.warn('Supabase fetchOrders fallback:', err);
+    }
+  }
+
+  return getLocalItem(STORAGE_KEYS.ORDERS, [
+    {
+      orderId: 'AVI-928104',
+      createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+      status: 'In Atelier Queue',
+      statusCode: 'crafting',
+      trackingNumber: 'FDX-7739182901US',
+      carrier: 'FedEx Priority Armored Express',
+      estimatedDelivery: 'Oct 16, 2026',
+      customerEmail: 'alexandra.montgomery@example.com',
+      customerName: 'Alexandra Montgomery',
+      phone: '312-555-0149',
+      shippingAddress: {
+        street: '840 N Michigan Ave, Penthouse 12',
+        city: 'Chicago',
+        state: 'IL',
+        zip: '60611'
+      },
+      paymentMethod: 'Credit Card ending in 4242',
+      subtotal: 5400,
+      shippingCost: 0,
+      tax: 445,
+      total: 5845,
+      items: [
+        {
+          id: 'avi-001',
+          name: 'The Chicago Cathedral Oval Solitaire',
+          category: 'engagement-rings',
+          shape: 'Oval',
+          metal: '14k White Gold',
+          ringSize: '6.5',
+          carat: '2.50 Carat',
+          stoneType: 'IGI Lab-Grown Diamond',
+          price: 2850,
+          quantity: 1,
+          image: 'https://static.wixstatic.com/media/ec0575_15f3ce294af440c99d28d234bc4404ddf002.jpg/v1/fit/w_500,h_500,q_90/file.jpg',
+          certificateNumber: 'IGI-LG61829401'
+        },
+        {
+          id: 'avi-003',
+          name: '18K Gold and Moissanite Tennis Bracelet',
+          category: 'bracelets',
+          shape: 'Round Brilliant',
+          metal: '18k Yellow Gold',
+          ringSize: '7.0 inches',
+          carat: '5.00 Carat Total Weight',
+          stoneType: 'GRA Certified Moissanite',
+          price: 2550,
+          quantity: 1,
+          image: 'https://static.wixstatic.com/media/ec0575_79a5ab119f7144cd803ed71267785588~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg',
+          certificateNumber: 'GRA-MOIS-881920'
+        }
+      ]
+    }
+  ]);
+}
+
+export async function saveOrder(orderData) {
+  const currentOrders = await fetchOrders();
+  const orderId = orderData.orderId || `AVI-${Math.floor(100000 + Math.random() * 900000)}`;
+  const trackingNumber = orderData.trackingNumber || `FDX-${Math.floor(1000000000 + Math.random() * 9000000000)}US`;
+  const estimatedDelivery = orderData.estimatedDelivery || new Date(Date.now() + 86400000 * 4).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
+  const fullOrder = {
+    ...orderData,
+    orderId,
+    id: orderId,
+    customerName: orderData.customerName || orderData.client?.name || orderData.name || 'Valued Client',
+    customerEmail: orderData.customerEmail || orderData.client?.email || orderData.email || '',
+    phone: orderData.phone || orderData.client?.phone || '',
+    shippingAddress: orderData.shippingAddress || orderData.client?.shipping || orderData.client || {},
+    trackingNumber,
+    carrier: orderData.carrier || 'FedEx Priority Armored Express',
+    estimatedDelivery,
+    status: orderData.status || 'In Atelier Queue',
+    statusCode: orderData.statusCode || 'crafting',
+    createdAt: orderData.createdAt || new Date().toISOString()
+  };
+
+  const updated = [fullOrder, ...currentOrders.filter(o => o.orderId !== orderId && o.id !== orderId)];
+  setLocalItem(STORAGE_KEYS.ORDERS, updated);
+
+  try {
+    window.dispatchEvent(new CustomEvent('avi_orders_updated', { detail: updated }));
+  } catch (e) {}
+
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const dbPayload = {
+        id: orderId,
+        customer_name: fullOrder.customerName,
+        customer_email: fullOrder.customerEmail,
+        customer_phone: fullOrder.phone,
+        shipping_address: fullOrder.shippingAddress,
+        payment_method: fullOrder.paymentMethod || 'Credit Card (Stripe Authorized)',
+        payment_status: 'paid',
+        fulfillment_status: 'crafting',
+        subtotal: fullOrder.pricing?.subtotal || fullOrder.subtotal || fullOrder.total || 0,
+        tax: fullOrder.pricing?.tax || fullOrder.tax || 0,
+        shipping_cost: fullOrder.pricing?.shipping || 0,
+        total: fullOrder.pricing?.total || fullOrder.total || 0,
+        currency: 'USD',
+        tracking_number: trackingNumber,
+        carrier: fullOrder.carrier,
+        timeline: fullOrder.timeline || [],
+        notes: fullOrder.specialInstructions || fullOrder.notes || ''
+      };
+      await supabase.from('orders').upsert([dbPayload]);
+    } catch (err) {
+      console.error('Supabase saveOrder error:', err);
+    }
+  }
+
+  return fullOrder;
+}
+
+export async function updateOrderStatus(orderId, newStatus) {
+  const orders = await fetchOrders();
+  const updated = orders.map(order => 
+    order.orderId === orderId ? { ...order, status: newStatus, updatedAt: new Date().toISOString() } : order
+  );
+  setLocalItem(STORAGE_KEYS.ORDERS, updated);
+
+  try {
+    window.dispatchEvent(new CustomEvent('avi_orders_updated', { detail: updated }));
+  } catch (e) {}
+
+  if (isSupabaseConfigured && supabase) {
+    try {
+      await supabase.from('orders').update({ status: newStatus }).eq('orderId', orderId);
+    } catch (err) {
+      console.error('Supabase updateOrderStatus error:', err);
+    }
+  }
+
+  return updated;
 }

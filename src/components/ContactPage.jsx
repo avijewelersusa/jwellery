@@ -54,8 +54,8 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="contact-page" style={{ backgroundColor: 'var(--bg-warm-ivory)', minHeight: '100vh', padding: '3.5rem 0 6rem' }}>
-      <div className="container" style={{ maxWidth: '1100px' }}>
+    <div className="contact-page" style={{ backgroundColor: 'var(--bg-warm-ivory)', minHeight: '100vh', padding: '2.5rem 0 5rem' }}>
+      <div className="container">
         
         {/* Minimal Hero Header */}
         <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '640px', margin: '0 auto 4rem' }}>

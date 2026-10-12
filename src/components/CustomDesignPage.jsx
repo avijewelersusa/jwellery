@@ -150,40 +150,42 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.4rem 1rem',
+              gap: '0.45rem',
+              padding: '0.45rem 1.1rem',
               borderRadius: '999px',
-              backgroundColor: 'rgba(255,255,255,0.15)',
+              backgroundColor: 'rgba(0, 0, 0, 0.55)',
               backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(216, 199, 165, 0.5)',
-              fontSize: '0.72rem',
+              border: '1px solid rgba(255, 255, 255, 0.35)',
+              fontSize: '0.74rem',
               letterSpacing: '0.22em',
               textTransform: 'uppercase',
-              color: 'var(--gold-muted)',
-              marginBottom: '1.2rem'
+              color: '#FFFFFF',
+              fontWeight: 600,
+              marginBottom: '1.2rem',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
             }}
           >
-            <Sparkles size={13} style={{ color: 'var(--gold-primary)' }} />
+            <Sparkles size={14} style={{ color: '#FFFFFF' }} />
             Chicago Bespoke Atelier
           </span>
 
-          <h1 style={{ color: '#FAF7F2', fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', marginBottom: '1.2rem', lineHeight: 1.15 }}>
+          <h1 style={{ color: '#FAF7F2', fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', marginBottom: '1.2rem', lineHeight: 1.15, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Bespoke Custom Engagement Rings
           </h1>
 
-          <p style={{ fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', color: 'rgba(250, 247, 242, 0.9)', lineHeight: 1.6, maxWidth: '680px', margin: '0 auto 2rem' }}>
+          <p style={{ fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', color: 'rgba(250, 247, 242, 0.95)', lineHeight: 1.6, maxWidth: '680px', margin: '0 auto 2rem', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
             Work 1-on-1 with our master Chicago jewelers. Share your sketches, Pinterest links, or screenshots. We design, 3D model, cast, and deliver your one-of-a-kind ring in 3 to 4 weeks.
           </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', fontSize: '0.84rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', fontSize: '0.84rem', color: '#FAF7F2' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={16} style={{ color: 'var(--gold-primary)' }} /> Free 3D CAD Renders
+              <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> Free 3D CAD Renders
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={16} style={{ color: 'var(--gold-primary)' }} /> IGI & GRA Certified Stones
+              <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> IGI & GRA Certified Stones
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={16} style={{ color: 'var(--gold-primary)' }} /> Direct Atelier Pricing
+              <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> Direct Atelier Pricing
             </span>
           </div>
         </div>
