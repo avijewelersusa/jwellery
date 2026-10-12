@@ -34,6 +34,10 @@ export default function ProductCardMedia({
         alt={name}
         className="primary-img"
         loading="lazy"
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85';
+        }}
         style={{
           width: '100%',
           height: '100%',
@@ -53,6 +57,10 @@ export default function ProductCardMedia({
           alt={`${name} alternate angle`}
           className="secondary-img"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=85';
+          }}
           style={{
             position: 'absolute',
             inset: padding,

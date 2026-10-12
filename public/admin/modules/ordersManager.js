@@ -10,25 +10,117 @@ export class OrdersManager {
 
   async init() {
     await this.loadOrders();
+
+    // Cross-tab real-time sync listeners
+    if (typeof window !== 'undefined') {
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'avi_jewelers_orders_v1' || e.key === 'avi_admin_cached_orders') {
+          this.loadOrders().then(() => {
+            if (window.adminApp && window.adminApp.renderOrders) {
+              window.adminApp.renderOrders();
+              window.adminApp.updateCounters();
+            }
+          });
+        }
+      });
+
+      window.addEventListener('avi_orders_updated', () => {
+        this.loadOrders().then(() => {
+          if (window.adminApp && window.adminApp.renderOrders) {
+            window.adminApp.renderOrders();
+            window.adminApp.updateCounters();
+          }
+        });
+      });
+
+      // Periodic live polling every 10 seconds to detect new customer orders
+      setInterval(() => {
+        this.loadOrders().then(() => {
+          if (window.adminApp && window.adminApp.renderOrders) {
+            window.adminApp.renderOrders();
+            window.adminApp.updateCounters();
+          }
+        });
+      }, 10000);
+    }
+  }
+
+  normalizeOrder(o) {
+    return {
+      ...o,
+      id: o.id || o.orderId,
+      customer_name: o.customer_name || o.customerName || 'Valued Client',
+      customer_email: o.customer_email || o.customerEmail || '',
+      customer_phone: o.customer_phone || o.phone || '',
+      total: Number(o.total || 0),
+      fulfillment_status: o.fulfillment_status || o.statusCode || 'crafting',
+      payment_status: o.payment_status || 'paid',
+      created_at: o.created_at || o.createdAt || new Date().toISOString(),
+      items: Array.isArray(o.order_items) && o.order_items.length > 0
+        ? o.order_items.map(it => ({
+            name: it.name,
+            price: Number(it.price || 0),
+            quantity: Number(it.quantity || 1),
+            selected_metal: it.selected_metal,
+            selected_size: it.selected_size,
+            carat: it.carat,
+            certificate_number: it.certificate_number,
+            image_url: it.image_url
+          }))
+        : (o.items || [])
+    };
   }
 
   async loadOrders() {
+    const ordersMap = new Map();
+
     // 1. Try Supabase Cloud
     const cloudOrders = await supabaseAdapter.getOrders();
-    if (cloudOrders && cloudOrders.length > 0) {
-      this.orders = cloudOrders;
-      storageAdapter.setItem('cached_orders', cloudOrders);
-      return this.orders;
+    if (cloudOrders && Array.isArray(cloudOrders)) {
+      cloudOrders.forEach(o => {
+        const norm = this.normalizeOrder(o);
+        ordersMap.set(norm.id, norm);
+      });
     }
 
-    // 2. Fallback to LocalStorage or seeded orders
+    // 2. Check Storefront LocalStorage orders (avi_jewelers_orders_v1)
+    try {
+      const storefrontRaw = localStorage.getItem('avi_jewelers_orders_v1');
+      if (storefrontRaw) {
+        const parsed = JSON.parse(storefrontRaw);
+        if (Array.isArray(parsed)) {
+          parsed.forEach(o => {
+            const norm = this.normalizeOrder(o);
+            if (!ordersMap.has(norm.id)) {
+              ordersMap.set(norm.id, norm);
+            }
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('Error reading storefront orders:', e);
+    }
+
+    // 3. Check Admin Cached orders
     const local = storageAdapter.getItem('cached_orders', null);
-    if (local && local.length > 0) {
-      this.orders = local;
+    if (local && Array.isArray(local)) {
+      local.forEach(o => {
+        const norm = this.normalizeOrder(o);
+        if (!ordersMap.has(norm.id)) {
+          ordersMap.set(norm.id, norm);
+        }
+      });
+    }
+
+    if (ordersMap.size > 0) {
+      this.orders = Array.from(ordersMap.values()).sort((a, b) => 
+        new Date(b.created_at) - new Date(a.created_at)
+      );
+      storageAdapter.setItem('cached_orders', this.orders);
       return this.orders;
     }
 
-    // Default luxury sample orders
+    // Default luxury sample orders if completely empty
     this.orders = [
       {
         id: 'AVI-894210',
@@ -44,7 +136,7 @@ export class OrdersManager {
         },
         payment_method: 'Credit Card (Stripe Authorized)',
         payment_status: 'paid',
-        fulfillment_status: 'in_transit',
+        fulfillment_status: 'crafting',
         subtotal: 3200,
         tax: 264,
         shipping_cost: 0,

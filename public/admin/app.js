@@ -823,9 +823,111 @@ class AdminStudioApp {
       document.getElementById('product-modal').style.display = 'none';
     });
 
+    // Helper to auto-repair Unsplash web URLs into direct CDN high-res image URLs
+    const cleanImageUrl = (url) => {
+      if (!url || typeof url !== 'string') return '';
+      const trimmed = url.trim();
+      const match = trimmed.match(/unsplash\.com\/photos\/(?:[^\/]+-)?([a-zA-Z0-9_-]{8,})/i);
+      if (match && match[1]) {
+        return `https://images.unsplash.com/photo-${match[1]}?auto=format&fit=crop&w=800&q=85`;
+      }
+      return trimmed;
+    };
+
+    // Helper to process and compress local device images via HTML5 Canvas
+    const processImageFile = (file, callback) => {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const maxDim = 1200;
+          let width = img.width;
+          let height = img.height;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
+          callback(dataUrl);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // Device upload listener for primary image
+    const primaryFileInput = document.getElementById('prod-form-image-file');
+    if (primaryFileInput) {
+      primaryFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        processImageFile(file, (dataUrl) => {
+          document.getElementById('prod-form-image').value = dataUrl;
+          const previewImg = document.getElementById('prod-image-preview-img');
+          const statusText = document.getElementById('prod-image-status-text');
+          const clearBtn = document.getElementById('btn-clear-primary-img');
+          if (previewImg) previewImg.src = dataUrl;
+          if (statusText) statusText.innerHTML = `✓ Uploaded from Device (${Math.round(file.size / 1024)} KB)`;
+          if (clearBtn) clearBtn.style.display = 'inline-block';
+          this.showToast('Image uploaded successfully from device!');
+        });
+      });
+    }
+
+    // Device upload listener for secondary image
+    const secFileInput = document.getElementById('prod-form-sec-image-file');
+    if (secFileInput) {
+      secFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        processImageFile(file, (dataUrl) => {
+          document.getElementById('prod-form-sec-image').value = dataUrl;
+          this.showToast('Secondary image uploaded from device!');
+        });
+      });
+    }
+
+    // Live preview update on typing/pasting URL
+    const primaryUrlInput = document.getElementById('prod-form-image');
+    if (primaryUrlInput) {
+      primaryUrlInput.addEventListener('input', () => {
+        const cleaned = cleanImageUrl(primaryUrlInput.value);
+        const previewImg = document.getElementById('prod-image-preview-img');
+        const statusText = document.getElementById('prod-image-status-text');
+        if (previewImg && cleaned) {
+          previewImg.src = cleaned;
+          if (statusText) statusText.innerText = '✓ Direct Image Link Active';
+        }
+      });
+    }
+
+    const clearPrimaryBtn = document.getElementById('btn-clear-primary-img');
+    if (clearPrimaryBtn) {
+      clearPrimaryBtn.addEventListener('click', () => {
+        document.getElementById('prod-form-image').value = '';
+        const previewImg = document.getElementById('prod-image-preview-img');
+        if (previewImg) previewImg.src = 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85';
+        clearPrimaryBtn.style.display = 'none';
+      });
+    }
+
     // Form submit
     document.getElementById('product-modal-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const rawPrimary = document.getElementById('prod-form-image').value;
+      const rawSec = document.getElementById('prod-form-sec-image') ? document.getElementById('prod-form-sec-image').value : '';
+      
       const productData = {
         id: document.getElementById('prod-form-id').value || undefined,
         title: document.getElementById('prod-form-title').value,
@@ -839,7 +941,8 @@ class AdminStudioApp {
         badge: document.getElementById('prod-form-stone').value === 'lab-diamond' ? 'IGI Certified Lab Diamond' : 'GRA Certified Moissanite',
         carat: document.getElementById('prod-form-carat').value,
         leadTime: document.getElementById('prod-form-leadtime').value,
-        primaryImage: document.getElementById('prod-form-image').value,
+        primaryImage: cleanImageUrl(rawPrimary) || 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85',
+        secondaryImage: cleanImageUrl(rawSec) || null,
         description: document.getElementById('prod-form-description').value,
         isBestSeller: document.getElementById('prod-form-bestseller').checked,
         isFeatured: document.getElementById('prod-form-featured').checked
@@ -850,7 +953,7 @@ class AdminStudioApp {
       this.renderProducts();
       this.renderInventory();
       this.updateCounters();
-      this.showToast('Product saved successfully.');
+      this.showToast('Product saved successfully and synchronized across store!');
     });
 
     // CSV Export & Import
@@ -923,7 +1026,7 @@ The Chicago Emerald Bezel,engagement-rings,emerald,moissanite,2200,2800,AVI-EMR-
           ${filtered.map(p => `
             <tr>
               <td style="display: flex; align-items: center; gap: 10px;">
-                <img src="${p.primaryImage}" alt="" style="width: 36px; height: 36px; object-fit: cover; border-radius: 3px; border: 1px solid var(--admin-border);">
+                <img src="${p.primaryImage}" alt="" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85';" style="width: 36px; height: 36px; object-fit: cover; border-radius: 3px; border: 1px solid var(--admin-border);">
                 <div>
                   <div style="font-weight: 600;">${p.title || p.name}</div>
                   <div style="font-size: 10px; color: var(--admin-text-muted);">ID: ${p.id}</div>
@@ -983,7 +1086,16 @@ The Chicago Emerald Bezel,engagement-rings,emerald,moissanite,2200,2800,AVI-EMR-
   openProductModal(product) {
     const modal = document.getElementById('product-modal');
     const title = document.getElementById('product-modal-title');
+    const previewImg = document.getElementById('prod-image-preview-img');
+    const statusText = document.getElementById('prod-image-status-text');
+    const clearBtn = document.getElementById('btn-clear-primary-img');
     
+    // Reset file inputs
+    const fileInp = document.getElementById('prod-form-image-file');
+    if (fileInp) fileInp.value = '';
+    const secFileInp = document.getElementById('prod-form-sec-image-file');
+    if (secFileInp) secFileInp.value = '';
+
     if (product) {
       title.innerText = 'Edit Jewelry Piece';
       document.getElementById('prod-form-id').value = product.id;
@@ -997,16 +1109,36 @@ The Chicago Emerald Bezel,engagement-rings,emerald,moissanite,2200,2800,AVI-EMR-
       document.getElementById('prod-form-carat').value = product.carat || '';
       document.getElementById('prod-form-leadtime').value = product.leadTime || 'Ships in 2-3 weeks';
       document.getElementById('prod-form-image').value = product.primaryImage || '';
+      if (document.getElementById('prod-form-sec-image')) {
+        document.getElementById('prod-form-sec-image').value = product.secondaryImage || '';
+      }
       document.getElementById('prod-form-description').value = product.description || '';
       document.getElementById('prod-form-bestseller').checked = !!product.isBestSeller;
       document.getElementById('prod-form-featured').checked = !!product.isFeatured;
+
+      if (previewImg) {
+        previewImg.src = product.primaryImage || 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85';
+      }
+      if (statusText) {
+        statusText.innerText = product.primaryImage ? '✓ High-Res Image Active' : 'Select from local device or paste web link';
+      }
+      if (clearBtn) {
+        clearBtn.style.display = product.primaryImage ? 'inline-block' : 'none';
+      }
     } else {
       title.innerText = 'Add New Jewelry Piece';
       document.getElementById('product-modal-form').reset();
       document.getElementById('prod-form-id').value = '';
       document.getElementById('prod-form-stock').value = 10;
       document.getElementById('prod-form-leadtime').value = 'Ships in 2-3 weeks';
-      document.getElementById('prod-form-image').value = 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85';
+      const defaultImg = 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85';
+      document.getElementById('prod-form-image').value = defaultImg;
+      if (document.getElementById('prod-form-sec-image')) {
+        document.getElementById('prod-form-sec-image').value = '';
+      }
+      if (previewImg) previewImg.src = defaultImg;
+      if (statusText) statusText.innerText = '✓ Default Fine Jewelry Image Ready';
+      if (clearBtn) clearBtn.style.display = 'none';
     }
 
     modal.style.display = 'flex';
@@ -1094,10 +1226,11 @@ The Chicago Emerald Bezel,engagement-rings,emerald,moissanite,2200,2800,AVI-EMR-
               </td>
               <td>
                 <select class="admin-status-select" data-order-status="${o.id}" style="padding: 3px 6px; font-size: 11px; width: auto;">
-                  <option value="processing" ${o.fulfillment_status === 'processing' ? 'selected' : ''}>Processing</option>
+                  <option value="crafting" ${o.fulfillment_status === 'crafting' ? 'selected' : ''}>In Atelier Queue (Crafting)</option>
+                  <option value="inspection" ${o.fulfillment_status === 'inspection' ? 'selected' : ''}>Quality Inspection</option>
                   <option value="in_transit" ${o.fulfillment_status === 'in_transit' ? 'selected' : ''}>FedEx In Transit</option>
                   <option value="delivered" ${o.fulfillment_status === 'delivered' ? 'selected' : ''}>Delivered</option>
-                  <option value="cancelled" ${o.fulfillment_status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                  <option value="unfulfilled" ${o.fulfillment_status === 'unfulfilled' ? 'selected' : ''}>Unfulfilled</option>
                 </select>
               </td>
               <td><span class="badge-monochrome badge-published">${o.payment_status}</span></td>

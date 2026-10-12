@@ -118,12 +118,13 @@ export default function CheckoutPage({
     }
 
     setIsProcessing(true);
-    setTimeout(() => {
+    setTimeout(async () => {
       const generatedOrder = `AVI-${Math.floor(100000 + Math.random() * 900000)}`;
       setOrderNumber(generatedOrder);
 
       const orderPayload = {
         orderId: generatedOrder,
+        id: generatedOrder,
         customerEmail: currentUser.email || formData.email,
         customerName: `${formData.firstName} ${formData.lastName}`.trim() || currentUser.name || 'Valued Client',
         phone: formData.phone || currentUser.phone || '',
@@ -156,9 +157,13 @@ export default function CheckoutPage({
         }))
       };
 
-      // Save order to persistent user history & central admin database
-      saveUserOrder(orderPayload);
-      saveOrder(orderPayload);
+      try {
+        // Save order to persistent user history & central admin database
+        saveUserOrder(orderPayload);
+        await saveOrder(orderPayload);
+      } catch (err) {
+        console.error('Error saving order:', err);
+      }
 
       setIsProcessing(false);
       setOrderComplete(true);

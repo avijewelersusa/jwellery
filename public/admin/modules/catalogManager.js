@@ -25,10 +25,24 @@ export class CatalogManager {
     if (cloudProducts && cloudProducts.length > 0) {
       this.products = cloudProducts;
       storageAdapter.setItem('cached_products', cloudProducts);
+      localStorage.setItem('avi_jewelers_products_v7', JSON.stringify(cloudProducts));
+      localStorage.setItem('avi_jewelers_products_v5', JSON.stringify(cloudProducts));
       return this.products;
     }
 
     // 2. Fallback to LocalStorage cache or storefront data
+    const storefrontProducts = localStorage.getItem('avi_jewelers_products_v7');
+    if (storefrontProducts) {
+      try {
+        const parsed = JSON.parse(storefrontProducts);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          this.products = parsed;
+          storageAdapter.setItem('cached_products', parsed);
+          return this.products;
+        }
+      } catch (e) {}
+    }
+
     const local = storageAdapter.getItem('cached_products', null);
     if (local && local.length > 0) {
       this.products = local;
@@ -42,6 +56,7 @@ export class CatalogManager {
         const json = await res.json();
         this.products = json;
         storageAdapter.setItem('cached_products', json);
+        localStorage.setItem('avi_jewelers_products_v7', JSON.stringify(json));
         return this.products;
       }
     } catch {
@@ -75,9 +90,14 @@ export class CatalogManager {
       }
     }
 
-    // Save locally
+    // Save locally to both admin & storefront storage keys
     storageAdapter.setItem('cached_products', this.products);
     localStorage.setItem('avi_jewelers_products_v5', JSON.stringify(this.products));
+    localStorage.setItem('avi_jewelers_products_v7', JSON.stringify(this.products));
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('avi_catalog_updated', { detail: this.products }));
+    }
 
     // Sync to Supabase Cloud
     try {
@@ -94,6 +114,11 @@ export class CatalogManager {
     this.products = this.products.filter(p => p.id !== productId);
     storageAdapter.setItem('cached_products', this.products);
     localStorage.setItem('avi_jewelers_products_v5', JSON.stringify(this.products));
+    localStorage.setItem('avi_jewelers_products_v7', JSON.stringify(this.products));
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('avi_catalog_updated', { detail: this.products }));
+    }
 
     try {
       await supabaseAdapter.deleteProduct(productId);

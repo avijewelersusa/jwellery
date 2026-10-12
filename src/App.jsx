@@ -35,7 +35,7 @@ import WishlistDrawer from './components/WishlistDrawer';
 import SearchModal from './components/SearchModal';
 import FloatingActionBar from './components/FloatingActionBar';
 
-import { fetchProducts } from './services/supabase';
+import { fetchProducts, supabase, isSupabaseConfigured } from './services/supabase';
 import { getCurrentUser, logoutUser } from './services/authService';
 import { initStudioBridge, applyStoredOverrides } from './services/studioBridge';
 
@@ -107,7 +107,7 @@ export default function App() {
     setTimeout(() => setToastMessage(''), 3000);
   };
 
-  // Sync products from Supabase / Local storage
+  // Sync products from Supabase / Local storage with Real-time & Cross-tab Sync
   useEffect(() => {
     async function loadCatalog() {
       setLoadingProducts(true);
@@ -127,8 +127,41 @@ export default function App() {
         setProducts(e.detail);
       }
     };
+
+    // Cross-tab synchronization when changes occur in Admin Panel
+    const handleStorageChange = (e) => {
+      if (e.key === 'avi_jewelers_products_v7' || e.key === 'avi_admin_cached_products') {
+        try {
+          const parsed = JSON.parse(e.newValue);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setProducts(parsed);
+          }
+        } catch (err) {}
+      }
+    };
+
     window.addEventListener('avi_catalog_updated', handleCatalogUpdate);
-    return () => window.removeEventListener('avi_catalog_updated', handleCatalogUpdate);
+    window.addEventListener('storage', handleStorageChange);
+
+    // Supabase Live Real-Time Channel for instant cloud sync
+    let realtimeChannel = null;
+    if (isSupabaseConfigured && supabase) {
+      realtimeChannel = supabase
+        .channel('public_products_live')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, async () => {
+          const fresh = await fetchProducts();
+          setProducts(fresh);
+        })
+        .subscribe();
+    }
+
+    return () => {
+      window.removeEventListener('avi_catalog_updated', handleCatalogUpdate);
+      window.removeEventListener('storage', handleStorageChange);
+      if (realtimeChannel && supabase) {
+        supabase.removeChannel(realtimeChannel);
+      }
+    };
   }, []);
 
   // Save Cart & Wishlist

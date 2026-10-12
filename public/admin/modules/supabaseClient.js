@@ -98,7 +98,7 @@ class SupabaseAdapter {
       'apikey': this.config.anonKey,
       'Authorization': `Bearer ${this.config.anonKey}`,
       'Content-Type': 'application/json',
-      'Prefer': method === 'POST' ? 'return=representation' : 'return=representation, resolution=merge-duplicates'
+      'Prefer': 'return=representation, resolution=merge-duplicates'
     };
 
     try {
@@ -159,7 +159,7 @@ class SupabaseAdapter {
   // High-level Orders APIs
   async getOrders() {
     try {
-      const data = await this.query('orders', { order: 'created_at.desc' });
+      const data = await this.query('orders', { select: '*, order_items(*)', order: 'created_at.desc' });
       if (data) return data;
     } catch (e) {
       console.warn('Fallback to local storage for orders:', e);
@@ -169,10 +169,25 @@ class SupabaseAdapter {
 
   async updateOrderStatus(orderId, updateFields) {
     try {
+      const body = { ...updateFields };
+      if (body.fulfillment_status) {
+        const raw = (body.fulfillment_status || '').toLowerCase();
+        if (['unfulfilled', 'crafting', 'inspection', 'in_transit', 'delivered'].includes(raw)) {
+          body.fulfillment_status = raw;
+        } else if (raw.includes('transit')) {
+          body.fulfillment_status = 'in_transit';
+        } else if (raw.includes('deliver')) {
+          body.fulfillment_status = 'delivered';
+        } else if (raw.includes('inspect')) {
+          body.fulfillment_status = 'inspection';
+        } else {
+          body.fulfillment_status = 'crafting';
+        }
+      }
       return await this.query('orders', {
         method: 'PATCH',
         match: { id: orderId },
-        body: updateFields
+        body
       });
     } catch (e) {
       console.error('Failed to update order status on Supabase:', e);
