@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <defs>
+    <radialGradient id="roundBase" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#F4F7FA"/>
+      <stop offset="80%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </radialGradient>
+    <linearGradient id="roundHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#EDF2F7" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="sparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E2EC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Girdle Base -->
+  <circle cx="60" cy="60" r="46" fill="url(#roundBase)" stroke="#1E232B" stroke-width="1.6"/>
+
+  <!-- Upper Girdle & Kite Facets (Star / Bezel Pattern) -->
+  <!-- Outer border points on circle r=46 (16 points: angle 22.5 deg intervals) -->
+  <!-- Inner octagon (Table): r=23 at angles 22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5 -->
+  <!-- Mid points: r=36 at 0, 45, 90, 135, 180, 225, 270, 315 -->
+
+  <!-- Star Triangles (Table edge to mid-points) -->
+  <polygon points="60,37 51,44 60,24" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="69,44 60,37 60,24" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="76,51 69,44 85,35" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="83,60 76,51 96,60" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="76,69 83,60 96,60" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="69,76 76,69 85,85" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,83 69,76 60,96" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="51,76 60,83 60,96" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="44,69 51,76 35,85" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="37,60 44,69 24,60" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="44,51 37,60 24,60" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="51,44 44,51 35,35" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Kite (Bezel) Facets radiating to girdle -->
+  <polygon points="60,24 85,35 92,42 77,28" fill="url(#roundHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,24 35,35 28,42 43,28" fill="url(#roundHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="96,60 85,35 92,42 104,50" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="96,60 85,85 104,70 92,78" fill="url(#roundHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,96 85,85 77,92 92,78" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,96 35,85 43,92 28,78" fill="url(#roundHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="24,60 35,85 16,70 28,78" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="24,60 35,35 16,50 28,42" fill="url(#roundHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Upper Girdle Halves -->
+  <polygon points="60,14 43,28 60,24" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,14 77,28 60,24" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="106,60 104,50 96,60" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="106,60 104,70 96,60" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,106 77,92 60,96" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,106 43,92 60,96" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="14,60 16,70 24,60" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="14,60 16,50 24,60" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Center Octagon Table -->
+  <polygon points="51,44 69,44 76,51 76,69 69,76 51,76 44,69 44,51" fill="#FFFFFF" stroke="#1E232B" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Center Table Light Reflection -->
+  <polygon points="51,44 63,44 58,58 44,58 44,51" fill="#F8FAFC" opacity="0.8"/>
+  <circle cx="56" cy="50" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+</svg>

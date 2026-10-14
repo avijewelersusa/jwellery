@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <defs>
+    <radialGradient id="cushBase" cx="42%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#F4F7FA"/>
+      <stop offset="80%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </radialGradient>
+    <linearGradient id="cushHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EDF2F7" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="sparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E2EC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cushion Outline (Bowed sides, rounded corners) -->
+  <path d="M 40,16 C 50,14 70,14 80,16 C 96,18 104,26 106,42 C 108,52 108,68 106,78 C 104,94 96,102 80,104 C 70,106 50,106 40,104 C 24,102 16,94 14,78 C 12,68 12,52 14,42 C 16,26 24,18 40,16 Z" fill="url(#cushBase)" stroke="#1E232B" stroke-width="1.6" stroke-linejoin="round"/>
+
+  <!-- Four Main Corner Kites -->
+  <polygon points="32,32 50,44 42,52 24,42" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="88,32 70,44 78,52 96,42" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="88,88 70,76 78,68 96,78" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="32,88 50,76 42,68 24,78" fill="url(#cushHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Top / Bottom Star Facets -->
+  <polygon points="60,15 50,34 60,38 70,34" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,105 50,86 60,82 70,86" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Side Star Facets -->
+  <polygon points="13,60 32,50 36,60 32,70" fill="url(#cushHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="107,60 88,50 84,60 88,70" fill="url(#cushHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Triangular Outer Fillers -->
+  <polygon points="60,15 40,16 50,34" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,15 80,16 70,34" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,105 40,104 50,86" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,105 80,104 70,86" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Center Cushion Table -->
+  <polygon points="50,38 70,38 78,48 78,72 70,82 50,82 42,72 42,48" fill="#FFFFFF" stroke="#1E232B" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Reflection -->
+  <polygon points="50,38 62,38 56,60 42,60 42,48" fill="#F8FAFC" opacity="0.8"/>
+  <circle cx="53" cy="48" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+</svg>

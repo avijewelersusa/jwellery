@@ -82,7 +82,7 @@ export default function AdminPanel({ onBackToStore, onRefreshProducts }) {
   const SAMPLE_CSV = `name,category,shape,stoneType,badge,price,compareAtPrice,carat,color,clarity,cut,certification,leadTime,isBestSeller,isFeatured,primaryImage,secondaryImage,description
 The Chicago Skyline Solitaire,engagement-rings,oval,lab-diamond,IGI Certified Lab Diamond,3250,3900,2.60 Carat,E,VVS2,Ideal,IGI LG612891,Custom 3-4 weeks,true,true,https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=85,Bespoke Chicago atelier oval ring with hidden pavé gallery.
 The Michigan Avenue Radiant,engagement-rings,radiant,lab-diamond,IGI Certified Lab Diamond,4600,5500,3.10 Carat,D,VS1,Super Ideal,IGI LG590122,Ready to ship,true,true,https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=85,Radiant cut diamond with trapezoid side stones in solid platinum.
-The Gold Coast Emerald Bezel,engagement-rings,emerald,moissanite,GRA Certified Moissanite,1950,2500,3.50 Carat,D Colorless,VVS1,Step Cut,GRA 892019,Custom made,false,true,https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=85,Modern protective full bezel in solid 18k yellow gold.
+The Gold Coast Emerald Bezel,engagement-rings,emerald,natural-diamond,GIA Certified Natural Diamond,4250,5000,3.50 Carat,D Colorless,VVS1,Step Cut,GIA 892019,Custom made,false,true,https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=85,Modern protective full bezel in solid 18k yellow gold.
 The Lincoln Park Pear Vintage,engagement-rings,pear,lab-diamond,IGI Certified Lab Diamond,3850,4700,2.30 Carat,E,VVS1,Ideal,IGI LG649102,Custom 3 weeks,false,true,https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85,Vintage tapered baguette shoulders in platinum.
 Classic 3.00ctw Diamond Studs,earrings,round,lab-diamond,IGI Certified Lab Diamond,1890,2400,3.00 ctw,F,VS1,Ideal,IGI Pair Card,In Stock,true,true,https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=85,Everyday 3-prong martini diamond studs.
 The 10.00ctw Grande Tennis Bracelet,bracelets,round,lab-diamond,IGI Certified Lab Diamond,4900,6500,10.00 ctw,E-F,VS,Ideal,IGI Certified,In Stock,true,true,https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=85,https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=85,Continuous fire round brilliant diamonds in 14k white gold.
@@ -808,11 +808,11 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
                         </label>
                         <select 
                           value={editingProduct.stoneType}
-                          onChange={(e) => setEditingProduct({ ...editingProduct, stoneType: e.target.value, badge: e.target.value === 'lab-diamond' ? 'IGI Certified Lab Diamond' : 'GRA Certified Moissanite' })}
+                          onChange={(e) => setEditingProduct({ ...editingProduct, stoneType: e.target.value, badge: e.target.value === 'lab-diamond' ? 'IGI Certified Lab Diamond' : 'GIA Certified Natural Diamond' })}
                           style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-soft)', borderRadius: '4px' }}
                         >
                           <option value="lab-diamond">IGI Lab Diamond</option>
-                          <option value="moissanite">GRA Moissanite</option>
+                          <option value="natural-diamond">GIA Natural Diamond</option>
                         </select>
                       </div>
 

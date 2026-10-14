@@ -11,8 +11,8 @@ export default function TrustBar() {
     },
     {
       icon: Award,
-      title: "GRA Certified",
-      subtitle: "Brilliant Moissanite"
+      title: "GIA Certified",
+      subtitle: "Natural Diamonds"
     },
     {
       icon: Clock,

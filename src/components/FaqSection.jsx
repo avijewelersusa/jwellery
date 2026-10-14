@@ -19,7 +19,7 @@ export default function FaqSection({ onStartCustom }) {
           <span className="eyebrow">Clarity & Confidence</span>
           <h2>Frequently Asked Questions</h2>
           <p className="subheading">
-            Everything you need to know about bespoke jewelry, lab-grown diamonds, moissanite certification, and insured shipping.
+            Everything you need to know about bespoke jewelry, lab-grown diamonds, GIA natural diamonds, and insured shipping.
           </p>
         </div>
 

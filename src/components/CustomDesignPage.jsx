@@ -34,7 +34,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
     ringType: prefilledData?.ringType || 'Hidden Halo Solitaire',
     ringShape: prefilledData?.shape || 'oval',
     metal: prefilledData?.metal || '14k Yellow Gold',
-    stonePreference: prefilledData?.stoneType === 'moissanite' ? 'GRA Certified Moissanite' : 'IGI Certified Lab Diamond',
+    stonePreference: prefilledData?.stoneType === 'natural-diamond' ? 'GIA Certified Natural Diamond' : 'IGI Certified Lab Diamond',
     budgetRange: '$3,000 - $5,000',
     ringSize: '6.5',
     inspoLink: prefilledData?.name ? `Inspiration: ${prefilledData.name}` : '',
@@ -65,7 +65,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
 
   const STONES = [
     { id: 'lab-diamond', name: 'IGI Certified Lab Diamond', note: '100% genuine diamond carbon, 70% better value' },
-    { id: 'moissanite', name: 'GRA Certified Moissanite', note: 'Maximum optical fire, 9.25 Mohs hardness' },
+    { id: 'natural-diamond', name: 'GIA Certified Natural Diamond', note: 'Earth-mined heirloom brilliance, 10 Mohs hardness' },
     { id: 'undecided', name: 'Help Me Decide on Consultation', note: 'Compare side-by-side on video' }
   ];
 
@@ -455,7 +455,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
                           <img 
                             src={shape.image} 
                             alt={shape.name} 
-                            style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', marginBottom: '0.4rem' }} 
+                            style={{ width: '40px', height: '40px', objectFit: 'contain', padding: '2px', marginBottom: '0.4rem' }} 
                           />
                           <span style={{ fontSize: '0.8rem', fontWeight: isSelected ? 600 : 450, color: 'var(--text-charcoal)' }}>
                             {shape.name}

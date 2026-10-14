@@ -155,7 +155,7 @@ export default function BestSellersGrid({
                 lineHeight: 1.55
               }}
             >
-              Our most celebrated bespoke engagement rings and fine jewelry icons, crafted on Jewelers Row with certified lab diamonds and moissanite.
+              Our most celebrated bespoke engagement rings and fine jewelry icons, crafted on Jewelers Row with certified lab diamonds and natural diamonds.
             </p>
           </div>
 
@@ -398,7 +398,7 @@ export default function BestSellersGrid({
                         border: '1px solid rgba(0,0,0,0.06)'
                       }}
                     >
-                      {product.stoneType === 'lab-diamond' ? 'IGI Lab Diamond' : 'GRA Moissanite'}
+                      {product.badge || (product.stoneType === 'lab-diamond' ? 'IGI Lab Diamond' : 'GIA Natural Diamond')}
                     </span>
                     {product.carat && (
                       <span 

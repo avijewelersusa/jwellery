@@ -96,9 +96,9 @@ export default function ContactPage() {
               </h3>
 
               <p style={{ fontSize: '0.86rem', color: 'var(--text-charcoal-light)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                5 S Wabash Avenue, Suite 710 <br />
-                Chicago, Illinois 60603 <br />
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Building concierge access required • Valid photo ID for entry</span>
+                Jewelers Row Historic District <br />
+                Chicago, Illinois <br />
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>1-on-1 Virtual Consultations & Private Atelier Appointments</span>
               </p>
 
               <div style={{ borderTop: '1px solid var(--border-soft)', paddingTop: '1.2rem' }}>

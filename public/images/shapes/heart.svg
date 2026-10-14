@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <defs>
+    <radialGradient id="heartBase" cx="42%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#F4F7FA"/>
+      <stop offset="80%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </radialGradient>
+    <linearGradient id="heartHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EDF2F7" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="sparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E2EC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Heart Girdle Outline -->
+  <path d="M 60,32 C 55,20 38,16 26,26 C 14,37 15,56 26,70 C 36,83 52,96 60,105 C 68,96 84,83 94,70 C 105,56 106,37 94,26 C 82,16 65,20 60,32 Z" fill="url(#heartBase)" stroke="#1E232B" stroke-width="1.6" stroke-linejoin="round"/>
+
+  <!-- Top Cleft Star Facets -->
+  <polygon points="60,32 50,42 60,48 70,42" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,32 38,28 50,42" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,32 82,28 70,42" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Left Lobe Facets -->
+  <polygon points="26,26 38,28 35,46" fill="url(#heartHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="26,26 18,44 35,46" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="18,44 24,65 38,58" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Right Lobe Facets -->
+  <polygon points="94,26 82,28 85,46" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="94,26 102,44 85,46" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="102,44 96,65 82,58" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Bottom Point Star & Kite Facets -->
+  <polygon points="60,105 50,88 60,82 70,88" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,105 40,86 50,88" fill="url(#heartHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,105 80,86 70,88" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Center Heart Table -->
+  <path d="M 60,48 L 74,54 L 76,74 L 68,82 L 52,82 L 44,74 L 46,54 Z" fill="#FFFFFF" stroke="#1E232B" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Reflection -->
+  <polygon points="60,48 70,52 64,68 50,68 48,54" fill="#F8FAFC" opacity="0.8"/>
+  <circle cx="56" cy="56" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+</svg>

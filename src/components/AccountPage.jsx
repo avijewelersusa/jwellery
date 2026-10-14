@@ -1383,7 +1383,7 @@ export default function AccountPage({
                       Consultations & Atelier Appointments
                     </h2>
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-charcoal-light)', marginTop: '0.2rem' }}>
-                      Chicago Diamond District Showroom (5 S Wabash Ave) or 1-on-1 Virtual Zoom Session.
+                      Private Concierge Consultation or 1-on-1 Virtual Zoom Session.
                     </p>
                   </div>
 
@@ -1429,7 +1429,7 @@ export default function AccountPage({
                             </div>
                             <div style={{ fontSize: '0.78rem', color: 'var(--text-charcoal-light)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                               <MapPin size={13} style={{ color: 'var(--text-muted)' }} />
-                              <span>5 S Wabash Ave, Suite 710, Chicago, IL</span>
+                              <span>Private Atelier Appointment / Virtual Concierge</span>
                             </div>
                           </div>
 
@@ -1729,8 +1729,8 @@ export default function AccountPage({
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', fontSize: '0.82rem' }}>
                     <div>
-                      <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Showroom</span>
-                      <strong>5 S Wabash Ave, Suite 710, Chicago</strong>
+                      <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Atelier Concierge</span>
+                      <strong>Chicago Jewelers Row (By Appt)</strong>
                     </div>
                     <div>
                       <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Direct Phone</span>
@@ -1911,7 +1911,7 @@ export default function AccountPage({
                 AVI JEWELERS CHICAGO ATELIER
               </h2>
               <div style={{ fontSize: '0.74rem', color: 'var(--text-charcoal-light)', letterSpacing: '0.04em', marginTop: '0.2rem' }}>
-                5 S Wabash Ave, Suite 710 • Chicago Diamond District • 331-575-4525
+                Chicago Diamond District Atelier • 331-575-4525
               </div>
             </div>
 

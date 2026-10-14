@@ -170,8 +170,8 @@ export default function ShopByShape({ onSelectShape }) {
                   style={{
                     width: '100%',
                     height: '100%',
-                    borderRadius: '50%',
-                    objectFit: 'cover'
+                    objectFit: 'contain',
+                    padding: '14px'
                   }}
                   loading="lazy"
                 />

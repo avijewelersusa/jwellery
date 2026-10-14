@@ -253,7 +253,7 @@ export default function CheckoutPage({
         <div style={{ maxWidth: '480px', margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--font-serif)', marginBottom: '1rem' }}>Your Bag is Empty</h2>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-charcoal-light)', marginBottom: '2rem' }}>
-            Explore our curated certified lab-grown diamonds, moissanite solitaires, and eternity bands.
+            Explore our curated certified lab-grown diamonds, natural diamond solitaires, and eternity bands.
           </p>
           <button 
             onClick={onBackToShop}
@@ -515,37 +515,6 @@ export default function CheckoutPage({
                     </div>
                   </div>
                   <strong style={{ fontSize: '0.85rem' }}>$150</strong>
-                </label>
-
-                <label 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '1rem',
-                    borderRadius: '4px',
-                    border: formData.shippingMethod === 'chicago-pickup' ? '2px solid var(--text-charcoal)' : '1px solid var(--border-soft)',
-                    cursor: 'pointer',
-                    backgroundColor: formData.shippingMethod === 'chicago-pickup' ? 'var(--bg-warm-ivory)' : '#FFFFFF'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    <input 
-                      type="radio" 
-                      name="shipping" 
-                      checked={formData.shippingMethod === 'chicago-pickup'} 
-                      onChange={() => setFormData({ ...formData, shippingMethod: 'chicago-pickup' })}
-                    />
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-charcoal)' }}>
-                        Private Chicago Atelier Pickup
-                      </div>
-                      <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
-                        5 S Wabash Ave, Suite 710, Chicago IL • Complimentary champagne
-                      </div>
-                    </div>
-                  </div>
-                  <strong style={{ fontSize: '0.85rem', color: '#2E7D32' }}>FREE</strong>
                 </label>
 
               </div>

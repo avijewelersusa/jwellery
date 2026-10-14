@@ -119,7 +119,7 @@ export default function SplitBanner({ onStartCustom }) {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Check size={16} style={{ color: 'var(--gold-primary)' }} />
-              <span>Full IGI / GRA Certification</span>
+              <span>Full IGI / GIA Certification</span>
             </div>
           </div>
 

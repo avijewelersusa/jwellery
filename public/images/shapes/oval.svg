@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <defs>
+    <radialGradient id="ovalBase" cx="42%" cy="36%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#F4F7FA"/>
+      <stop offset="80%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </radialGradient>
+    <linearGradient id="ovalHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EDF2F7" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="sparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E2EC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Girdle Base -->
+  <ellipse cx="60" cy="60" rx="35" ry="46" fill="url(#ovalBase)" stroke="#1E232B" stroke-width="1.6"/>
+
+  <!-- Star & Kite Facets -->
+  <!-- Top & Bottom Points -->
+  <polygon points="60,14 52,28 60,32 68,28" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,106 52,92 60,88 68,92" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  
+  <!-- Side Points -->
+  <polygon points="25,60 38,52 42,60 38,68" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="95,60 82,52 78,60 82,68" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Corner Kites -->
+  <polygon points="60,32 68,28 85,38 74,48" fill="url(#ovalHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,32 52,28 35,38 46,48" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,88 68,92 85,82 74,72" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,88 52,92 35,82 46,72" fill="url(#ovalHighlight)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Side Kites -->
+  <polygon points="78,60 82,52 85,38 74,48" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="78,60 82,68 85,82 74,72" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="42,60 38,52 35,38 46,48" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="42,60 38,68 35,82 46,72" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Outer Girdle Triangles -->
+  <polygon points="60,14 38,21 52,28" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,14 82,21 68,28" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="95,60 92,44 82,52" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="95,60 92,76 82,68" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,106 82,99 68,92" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="60,106 38,99 52,92" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="25,60 28,44 38,52" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="25,60 28,76 38,68" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Center Elongated Octagonal Table -->
+  <polygon points="52,38 68,38 74,48 74,72 68,82 52,82 46,72 46,48" fill="#FFFFFF" stroke="#1E232B" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Table Reflection -->
+  <polygon points="52,38 62,38 56,60 46,60 46,48" fill="#F8FAFC" opacity="0.8"/>
+  <circle cx="55" cy="48" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+</svg>

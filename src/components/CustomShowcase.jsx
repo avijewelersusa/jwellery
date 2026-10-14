@@ -221,7 +221,7 @@ export default function CustomShowcase({ onStartCustom }) {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <CheckCircle2 size={16} style={{ color: 'var(--gold-primary)' }} />
-                    <span>IGI / GRA Certified</span>
+                    <span>IGI / GIA Certified</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <CheckCircle2 size={16} style={{ color: 'var(--gold-primary)' }} />

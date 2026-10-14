@@ -78,7 +78,7 @@ export default function ShopPage({
       // Stone Type
       if (selectedStoneType !== 'all') {
         if (selectedStoneType === 'lab-diamond' && product.stoneType !== 'lab-diamond') return false;
-        if (selectedStoneType === 'moissanite' && product.stoneType !== 'moissanite') return false;
+        if (selectedStoneType === 'natural-diamond' && product.stoneType !== 'natural-diamond') return false;
       }
       // Metal
       if (selectedMetal !== 'all') {
@@ -261,7 +261,7 @@ export default function ShopPage({
                       fontWeight: 500
                     }}
                   >
-                    {selectedStoneType === 'lab-diamond' ? 'Lab Diamond' : 'Moissanite'}
+                    {selectedStoneType === 'lab-diamond' ? 'Lab Diamond' : 'Natural Diamond'}
                     <X size={12} style={{ cursor: 'pointer' }} onClick={() => setSelectedStoneType('all')} />
                   </span>
                 )}
@@ -505,7 +505,7 @@ export default function ShopPage({
                   {[
                     { id: 'all', label: 'All Stones' },
                     { id: 'lab-diamond', label: 'IGI Lab-Grown Diamonds' },
-                    { id: 'moissanite', label: 'GRA Certified Moissanite' }
+                    { id: 'natural-diamond', label: 'GIA Certified Natural Diamonds' }
                   ].map(st => (
                     <label 
                       key={st.id} 
@@ -713,7 +713,7 @@ export default function ShopPage({
                               fontWeight: 600
                             }}
                           >
-                            {product.badge || (product.stoneType === 'lab-diamond' ? 'IGI Lab Diamond' : 'GRA Moissanite')}
+                            {product.badge || (product.stoneType === 'lab-diamond' ? 'IGI Lab Diamond' : 'GIA Natural Diamond')}
                           </span>
                         </div>
 

@@ -27,7 +27,7 @@ export default function SearchModal({
     'Lab-Grown Studs',
     'Tennis Bracelet',
     'Emerald Cut Solitaire',
-    'Moissanite Ring'
+    'Natural Diamond Ring'
   ];
 
   return (
@@ -167,7 +167,7 @@ export default function SearchModal({
                   />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--gold-primary)', fontWeight: 600 }}>
-                      {prod.shape ? `${prod.shape} cut • ` : ''}{prod.stoneType === 'lab-diamond' ? 'Lab Diamond' : 'Moissanite'}
+                      {prod.shape ? `${prod.shape} cut • ` : ''}{prod.stoneType === 'lab-diamond' ? 'Lab Diamond' : 'Natural Diamond'}
                     </div>
                     <div style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
                       {prod.name}

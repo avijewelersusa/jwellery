@@ -186,7 +186,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
               marginBottom: '2.4rem'
             }}
           >
-            Bespoke custom engagement rings, concierge-crafted from 3D sketch to delivery in 3–4 weeks. Featuring certified IGI lab-grown diamonds and GRA moissanite.
+            Bespoke custom engagement rings, concierge-crafted from 3D sketch to delivery in 3–4 weeks. Featuring certified IGI lab-grown diamonds and GIA natural diamonds.
           </p>
 
           {/* Minimalist High-End Buttons */}

@@ -29,7 +29,7 @@ export default function HowCustomWorks({ onStartCustom }) {
       icon: Hammer,
       title: "Master Handcrafting",
       subtitle: "Cast & set on Jewelers Row",
-      description: "Our master goldsmiths cast your piece in solid recycled gold or 950 platinum. Certified lab diamonds or moissanite are microscope-set by hand in Chicago.",
+      description: "Our master goldsmiths cast your piece in solid recycled gold or 950 platinum. Certified lab or natural diamonds are microscope-set by hand in Chicago.",
       detail: "Hand-polished & hallmarked with laser serial number.",
       bgImage: "https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=600&q=80"
     },
@@ -38,7 +38,7 @@ export default function HowCustomWorks({ onStartCustom }) {
       icon: Gift,
       title: "Delivered To Your Door",
       subtitle: "In 3–4 weeks, 100% insured",
-      description: "Accompanied by an independent IGI or GRA grading certificate, appraisal report, luxury wooden keepsake box, and our lifetime warranty.",
+      description: "Accompanied by an independent IGI or GIA grading certificate, appraisal report, luxury wooden keepsake box, and our lifetime warranty.",
       detail: "Discreet packaging with adult signature required.",
       bgImage: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80"
     }

@@ -193,7 +193,7 @@ export default function ProductDetailPage({
                 boxShadow: 'var(--shadow-card)'
               }}
             >
-              {/* Badge (IGI / GRA / Best Seller) */}
+              {/* Badge (IGI / GIA / Best Seller) */}
               <div 
                 style={{
                   position: 'absolute',

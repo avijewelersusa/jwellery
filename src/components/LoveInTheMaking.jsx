@@ -480,7 +480,7 @@ export default function LoveInTheMaking({ onStartCustom, onExploreWork }) {
             </span>
             <span style={{ color: 'var(--text-muted)' }}>•</span>
             <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-              100% Recycled Solid Platinum & Gold • IGI & GRA Certified
+              100% Recycled Solid Platinum & Gold • IGI & GIA Certified
             </span>
           </div>
 

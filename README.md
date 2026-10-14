@@ -1,6 +1,6 @@
 # Avi Jewelers USA — Luxury Bespoke Fine Jewelry Atelier (Chicago, IL)
 
-A luxury, conversion-focused web application for **Avi Jewelers USA**, a Chicago-based custom fine jewelry atelier specializing in bespoke custom engagement rings (3–4 week turnaround, 3D CAD modeling, virtual consultations, insured doorstep delivery) and ready-to-ship certified lab-grown diamond and moissanite fine jewelry.
+A luxury, conversion-focused web application for **Avi Jewelers USA**, a Chicago-based custom fine jewelry atelier specializing in bespoke custom engagement rings (3–4 week turnaround, 3D CAD modeling, virtual consultations, insured doorstep delivery) and ready-to-ship certified lab-grown diamond and natural diamond fine jewelry.
 
 ---
 
@@ -19,13 +19,13 @@ A luxury, conversion-focused web application for **Avi Jewelers USA**, a Chicago
 - **Mega Menu (Engagement Rings)**:
   - **Shop by Shape**: Round, Oval, Radiant, Pear, Cushion, Princess, Emerald, Marquise, Heart.
   - **Shop by Setting**: Solitaire, Hidden Halo, Classic Halo, Three Stone, Vintage & Bezel.
-  - **Stone Selection**: IGI Lab Diamond & GRA Moissanite.
+  - **Stone Selection**: IGI Lab Diamond & GIA Natural Diamond.
   - **Bespoke Concierge Tile**: "Design Exactly What She Wants" (direct custom CTA).
 - **Search, Wishlist Drawer, Cart Drawer**, and gold **"Start Your Custom Ring"** action button.
 
 ### 2. Homepage Sections (in precise sequence)
 1. **Full-Screen Hero**: Cinematic couple & fine jewelry imagery, headline *"Your Vision. Handcrafted in Chicago."*, subline, and dual CTAs: *"Design Your Custom Ring"* and *"Shop Ready-to-Ship"*.
-2. **Trust Bar**: 5 trust pillars (IGI Certified Lab-Grown • GRA Certified Moissanite • 3–4 Week Turnaround • Secure Insured Delivery • Virtual Consultations).
+2. **Trust Bar**: 5 trust pillars (IGI Certified Lab-Grown • GIA Certified Natural Diamonds • 3–4 Week Turnaround • Secure Insured Delivery • Virtual Consultations).
 3. **How Custom Works (4 Animated Steps)**:
    - `01. Share Your Idea` (upload inspo photos, sketches, or paste web links)
    - `02. Consult & 3D CAD Design` (1-on-1 virtual design session & photorealistic 360° renders)
@@ -38,7 +38,7 @@ A luxury, conversion-focused web application for **Avi Jewelers USA**, a Chicago
 8. **Split Banner**: *"Can't find it? We'll make it."* with Chicago atelier story and direct custom inquiry CTA.
 9. **Why Avi Jewelers**: Certified stones, handcrafted quality in Chicago, transparent pricing, lifetime care, and 0% APR financing.
 10. **Client Love Stories**: Verified couple testimonial carousel with photos, ring specifications, and 5-star ratings.
-11. **FAQ Accordion**: Expandable answers covering lab vs moissanite vs natural, timeline, sizing secrets, insured shipping, returns, and payment options.
+11. **FAQ Accordion**: Expandable answers covering lab vs natural diamonds, timeline, sizing secrets, insured shipping, returns, and payment options.
 12. **Instagram Gallery Strip**: `@avijewelersusa` feed simulation with hover like counters.
 13. **VIP Newsletter & Luxury Footer**: $100 custom ring offer, Chicago showroom details (`5 S Wabash Ave, Suite 710, Chicago, IL 60603`), hours, policies, and payment icons.
 

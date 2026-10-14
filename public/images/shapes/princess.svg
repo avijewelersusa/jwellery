@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <defs>
+    <radialGradient id="prinBase" cx="42%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="45%" stop-color="#F4F7FA"/>
+      <stop offset="80%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </radialGradient>
+    <linearGradient id="prinHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#EDF2F7" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="sparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E2EC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sharp Square Outer Girdle -->
+  <polygon points="22,22 98,22 98,98 22,98" fill="url(#prinBase)" stroke="#1E232B" stroke-width="1.6" stroke-linejoin="round"/>
+
+  <!-- Four Outer Corner Pyramids (Chevron Series) -->
+  <polygon points="22,22 60,38 42,42" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="22,22 38,60 42,42" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <polygon points="98,22 60,38 78,42" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="98,22 82,60 78,42" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <polygon points="98,98 60,82 78,78" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="98,98 82,60 78,78" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <polygon points="22,98 60,82 42,78" fill="url(#sparkle)" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="22,98 38,60 42,78" fill="#FFFFFF" stroke="#1E232B" stroke-width="1" stroke-linejoin="round"/>
+
+  <!-- Cross Bezel Lines to corners -->
+  <line x1="22" y1="22" x2="42" y2="42" stroke="#1E232B" stroke-width="1.2"/>
+  <line x1="98" y1="22" x2="78" y2="42" stroke="#1E232B" stroke-width="1.2"/>
+  <line x1="98" y1="98" x2="78" y2="78" stroke="#1E232B" stroke-width="1.2"/>
+  <line x1="22" y1="98" x2="42" y2="78" stroke="#1E232B" stroke-width="1.2"/>
+
+  <!-- Center Square Table -->
+  <polygon points="42,42 78,42 78,78 42,78" fill="#FFFFFF" stroke="#1E232B" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Inner Princess Cross Shimmer -->
+  <line x1="42" y1="42" x2="78" y2="78" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="42" y1="78" x2="78" y2="42" stroke="#CBD5E1" stroke-width="1"/>
+  <polygon points="42,42 60,60 42,78" fill="url(#sparkle)" opacity="0.4"/>
+  <polygon points="42,42 60,60 78,42" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Reflection -->
+  <polygon points="42,42 60,42 54,60 42,60" fill="#F8FAFC" opacity="0.8"/>
+  <circle cx="51" cy="51" r="1.5" fill="#FFFFFF" opacity="0.9"/>
+</svg>

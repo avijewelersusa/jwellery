@@ -131,10 +131,10 @@ export default function Footer({ onNavigate, onOpenCustom }) {
           <div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '1rem' }}>
               <img 
-                src="/images/avi-jewelers-logo-gold.png" 
+                src="/images/avi-jewelers-logo-gold-tight.png" 
                 alt="Avi Jewelers USA" 
                 style={{ 
-                  height: '74px', 
+                  height: '84px', 
                   width: 'auto', 
                   objectFit: 'contain',
                   filter: 'drop-shadow(0 4px 12px rgba(212, 175, 55, 0.25)) brightness(1.08)'
@@ -221,7 +221,7 @@ export default function Footer({ onNavigate, onOpenCustom }) {
               </li>
               <li>
                 <button onClick={() => onNavigate('shop', 'earrings')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
-                  GRA Moissanite Earrings
+                  GIA Natural Diamond Earrings
                 </button>
               </li>
               <li>
@@ -237,30 +237,22 @@ export default function Footer({ onNavigate, onOpenCustom }) {
             </ul>
           </div>
 
-          {/* Column 4: Chicago Showroom & Hours */}
+          {/* Column 4: Atelier Concierge & Hours */}
           <div>
             <h4 style={{ fontSize: '0.8rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-primary)', marginBottom: '1.2rem', fontWeight: 600 }}>
-              Chicago Showroom
+              Atelier Concierge
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: '0.84rem', color: 'rgba(250, 247, 242, 0.8)' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <MapPin size={16} style={{ color: 'var(--gold-primary)', flexShrink: 0, marginTop: '3px' }} />
-                <span>
-                  Jewelers Row District <br />
-                  5 S Wabash Ave, Suite 710 <br />
-                  Chicago, IL 60603
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                 <Clock size={16} style={{ color: 'var(--gold-primary)', flexShrink: 0, marginTop: '3px' }} />
                 <span>
-                  Monday – Saturday: 10:00 AM – 6:00 PM <br />
-                  <em style={{ color: 'var(--gold-muted)' }}>By Appointment & Virtual</em>
+                  Monday – Saturday: 10:00 AM – 6:00 PM CST <br />
+                  <em style={{ color: 'var(--gold-muted)' }}>1-on-1 Virtual & Concierge Consultations</em>
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.3rem' }}>
                 <ShieldCheck size={16} style={{ color: 'var(--gold-primary)' }} />
-                <span>Fully Insured Worldwide Delivery</span>
+                <span>Fully Insured Doorstep Delivery</span>
               </div>
             </div>
           </div>

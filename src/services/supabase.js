@@ -266,7 +266,7 @@ export async function importProductsFromCsv(csvText) {
       cut: row.cut || 'Ideal',
       certification: row.certification || 'Certified',
       leadTime: row.leadTime || 'Ships in 3-4 weeks',
-      description: row.description || 'Masterfully crafted in Chicago with certified diamonds or moissanite.',
+      description: row.description || 'Masterfully crafted in Chicago with certified lab-grown or natural diamonds.',
       isBestSeller: row.isBestSeller === 'true' || row.isBestSeller === '1',
       isFeatured: row.isFeatured === 'true' || row.isFeatured === '1'
     };
@@ -546,17 +546,17 @@ export async function fetchOrders() {
         },
         {
           id: 'avi-003',
-          name: '18K Gold and Moissanite Tennis Bracelet',
+          name: '18K Gold and Natural Diamond Tennis Bracelet',
           category: 'bracelets',
           shape: 'Round Brilliant',
           metal: '18k Yellow Gold',
           ringSize: '7.0 inches',
           carat: '5.00 Carat Total Weight',
-          stoneType: 'GRA Certified Moissanite',
+          stoneType: 'GIA Certified Natural Diamond',
           price: 2550,
           quantity: 1,
           image: 'https://static.wixstatic.com/media/ec0575_79a5ab119f7144cd803ed71267785588~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg',
-          certificateNumber: 'GRA-MOIS-881920'
+          certificateNumber: 'GIA-NAT-881920'
         }
       ]
     }

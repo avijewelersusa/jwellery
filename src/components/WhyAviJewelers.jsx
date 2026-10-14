@@ -7,7 +7,7 @@ export default function WhyAviJewelers({ onStartCustom }) {
     {
       icon: Award,
       title: "Certified Stones",
-      description: "Every lab-grown diamond is strictly certified by IGI (International Gemological Institute) with laser inscription. All moissanite carries official GRA certification."
+      description: "Every lab-grown diamond is strictly certified by IGI (International Gemological Institute) with laser inscription. All natural diamonds carry official GIA certification."
     },
     {
       icon: Hammer,

@@ -93,8 +93,8 @@ export default function Header({
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           
           <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.71rem' }}>
-            <MapPin size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
-            <span>Chicago Showroom • 5 S Wabash Ave, Suite 710</span>
+            <Sparkles size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
+            <span>Bespoke Atelier • Handcrafted in Chicago</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', margin: '0 auto' }}>
@@ -155,7 +155,7 @@ export default function Header({
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           
           {/* Left: Mobile Trigger & Search Trigger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', minWidth: '200px' }}>
+          <div className="header-side-left">
             <button 
               className="mobile-menu-trigger show-mobile-only"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -189,30 +189,15 @@ export default function Header({
           {/* Center: Grand High-Fashion Atelier Logo */}
           <div 
             onClick={() => handleNavClick('home')}
-            style={{ 
-              cursor: 'pointer', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              userSelect: 'none',
-              padding: '2px 0'
-            }}
+            className="header-brand-logo-wrap"
             aria-label="Avi Jewelers Home"
           >
             <img 
-              src="/images/avi-jewelers-logo-black.png" 
+              src="/images/avi-jewelers-logo-tight.png" 
               alt="Avi Jewelers Chicago Atelier"
-              style={{
-                height: isScrolled ? '48px' : '58px',
-                width: 'auto',
-                maxWidth: '220px',
-                objectFit: 'contain',
-                transition: 'height 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s ease'
-              }}
+              className={`header-brand-logo ${isScrolled ? 'scrolled' : ''}`}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.transform = 'scale(1.03)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'scale(1)';
@@ -221,7 +206,7 @@ export default function Header({
           </div>
 
           {/* Right: Search, Wishlist, Cart & Custom Ring Action Button */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.85rem', minWidth: '200px' }}>
+          <div className="header-side-right">
             
             <button 
               onClick={openSearch}
@@ -631,7 +616,7 @@ export default function Header({
                             <img 
                               src={shape.image} 
                               alt={shape.name} 
-                              style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border-soft)' }} 
+                              style={{ width: '32px', height: '32px', objectFit: 'contain', padding: '2px', border: '1px solid var(--border-soft)', borderRadius: '4px', backgroundColor: '#FFFFFF' }} 
                             />
                             <span style={{ fontWeight: 500 }}>{shape.name}</span>
                           </button>
@@ -684,8 +669,8 @@ export default function Header({
                           onClick={() => handleNavClick('shop', 'engagement-rings')}
                           style={{ padding: '0.75rem 0.9rem', backgroundColor: 'var(--bg-warm-ivory)', borderRadius: '4px', cursor: 'pointer', border: '1px solid var(--border-soft)' }}
                         >
-                          <div style={{ fontWeight: 600, fontSize: '0.88rem' }}>GRA Moissanites</div>
-                          <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>Supreme Optical Fire</div>
+                          <div style={{ fontWeight: 600, fontSize: '0.88rem' }}>GIA Natural Diamonds</div>
+                          <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>Earth-Mined Heirloom Luxury</div>
                         </div>
                         <div 
                           onClick={() => handleNavClick('custom')}
@@ -1147,16 +1132,16 @@ export default function Header({
               onClick={() => handleNavClick('contact')}
               style={{ padding: '0.6rem 0', fontWeight: 500, fontSize: '1rem', color: 'var(--text-charcoal)', borderBottom: '1px solid var(--border-subtle)', cursor: 'pointer' }}
             >
-              Chicago Showroom & Appointments
+              Virtual Consultations & Concierge
             </div>
 
           </div>
 
           <div style={{ marginTop: 'auto', paddingTop: '1rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
             <div style={{ fontWeight: 600, color: 'var(--text-charcoal)', marginBottom: '0.3rem' }}>
-              Chicago Showroom
+              Atelier Concierge
             </div>
-            5 S Wabash Ave, Suite 710, Chicago IL <br />
+            Virtual & Phone Consultations <br />
             Call / Text: (331) 575-4525
           </div>
         </div>
