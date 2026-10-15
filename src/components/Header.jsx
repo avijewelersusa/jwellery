@@ -616,7 +616,7 @@ export default function Header({
                             <img 
                               src={shape.image} 
                               alt={shape.name} 
-                              style={{ width: '32px', height: '32px', objectFit: 'contain', padding: '2px', border: '1px solid var(--border-soft)', borderRadius: '4px', backgroundColor: '#FFFFFF' }} 
+                              style={{ width: '32px', height: '32px', objectFit: 'contain', padding: '2px', border: '1px solid var(--border-soft)', borderRadius: '4px', backgroundColor: '#FFFFFF', mixBlendMode: 'multiply' }} 
                             />
                             <span style={{ fontWeight: 500 }}>{shape.name}</span>
                           </button>

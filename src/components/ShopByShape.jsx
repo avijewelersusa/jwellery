@@ -171,7 +171,8 @@ export default function ShopByShape({ onSelectShape }) {
                     width: '100%',
                     height: '100%',
                     objectFit: 'contain',
-                    padding: '14px'
+                    padding: '12px',
+                    mixBlendMode: 'multiply'
                   }}
                   loading="lazy"
                 />

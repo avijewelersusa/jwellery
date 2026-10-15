@@ -6,7 +6,7 @@ export const DIAMOND_SHAPES = [
     "id": "round",
     "name": "Round",
     "tagline": "Timeless Brilliance",
-    "image": "/images/shapes/round.svg",
+    "image": "/images/shapes/round.png",
     "ratio": "1.00",
     "popularWith": "Classic Solitaires & Halos"
   },
@@ -14,7 +14,7 @@ export const DIAMOND_SHAPES = [
     "id": "oval",
     "name": "Oval",
     "tagline": "Elongated Elegance",
-    "image": "/images/shapes/oval.svg",
+    "image": "/images/shapes/oval.png",
     "ratio": "1.35 - 1.50",
     "popularWith": "Hidden Halos & Pavé Bands"
   },
@@ -22,7 +22,7 @@ export const DIAMOND_SHAPES = [
     "id": "radiant",
     "name": "Radiant",
     "tagline": "Intense Fire & Sparkle",
-    "image": "/images/shapes/radiant.svg",
+    "image": "/images/shapes/radiant.png",
     "ratio": "1.20 - 1.35",
     "popularWith": "Modern Halos & Three-Stones"
   },
@@ -30,7 +30,7 @@ export const DIAMOND_SHAPES = [
     "id": "pear",
     "name": "Pear",
     "tagline": "Teardrop Grace",
-    "image": "/images/shapes/pear.svg",
+    "image": "/images/shapes/pear.png",
     "ratio": "1.45 - 1.65",
     "popularWith": "Vintage & East-West Settings"
   },
@@ -38,7 +38,7 @@ export const DIAMOND_SHAPES = [
     "id": "cushion",
     "name": "Cushion",
     "tagline": "Romantic Pillow Cut",
-    "image": "/images/shapes/cushion.svg",
+    "image": "/images/shapes/cushion.png",
     "ratio": "1.00 - 1.15",
     "popularWith": "Antique Halos & Solitaires"
   },
@@ -46,7 +46,7 @@ export const DIAMOND_SHAPES = [
     "id": "princess",
     "name": "Princess",
     "tagline": "Sharp Geometric Fire",
-    "image": "/images/shapes/princess.svg",
+    "image": "/images/shapes/princess.png",
     "ratio": "1.00",
     "popularWith": "Bezel & Channel Settings"
   },
@@ -54,7 +54,7 @@ export const DIAMOND_SHAPES = [
     "id": "emerald",
     "name": "Emerald",
     "tagline": "Hall of Mirrors Clarity",
-    "image": "/images/shapes/emerald.svg",
+    "image": "/images/shapes/emerald.png",
     "ratio": "1.30 - 1.50",
     "popularWith": "Art Deco & Step-Cut Bands"
   },
@@ -62,17 +62,41 @@ export const DIAMOND_SHAPES = [
     "id": "marquise",
     "name": "Marquise",
     "tagline": "Regal & Flattering",
-    "image": "/images/shapes/marquise.svg",
+    "image": "/images/shapes/marquise.png",
     "ratio": "1.75 - 2.15",
     "popularWith": "Nature-Inspired & East-West"
+  },
+  {
+    "id": "asscher",
+    "name": "Asscher",
+    "tagline": "Art Deco Step-Cut",
+    "image": "/images/shapes/asscher.png",
+    "ratio": "1.00",
+    "popularWith": "Vintage & Geometric Halos"
   },
   {
     "id": "heart",
     "name": "Heart",
     "tagline": "Ultimate Romantic Symbol",
-    "image": "/images/shapes/heart.svg",
+    "image": "/images/shapes/heart.png",
     "ratio": "1.00",
     "popularWith": "Custom Solitaires & Pendants"
+  },
+  {
+    "id": "moval",
+    "name": "Moval",
+    "tagline": "Marquise & Oval Hybrid",
+    "image": "/images/shapes/moval.png",
+    "ratio": "1.50 - 1.70",
+    "popularWith": "Bespoke Elongated Solitaires"
+  },
+  {
+    "id": "dutch-marquise",
+    "name": "Dutch Marquise",
+    "tagline": "Distinctive Antique Faceting",
+    "image": "/images/shapes/dutch-marquise.png",
+    "ratio": "1.65 - 1.95",
+    "popularWith": "Rare Heirloom & East-West"
   }
 ];
 
