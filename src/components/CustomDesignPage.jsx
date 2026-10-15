@@ -455,7 +455,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
                           <img 
                             src={shape.image} 
                             alt={shape.name} 
-                            style={{ width: '40px', height: '40px', objectFit: 'contain', padding: '2px', marginBottom: '0.4rem', mixBlendMode: 'multiply' }} 
+                            style={{ width: '40px', height: '40px', objectFit: 'contain', padding: '2px', marginBottom: '0.4rem' }} 
                           />
                           <span style={{ fontSize: '0.8rem', fontWeight: isSelected ? 600 : 450, color: 'var(--text-charcoal)' }}>
                             {shape.name}
