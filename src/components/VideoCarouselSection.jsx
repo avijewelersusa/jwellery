@@ -1,5 +1,5 @@
-// Section: Live Brilliance in Motion — Luxury Product Video Carousel
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -657,21 +657,31 @@ export default function VideoCarouselSection({ onStartCustom }) {
       </div>
 
       {/* FULLSCREEN LIGHTBOX / THEATER MODAL */}
-      {activeModalVideo && (
+      {/* FULLSCREEN LIGHTBOX / THEATER MODAL (Rendered in document.body via Portal to prevent z-index & transform clipping) */}
+      {activeModalVideo && typeof document !== 'undefined' && createPortal(
         <div 
           onClick={handleCloseModal}
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeModalVideo.title}
           style={{
             position: 'fixed',
-            inset: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.92)',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.94)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
-            zIndex: 99999,
+            zIndex: 999999,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: 'clamp(1rem, 3vw, 2.5rem)',
-            animation: 'fadeIn 0.25s ease-out'
+            animation: 'fadeIn 0.25s ease-out',
+            boxSizing: 'border-box'
           }}
         >
           {/* Modal Container */}
@@ -679,16 +689,17 @@ export default function VideoCarouselSection({ onStartCustom }) {
             onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: '#12100E',
-              borderRadius: '24px',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              boxShadow: '0 25px 60px rgba(0,0,0,0.85), 0 0 40px rgba(212, 175, 55, 0.15)',
+              borderRadius: '20px',
+              border: '1px solid rgba(212, 175, 55, 0.35)',
+              boxShadow: '0 25px 70px rgba(0,0,0,0.95), 0 0 50px rgba(212, 175, 55, 0.18)',
               width: '100%',
-              maxWidth: '920px',
+              maxWidth: '940px',
               maxHeight: '90vh',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'row',
-              position: 'relative'
+              position: 'relative',
+              margin: 'auto'
             }}
             className="video-modal-inner"
           >
@@ -700,25 +711,26 @@ export default function VideoCarouselSection({ onStartCustom }) {
                 position: 'absolute',
                 top: '16px',
                 right: '16px',
-                zIndex: 20,
+                zIndex: 60,
                 width: '38px',
                 height: '38px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
+                backgroundColor: 'rgba(20, 18, 16, 0.85)',
+                border: '1px solid rgba(212, 175, 55, 0.4)',
                 color: '#FAF7F2',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                boxShadow: '0 4px 14px rgba(0,0,0,0.6)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#D4AF37';
                 e.currentTarget.style.color = '#000';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.backgroundColor = 'rgba(20, 18, 16, 0.85)';
                 e.currentTarget.style.color = '#FAF7F2';
               }}
             >
@@ -940,7 +952,8 @@ export default function VideoCarouselSection({ onStartCustom }) {
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Responsive Style for Mobile Modal */}
@@ -948,8 +961,12 @@ export default function VideoCarouselSection({ onStartCustom }) {
         @media (max-width: 768px) {
           .video-modal-inner {
             flex-direction: column !important;
-            max-height: 94vh !important;
+            max-height: 92vh !important;
             overflow-y: auto !important;
+          }
+          .video-modal-inner > div:first-of-type {
+            min-height: 280px !important;
+            max-height: 45vh !important;
           }
         }
       `}</style>
