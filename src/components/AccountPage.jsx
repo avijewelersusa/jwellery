@@ -562,6 +562,39 @@ export default function AccountPage({
                 </div>
               </button>
 
+              {/* Logout / Sign Out from Sidebar */}
+              <div style={{ height: '1px', backgroundColor: 'var(--border-soft)', margin: '0.35rem 0' }} />
+              <button
+                type="button"
+                onClick={onLogout}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '0.95rem 1.2rem',
+                  fontSize: '0.84rem',
+                  fontWeight: 500,
+                  color: '#C62828',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  borderLeft: '3px solid transparent',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FFEBEE';
+                  e.currentTarget.style.borderLeftColor = '#C62828';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.borderLeftColor = 'transparent';
+                }}
+              >
+                <LogOut size={17} style={{ color: '#C62828' }} />
+                <span>Sign Out of Account</span>
+              </button>
+
             </nav>
 
             {/* Direct Chicago Concierge Card in Sidebar */}
@@ -958,9 +991,10 @@ export default function AccountPage({
             {/* TAB 2: PROFILE & DELIVERY ADDRESS */}
             {/* ============================================================== */}
             {activeTab === 'profile' && (
-              <div 
-                style={{
-                  backgroundColor: '#FFFFFF',
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div 
+                  style={{
+                    backgroundColor: '#FFFFFF',
                   borderRadius: '10px',
                   border: '1px solid var(--border-soft)',
                   padding: 'clamp(1.5rem, 3vw, 2.2rem)',
@@ -1267,7 +1301,63 @@ export default function AccountPage({
                   </button>
                 </form>
               </div>
-            )}
+
+              {/* Profile Session Management & Sign Out Card */}
+              <div 
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '10px',
+                  border: '1px solid var(--border-soft)',
+                  padding: 'clamp(1.2rem, 2.5vw, 1.8rem)',
+                  boxShadow: 'var(--shadow-subtle)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: '1rem'
+                }}
+              >
+                <div>
+                  <h3 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-charcoal)', margin: '0 0 0.35rem 0' }}>
+                    Profile Session & Account Access
+                  </h3>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>
+                    Logged in as <strong>{currentUser?.email || currentUser?.name}</strong>. Sign out if you wish to switch accounts or end your session.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={onLogout}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.65rem 1.4rem',
+                    fontSize: '0.84rem',
+                    fontWeight: 600,
+                    color: '#C62828',
+                    backgroundColor: '#FFEBEE',
+                    border: '1px solid #FFCDD2',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#C62828';
+                    e.currentTarget.style.color = '#FFFFFF';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#FFEBEE';
+                    e.currentTarget.style.color = '#C62828';
+                  }}
+                >
+                  <LogOut size={15} />
+                  <span>Log Out of Profile</span>
+                </button>
+              </div>
+            </div>
+          )}
 
             {/* ============================================================== */}
             {/* TAB 3: BESPOKE INQUIRIES & SHOWROOM APPOINTMENTS */}

@@ -15,7 +15,8 @@ import {
   ShieldCheck,
   Award,
   User,
-  Package
+  Package,
+  LogOut
 } from 'lucide-react';
 import { DIAMOND_SHAPES, CATEGORIES } from '../data/jewelryData';
 
@@ -121,13 +122,37 @@ export default function Header({
 
           <div className="hide-mobile" style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
             {currentUser ? (
-              <button 
-                onClick={() => handleNavClick('account')}
-                style={{ color: '#FFFFFF', cursor: 'pointer', fontSize: '0.71rem', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 500 }}
-              >
-                <User size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
-                <span>My Account: {currentUser.firstName || currentUser.name.split(' ')[0]}</span>
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <button 
+                  onClick={() => handleNavClick('account')}
+                  style={{ color: '#FFFFFF', cursor: 'pointer', fontSize: '0.71rem', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 500, background: 'none', border: 'none', padding: 0 }}
+                >
+                  <User size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
+                  <span>My Account: {currentUser.firstName || currentUser.name.split(' ')[0]}</span>
+                </button>
+                <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.7rem' }}>|</span>
+                <button
+                  onClick={onLogout}
+                  title="Logout from Account"
+                  style={{
+                    color: 'rgba(255,255,255,0.85)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '0.71rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    padding: 0,
+                    transition: 'color 0.2s'
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#FFA8A8'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.85)'; }}
+                >
+                  <LogOut size={11} />
+                  <span>Logout</span>
+                </button>
+              </div>
             ) : (
               <button 
                 onClick={openAuthModal}
@@ -278,36 +303,78 @@ export default function Header({
               )}
             </button>
 
-            {/* Client Account / Sign In */}
-            <button
-              onClick={() => {
-                if (currentUser) {
-                  handleNavClick('account');
-                } else {
-                  openAuthModal();
-                }
-              }}
-              aria-label={currentUser ? `Account: ${currentUser.name}` : "Sign In or Register"}
-              title={currentUser ? `Client Portal: ${currentUser.name}` : "Client Sign In / Register"}
-              style={{
-                padding: '0.4rem 0.55rem',
-                color: currentView === 'account' ? 'var(--text-charcoal)' : 'var(--text-charcoal)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                borderRadius: '4px',
-                border: currentView === 'account' ? '1px solid var(--border-soft)' : '1px solid transparent',
-                backgroundColor: currentView === 'account' ? 'var(--bg-cream-tint)' : 'transparent',
-                cursor: 'pointer'
-              }}
-            >
-              <User size={19} />
-              {currentUser && (
-                <span className="hide-mobile" style={{ fontSize: '0.74rem', fontWeight: 600, maxWidth: '85px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {currentUser.firstName || currentUser.name.split(' ')[0]}
-                </span>
-              )}
-            </button>
+            {/* Client Account / Sign In & Logout */}
+            {currentUser ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                <button
+                  onClick={() => handleNavClick('account')}
+                  aria-label={`Account: ${currentUser.name}`}
+                  title={`Client Portal: ${currentUser.name}`}
+                  style={{
+                    padding: '0.4rem 0.55rem',
+                    color: 'var(--text-charcoal)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    borderRadius: '4px',
+                    border: currentView === 'account' ? '1px solid var(--border-soft)' : '1px solid transparent',
+                    backgroundColor: currentView === 'account' ? 'var(--bg-cream-tint)' : 'transparent',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <User size={19} />
+                  <span className="hide-mobile" style={{ fontSize: '0.74rem', fontWeight: 600, maxWidth: '85px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {currentUser.firstName || currentUser.name.split(' ')[0]}
+                  </span>
+                </button>
+                <button
+                  onClick={onLogout}
+                  aria-label="Logout"
+                  title="Sign Out / Logout"
+                  style={{
+                    padding: '0.4rem',
+                    color: 'var(--text-muted)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '4px',
+                    border: '1px solid transparent',
+                    backgroundColor: 'transparent',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#C62828';
+                    e.currentTarget.style.backgroundColor = '#FFEBEE';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = 'var(--text-muted)';
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  <LogOut size={16} />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={openAuthModal}
+                aria-label="Sign In or Register"
+                title="Client Sign In / Register"
+                style={{
+                  padding: '0.4rem 0.55rem',
+                  color: 'var(--text-charcoal)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  borderRadius: '4px',
+                  border: '1px solid transparent',
+                  backgroundColor: 'transparent',
+                  cursor: 'pointer'
+                }}
+              >
+                <User size={19} />
+              </button>
+            )}
 
           </div>
 
