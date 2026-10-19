@@ -67,9 +67,10 @@ export default function Header({
   };
 
   const handleNavClick = (view, category = null, shape = null) => {
-    setCurrentView(view, category, shape);
+    const targetShape = shape || 'all';
+    setCurrentView(view, category, targetShape);
     if (category !== undefined && category !== null) setSelectedCategory(category);
-    if (shape !== undefined && shape !== null) setSelectedShape(shape);
+    setSelectedShape(targetShape);
     setActiveMegaMenu(null);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -259,8 +259,11 @@ export default function App() {
   // Navigation Helpers
   const navigateTo = (view, category = null, shape = null) => {
     setCurrentView(view);
-    if (category) setSelectedCategory(category);
-    if (shape) setSelectedShape(shape);
+    if (category !== null && category !== undefined) {
+      setSelectedCategory(category);
+    }
+    // Reset shape to 'all' when navigating to a view/category unless an explicit shape was provided
+    setSelectedShape(shape || 'all');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

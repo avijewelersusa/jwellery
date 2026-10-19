@@ -14,7 +14,7 @@ import {
   Check,
   RotateCcw
 } from 'lucide-react';
-import { DIAMOND_SHAPES, CATEGORIES } from '../data/jewelryData';
+import { DIAMOND_SHAPES, CATEGORIES, normalizeCategory } from '../data/jewelryData';
 import ProductCardMedia from './ProductCardMedia';
 
 export default function ShopPage({ 
@@ -42,14 +42,53 @@ export default function ShopPage({
   useEffect(() => {
     if (initialCategory) {
       setSelectedCategory(initialCategory);
+      if (!initialShape || initialShape === 'all') {
+        setSelectedShape('all');
+      }
     }
-  }, [initialCategory]);
+  }, [initialCategory, initialShape]);
 
   useEffect(() => {
     if (initialShape) {
       setSelectedShape(initialShape);
     }
   }, [initialShape]);
+
+  // Current category object helper
+  const currentCatObj = useMemo(() => {
+    if (selectedCategory === 'all') return null;
+    return CATEGORIES.find(c => c.id === selectedCategory || normalizeCategory(c.id) === normalizeCategory(selectedCategory));
+  }, [selectedCategory]);
+
+  // Shapes available in current category
+  const availableShapesInCurrentCategory = useMemo(() => {
+    const shapes = {};
+    const categoryProducts = selectedCategory === 'all'
+      ? products
+      : products.filter(p => {
+          const prodCat = normalizeCategory(p.category);
+          const selCat = normalizeCategory(selectedCategory);
+          return prodCat === selCat || p.category === selectedCategory;
+        });
+
+    categoryProducts.forEach(p => {
+      if (p.shape) {
+        const s = p.shape.toLowerCase().trim();
+        shapes[s] = (shapes[s] || 0) + 1;
+      }
+    });
+    return shapes;
+  }, [products, selectedCategory]);
+
+  // Auto-reset shape if currently selected shape has 0 items in the chosen category
+  useEffect(() => {
+    if (selectedShape !== 'all' && selectedCategory !== 'all') {
+      const count = availableShapesInCurrentCategory[selectedShape.toLowerCase()] || 0;
+      if (count === 0) {
+        setSelectedShape('all');
+      }
+    }
+  }, [selectedCategory, availableShapesInCurrentCategory, selectedShape]);
 
   // Accordion collapsed state for filter sections
   const [openSections, setOpenSections] = useState({
@@ -64,16 +103,30 @@ export default function ShopPage({
     setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
+  // Switch category and reset shape to 'all' so category products immediately appear
+  const handleCategoryClick = (catId) => {
+    setSelectedCategory(catId);
+    setSelectedShape('all');
+  };
+
   // Filter Logic
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
-      // Category
-      if (selectedCategory !== 'all' && product.category !== selectedCategory) {
-        return false;
+      // Category with robust normalization
+      if (selectedCategory !== 'all') {
+        const prodCat = normalizeCategory(product.category);
+        const selCat = normalizeCategory(selectedCategory);
+        if (prodCat !== selCat && product.category !== selectedCategory) {
+          return false;
+        }
       }
       // Shape
-      if (selectedShape !== 'all' && product.shape !== selectedShape) {
-        return false;
+      if (selectedShape !== 'all') {
+        const prodShape = (product.shape || '').toLowerCase().trim();
+        const selShape = selectedShape.toLowerCase().trim();
+        if (prodShape !== selShape) {
+          return false;
+        }
       }
       // Stone Type
       if (selectedStoneType !== 'all') {
@@ -119,13 +172,23 @@ export default function ShopPage({
     setReadyToShipOnly(false);
   };
 
+  const resetAttributeFiltersOnly = () => {
+    setSelectedShape('all');
+    setSelectedStoneType('all');
+    setSelectedMetal('all');
+    setPriceFilter('all');
+    setReadyToShipOnly(false);
+  };
+
   const hasActiveFilters = selectedCategory !== 'all' || selectedShape !== 'all' || selectedStoneType !== 'all' || selectedMetal !== 'all' || priceFilter !== 'all' || readyToShipOnly;
 
   // Category & Metal counts
   const categoryCounts = useMemo(() => {
     const counts = {};
     products.forEach(p => {
-      counts[p.category] = (counts[p.category] || 0) + 1;
+      const norm = normalizeCategory(p.category);
+      counts[norm] = (counts[norm] || 0) + 1;
+      if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
     });
     return counts;
   }, [products]);
@@ -170,7 +233,7 @@ export default function ShopPage({
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem' }}>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', color: 'var(--text-charcoal)' }}>
               {selectedCategory === 'all' ? 'All Certified Jewelry' :
-               CATEGORIES.find(c => c.id === selectedCategory)?.name || 'Curated Collection'}
+               (currentCatObj?.name || 'Curated Collection')}
               {selectedShape !== 'all' ? ` — ${selectedShape.toUpperCase()} CUT` : ''}
             </h1>
             <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>
@@ -223,7 +286,7 @@ export default function ShopPage({
                       fontWeight: 500
                     }}
                   >
-                    {CATEGORIES.find(c => c.id === selectedCategory)?.name || selectedCategory}
+                    {currentCatObj?.name || selectedCategory}
                     <X size={12} style={{ cursor: 'pointer' }} onClick={() => setSelectedCategory('all')} />
                   </span>
                 )}
@@ -408,29 +471,34 @@ export default function ShopPage({
                     <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>({products.length})</span>
                   </button>
 
-                  {CATEGORIES.map(cat => (
-                    <button
-                      key={cat.id}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '0.45rem 0.6rem',
-                        borderRadius: '4px',
-                        backgroundColor: selectedCategory === cat.id ? 'var(--bg-warm-ivory)' : 'transparent',
-                        color: selectedCategory === cat.id ? 'var(--text-charcoal)' : 'var(--text-charcoal-light)',
-                        fontWeight: selectedCategory === cat.id ? 600 : 400,
-                        textAlign: 'left',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      <span>{cat.name}</span>
-                      <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                        ({categoryCounts[cat.id] || 0})
-                      </span>
-                    </button>
-                  ))}
+                  {CATEGORIES.map(cat => {
+                    const normCat = normalizeCategory(cat.id);
+                    const isSelected = selectedCategory !== 'all' && (selectedCategory === cat.id || normalizeCategory(selectedCategory) === normCat);
+                    const count = categoryCounts[normCat] || categoryCounts[cat.id] || 0;
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => handleCategoryClick(cat.id)}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          padding: '0.45rem 0.6rem',
+                          borderRadius: '4px',
+                          backgroundColor: isSelected ? 'var(--bg-warm-ivory)' : 'transparent',
+                          color: isSelected ? 'var(--text-charcoal)' : 'var(--text-charcoal-light)',
+                          fontWeight: isSelected ? 600 : 400,
+                          textAlign: 'left',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <span>{cat.name}</span>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                          ({count})
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -465,25 +533,33 @@ export default function ShopPage({
                     All Shapes
                   </button>
 
-                  {DIAMOND_SHAPES.map(s => (
-                    <button
-                      key={s.id}
-                      onClick={() => setSelectedShape(s.id)}
-                      style={{
-                        padding: '0.45rem 0.5rem',
-                        textAlign: 'center',
-                        borderRadius: '4px',
-                        border: selectedShape === s.id ? '1px solid var(--text-charcoal)' : '1px solid var(--border-soft)',
-                        backgroundColor: selectedShape === s.id ? 'var(--text-charcoal)' : '#FFFFFF',
-                        color: selectedShape === s.id ? '#FFFFFF' : 'var(--text-charcoal)',
-                        fontWeight: selectedShape === s.id ? 600 : 400,
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      {s.name}
-                    </button>
-                  ))}
+                  {DIAMOND_SHAPES.map(s => {
+                    const count = availableShapesInCurrentCategory[s.id.toLowerCase()] || 0;
+                    const isShapeSelected = selectedShape === s.id;
+                    const hasItems = selectedCategory === 'all' || count > 0;
+
+                    return (
+                      <button
+                        key={s.id}
+                        onClick={() => setSelectedShape(s.id)}
+                        title={count === 0 && selectedCategory !== 'all' ? `No ${s.name} cuts in ${currentCatObj?.name || 'this category'}` : `${count} pieces`}
+                        style={{
+                          padding: '0.45rem 0.5rem',
+                          textAlign: 'center',
+                          borderRadius: '4px',
+                          border: isShapeSelected ? '1px solid var(--text-charcoal)' : '1px solid var(--border-soft)',
+                          backgroundColor: isShapeSelected ? 'var(--text-charcoal)' : (hasItems ? '#FFFFFF' : '#FAFAFA'),
+                          color: isShapeSelected ? '#FFFFFF' : (hasItems ? 'var(--text-charcoal)' : 'var(--text-muted)'),
+                          fontWeight: isShapeSelected ? 600 : 400,
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          opacity: hasItems || isShapeSelected ? 1 : 0.45
+                        }}
+                      >
+                        {s.name} {selectedCategory !== 'all' && count > 0 ? `(${count})` : ''}
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -663,12 +739,29 @@ export default function ShopPage({
                 <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '0.5rem' }}>
                   No fine jewelry found matching your filters
                 </h3>
-                <p style={{ color: 'var(--text-muted)', margin: '0.5rem auto 1.5rem', maxWidth: '420px', fontSize: '0.88rem' }}>
-                  Try resetting your diamond cut or price bracket, or let our Chicago atelier craft it custom for you!
+                <p style={{ color: 'var(--text-muted)', margin: '0.5rem auto 1.5rem', maxWidth: '440px', fontSize: '0.88rem' }}>
+                  {selectedCategory !== 'all'
+                    ? `No pieces in ${currentCatObj?.name || 'this collection'} match the selected cut or filters. Reset filters below to view all certified pieces in this category.`
+                    : 'Try resetting your diamond cut or price bracket, or let our Chicago atelier craft it custom for you!'}
                 </p>
-                <button onClick={resetFilters} className="btn" style={{ backgroundColor: 'var(--text-charcoal)', color: '#FFFFFF', padding: '0.75rem 1.6rem', fontSize: '0.78rem' }}>
-                  Reset All Filters
-                </button>
+                <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  {selectedCategory !== 'all' && (
+                    <button 
+                      onClick={resetAttributeFiltersOnly} 
+                      className="btn" 
+                      style={{ backgroundColor: 'var(--text-charcoal)', color: '#FFFFFF', padding: '0.75rem 1.6rem', fontSize: '0.78rem' }}
+                    >
+                      Clear Filters & Show All {currentCatObj?.name || 'Category'} ({categoryCounts[normalizeCategory(selectedCategory)] || 0})
+                    </button>
+                  )}
+                  <button 
+                    onClick={resetFilters} 
+                    className="btn btn-outline" 
+                    style={{ padding: '0.75rem 1.6rem', fontSize: '0.78rem', borderColor: 'var(--text-charcoal)', color: 'var(--text-charcoal)' }}
+                  >
+                    View All Fine Jewelry ({products.length})
+                  </button>
+                </div>
               </div>
             ) : (
               <div 

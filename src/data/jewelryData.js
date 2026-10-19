@@ -100,6 +100,17 @@ export const DIAMOND_SHAPES = [
   }
 ];
 
+export function normalizeCategory(cat) {
+  if (!cat) return '';
+  const c = String(cat).toLowerCase().trim().replace(/_/g, '-');
+  if (c === 'engagement-rings' || c.includes('engagement') || c.includes('lab grown diamond ring')) return 'engagement-rings';
+  if (c === 'wedding-bands' || c.includes('wedding') || c.includes('eternity') || c.includes('band')) return 'wedding-bands';
+  if (c === 'bracelets' || c.includes('bracelet') || c.includes('bangle')) return 'bracelets';
+  if (c === 'earrings' || c.includes('earring') || c.includes('stud')) return 'earrings';
+  if (c === 'necklaces' || c.includes('necklace') || c.includes('pendant')) return 'necklaces';
+  return c;
+}
+
 export const CATEGORIES = [
   {
     "id": "engagement-rings",
