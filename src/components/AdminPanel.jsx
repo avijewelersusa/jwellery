@@ -129,7 +129,7 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
       setIsAuthenticated(true);
       setAuthError('');
     } else {
-      setAuthError('Incorrect passcode. (Use avi2026)');
+      setAuthError('Incorrect passcode. Please try again.');
     }
   };
 
@@ -260,7 +260,7 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
               type="password"
               value={passcode}
               onChange={(e) => setPasscode(e.target.value)}
-              placeholder="Passcode (Default: avi2026)"
+              placeholder="Enter passcode"
               style={{
                 width: '100%',
                 padding: '0.85rem 1rem',

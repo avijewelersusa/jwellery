@@ -79,7 +79,7 @@ class AuthPinManager {
         this.lockoutUntil = Date.now() + 30000; // 30 sec cooldown
         return { success: false, error: '3 failed attempts. Locked out for 30 seconds.' };
       }
-      return { success: false, error: 'Incorrect PIN. Default: 2026' };
+      return { success: false, error: 'Incorrect passcode. Please try again.' };
     }
   }
 
