@@ -212,23 +212,23 @@ export default function Header({
             </button>
           </div>
 
-          {/* Center: Grand High-Fashion Atelier Logo */}
+          {/* Center: Grand High-Fashion Atelier Logo + Text */}
           <div 
             onClick={() => handleNavClick('home')}
             className="header-brand-logo-wrap"
             aria-label="Avi Jewelers Home"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleNavClick('home'); }}
           >
             <img 
-              src="/images/avi-jewelers-logo-tight.png" 
-              alt="Avi Jewelers Chicago Atelier"
-              className={`header-brand-logo ${isScrolled ? 'scrolled' : ''}`}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.03)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
+              src="/images/avi-lotus-logo.png" 
+              alt="Avi Jewelers Lotus Mark"
+              className={`header-brand-lotus ${isScrolled ? 'scrolled' : ''}`}
             />
+            <span className="header-brand-text">
+              Avi Jewelers
+            </span>
           </div>
 
           {/* Right: Search, Wishlist, Cart & Custom Ring Action Button */}
@@ -583,7 +583,22 @@ export default function Header({
             About
           </button>
 
-          {/* 8. Contact Showroom */}
+          {/* 8. Warranty & Aftercare */}
+          <button
+            onClick={() => handleNavClick('warranty')}
+            className={`category-nav-link ${currentView === 'warranty' ? 'active' : ''}`}
+            style={{
+              fontSize: '0.69rem',
+              letterSpacing: '0.13em',
+              textTransform: 'uppercase',
+              fontWeight: 500,
+              padding: '0.35rem 0.2rem'
+            }}
+          >
+            Warranty
+          </button>
+
+          {/* 9. Contact Showroom */}
           <button
             onClick={() => handleNavClick('contact')}
             className={`category-nav-link ${currentView === 'contact' ? 'active' : ''}`}
@@ -1069,12 +1084,32 @@ export default function Header({
           }}
         >
           {/* Mobile Drawer Brand Logo */}
-          <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: '0.8rem', borderBottom: '1px solid var(--border-soft)' }}>
+          <div 
+            onClick={() => handleNavClick('home')}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              gap: '0.65rem', 
+              paddingBottom: '0.8rem', 
+              borderBottom: '1px solid var(--border-soft)',
+              cursor: 'pointer' 
+            }}
+          >
             <img 
-              src="/images/avi-jewelers-logo-black.png" 
+              src="/images/avi-lotus-logo.png" 
               alt="Avi Jewelers" 
-              style={{ height: '54px', width: 'auto', objectFit: 'contain' }} 
+              style={{ height: '42px', width: 'auto', objectFit: 'contain' }} 
             />
+            <span style={{ 
+              fontFamily: 'var(--font-serif-display)', 
+              fontSize: '1.35rem', 
+              fontWeight: 700, 
+              color: 'var(--text-charcoal)',
+              letterSpacing: '0.02em'
+            }}>
+              Avi Jewelers
+            </span>
           </div>
 
           {/* Client Authentication Card */}
@@ -1194,6 +1229,13 @@ export default function Header({
               style={{ padding: '0.6rem 0', fontWeight: 500, fontSize: '1rem', color: 'var(--text-charcoal)', borderBottom: '1px solid var(--border-subtle)', cursor: 'pointer' }}
             >
               About Avi Jewelers
+            </div>
+
+            <div 
+              onClick={() => handleNavClick('warranty')}
+              style={{ padding: '0.6rem 0', fontWeight: 500, fontSize: '1rem', color: 'var(--text-charcoal)', borderBottom: '1px solid var(--border-subtle)', cursor: 'pointer' }}
+            >
+              Warranty & Aftercare
             </div>
 
             <div 

@@ -1,4 +1,4 @@
-// Policies Page — Shipping, Lifetime Care & Resizing
+// Policies Page — Shipping, Care & Resizing
 import React from 'react';
 import { Truck, ShieldCheck, RefreshCw, Sparkles, CheckCircle2 } from 'lucide-react';
 
@@ -12,7 +12,7 @@ export default function PoliciesPage({ onStartCustom }) {
           <span className="eyebrow">Client Commitments</span>
           <h1>Atelier Policies & Guarantees</h1>
           <p className="subheading">
-            Our promise to you: total security, lifelong care, and complete transparency on every certified fine jewelry piece.
+            Our promise to you: total security, dedicated care, and complete transparency on every certified fine jewelry piece.
           </p>
         </div>
 
@@ -45,29 +45,29 @@ export default function PoliciesPage({ onStartCustom }) {
             </ul>
           </div>
 
-          {/* Policy 2: Lifetime Care & Warranty */}
+          {/* Policy 2: 12-Month Workmanship Warranty & Aftercare */}
           <div style={{ backgroundColor: '#FFFFFF', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-soft)', padding: '2.2rem', boxShadow: 'var(--shadow-subtle)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1rem' }}>
               <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--gold-light)', color: 'var(--gold-hover)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <ShieldCheck size={20} />
               </div>
-              <h3 style={{ fontSize: '1.4rem' }}>Lifetime Care & Craftsmanship Warranty</h3>
+              <h3 style={{ fontSize: '1.4rem' }}>12-Month Workmanship Warranty & Aftercare</h3>
             </div>
             <p style={{ fontSize: '0.92rem', lineHeight: 1.7, color: 'var(--text-charcoal-light)', marginBottom: '1rem' }}>
-              Every Avi Jewelers piece is warranted against manufacturing defects for life. Fine jewelry is an heirloom meant to be worn daily, and we stand firmly behind every solder joint, prong, and bezel cast in our Chicago atelier.
+              All jewelry purchased through Avi Jewelers includes a 12-month workmanship warranty from the original date of purchase. This warranty covers issues arising from defects in craftsmanship or workmanship under normal wear and use. Any qualifying workmanship-related issues identified during this period will be repaired at no additional cost to the client.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px' }}>
               <div>
                 <strong style={{ fontSize: '0.86rem' }}>Complimentary Cleaning:</strong>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Unlimited ultrasonic steam cleaning & prong checks.</p>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Ultrasonic steam cleaning & prong checks.</p>
               </div>
               <div>
-                <strong style={{ fontSize: '0.86rem' }}>Rhodium Dip:</strong>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Annual rhodium re-plating for 14k/18k white gold pieces.</p>
+                <strong style={{ fontSize: '0.86rem' }}>Rhodium Maintenance:</strong>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Rhodium re-plating for 14k/18k white gold pieces.</p>
               </div>
               <div>
-                <strong style={{ fontSize: '0.86rem' }}>Heirloom Care:</strong>
-                <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Discounted bench repair for accidental damage or trauma.</p>
+                <strong style={{ fontSize: '0.86rem' }}>Discounted Client Repairs:</strong>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Significantly discounted rates on repair services after warranty expiration.</p>
               </div>
             </div>
           </div>

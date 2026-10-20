@@ -311,7 +311,7 @@ export class OrdersManager {
         </div>
 
         <div class="footer">
-          Handcrafted in Chicago on Jewelers Row • Fully Insured Delivery with Lifetime Atelier Warranty.<br/>
+          Handcrafted in Chicago on Jewelers Row • Fully Insured Delivery with 12-Month Atelier Warranty.<br/>
           Thank you for choosing Avi Jewelers USA.
         </div>
       </body>

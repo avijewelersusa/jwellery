@@ -2071,7 +2071,7 @@ export default function AccountPage({
             {/* Seal & Sign */}
             <div style={{ backgroundColor: 'var(--bg-cream-tint)', padding: '1rem', borderRadius: '6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.74rem', color: 'var(--text-charcoal-light)' }}>
               <div>
-                <strong>Atelier Guarantee:</strong> Lifetime complimentary cleaning, inspection, & 1 complimentary resize.
+                <strong>Atelier Guarantee:</strong> 12-Month Workmanship Warranty, inspection, & 1 complimentary resize.
               </div>
               <div style={{ textAlign: 'right' }}>
                 <span style={{ display: 'block', fontStyle: 'italic', fontFamily: 'var(--font-serif)', fontSize: '1rem', color: 'var(--text-charcoal)' }}>

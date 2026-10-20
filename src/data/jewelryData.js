@@ -1592,7 +1592,7 @@ export const TESTIMONIALS = [
     location: "Naperville, IL",
     rating: 5,
     title: "Unbeatable craftsmanship and certified transparency",
-    quote: "Our ring appraised for nearly double what Avi Jewelers charged us. Having the IGI certificate, serial number engraved, and lifetime prong warranty gives total peace of mind. Chloe hasn't stopped staring at her hand.",
+    quote: "Our ring appraised for nearly double what Avi Jewelers charged us. Having the IGI certificate, serial number engraved, and 12-month workmanship warranty gives total peace of mind. Chloe hasn't stopped staring at her hand.",
     ring: "3.50ct Pear Cut Solitaire with Hidden Pavé",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
   }
@@ -1620,8 +1620,9 @@ export const FAQS = [
     "a": "Absolutely. We frequently reset client heirloom stones into modern bespoke settings or melt client gold into sentimental new wedding bands. Simply mention heirloom stones during your consultation."
   },
   {
-    "q": "What warranty and lifetime care do you provide?",
-    "a": "Every Avi Jewelers piece comes with our Lifetime Care Guarantee: complimentary yearly ultrasonic cleaning, prong tightening, steam polishing, and rhodium plating. Your stones remain insured and covered against manufacturing defects for life."
+    "q": "What warranty and aftercare do you provide?",
+    "a": "All jewelry includes a 12-month workmanship warranty. Previous clients also receive discounted repair services after the warranty period.",
+    "isWarranty": true
   },
   {
     "q": "What payment and financing options are available?",

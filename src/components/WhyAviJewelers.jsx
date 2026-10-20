@@ -21,7 +21,7 @@ export default function WhyAviJewelers({ onStartCustom }) {
     },
     {
       icon: Shield,
-      title: "Lifetime Care & Warranty",
+      title: "12-Month Warranty & Care",
       description: "Complimentary annual ultrasonic cleaning, prong inspections, rhodium plating, and one free ring resizing during the first year of ownership."
     },
     {

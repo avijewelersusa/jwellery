@@ -24,6 +24,7 @@ import CheckoutPage from './components/CheckoutPage';
 import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
 import PoliciesPage from './components/PoliciesPage';
+import WarrantyPage from './components/WarrantyPage';
 import AdminPanel from './components/AdminPanel';
 import AccountPage from './components/AccountPage';
 import AuthModal from './components/AuthModal';
@@ -48,6 +49,7 @@ export default function App() {
     if (path.includes('/custom') || hash === '#custom') return 'custom';
     if (path.includes('/shop') || hash === '#shop') return 'shop';
     if (path.includes('/about') || hash === '#about') return 'about';
+    if (path.includes('/warranty') || hash === '#warranty') return 'warranty';
     if (path.includes('/contact') || hash === '#contact') return 'contact';
     if (path.includes('/policies') || hash === '#policies') return 'policies';
     if (path.includes('/account') || hash === '#account') return 'account';
@@ -199,6 +201,26 @@ export default function App() {
     });
   }, []);
 
+  // Browser History & Popstate Listener for clean URLs (/warranty, /about, /contact, etc.)
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = (window.location.pathname || '').toLowerCase();
+      const hash = (window.location.hash || '').toLowerCase();
+      if (path.includes('/warranty') || hash === '#warranty') setCurrentView('warranty');
+      else if (path.includes('/admin') || hash === '#admin') setCurrentView('admin');
+      else if (path.includes('/custom') || hash === '#custom') setCurrentView('custom');
+      else if (path.includes('/shop') || hash === '#shop') setCurrentView('shop');
+      else if (path.includes('/about') || hash === '#about') setCurrentView('about');
+      else if (path.includes('/contact') || hash === '#contact') setCurrentView('contact');
+      else if (path.includes('/policies') || hash === '#policies') setCurrentView('policies');
+      else if (path.includes('/account') || hash === '#account') setCurrentView('account');
+      else setCurrentView('home');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   // Re-apply stored overrides on every view navigation
   useEffect(() => {
     applyStoredOverrides();
@@ -264,6 +286,14 @@ export default function App() {
     }
     // Reset shape to 'all' when navigating to a view/category unless an explicit shape was provided
     setSelectedShape(shape || 'all');
+
+    try {
+      const targetPath = view === 'home' ? '/' : `/${view}`;
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ view }, '', targetPath);
+      }
+    } catch (e) {}
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -460,6 +490,7 @@ export default function App() {
             <div className="reveal-on-scroll">
               <FaqSection 
                 onStartCustom={() => navigateTo('custom')}
+                onNavigate={navigateTo}
               />
             </div>
 
@@ -542,6 +573,13 @@ export default function App() {
         {currentView === 'policies' && (
           <PoliciesPage 
             onStartCustom={() => navigateTo('custom')}
+          />
+        )}
+
+        {/* VIEW: WARRANTY & AFTERCARE PAGE (/warranty) */}
+        {currentView === 'warranty' && (
+          <WarrantyPage 
+            onNavigate={navigateTo}
           />
         )}
 

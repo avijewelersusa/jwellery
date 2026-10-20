@@ -376,7 +376,7 @@ export default function ProductDetailModal({
               Want this customized? Request a custom version
             </button>
 
-            {/* Accordions: Shipping & Lifetime Warranty */}
+            {/* Accordions: Shipping & Warranty */}
             <div style={{ borderTop: '1px solid var(--border-soft)' }}>
               
               {/* Shipping Accordion */}
@@ -424,13 +424,13 @@ export default function ProductDetailModal({
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <ShieldCheck size={15} style={{ color: 'var(--gold-primary)' }} />
-                    Lifetime Care & Warranty
+                    12-Month Workmanship Warranty & Care
                   </span>
                   {warrantyOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
                 {warrantyOpen && (
                   <div style={{ paddingBottom: '0.9rem', fontSize: '0.82rem', color: 'var(--text-charcoal-light)', lineHeight: 1.6 }}>
-                    Includes our lifetime Chicago atelier warranty against manufacturing defects, annual prong inspections, ultrasonic cleanings, and one complimentary ring resizing within the first year.
+                    Includes our 12-month Chicago atelier workmanship warranty against defects in craftsmanship, annual prong inspections, ultrasonic cleanings, and one complimentary ring resizing within the first year. Previous clients also receive discounted repair services.
                   </div>
                 )}
               </div>

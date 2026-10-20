@@ -38,7 +38,7 @@ export default function HowCustomWorks({ onStartCustom }) {
       icon: Gift,
       title: "Delivered To Your Door",
       subtitle: "In 3–4 weeks, 100% insured",
-      description: "Accompanied by an independent IGI or GIA grading certificate, appraisal report, luxury wooden keepsake box, and our lifetime warranty.",
+      description: "Accompanied by an independent IGI or GIA grading certificate, appraisal report, luxury wooden keepsake box, and our 12-month workmanship warranty.",
       detail: "Discreet packaging with adult signature required.",
       bgImage: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80"
     }

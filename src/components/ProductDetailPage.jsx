@@ -560,7 +560,7 @@ export default function ProductDetailPage({
               { id: 'specs', label: 'Diamond & Setting Specs' },
               { id: 'inclusions', label: 'Complimentary Inclusions' },
               { id: 'delivery', label: 'Insured Delivery & Returns' },
-              { id: 'warranty', label: 'Lifetime Care & Warranty' }
+              { id: 'warranty', label: '12-Month Warranty & Care' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -671,10 +671,10 @@ export default function ProductDetailPage({
             {activeTab === 'warranty' && (
               <div style={{ fontSize: '0.85rem', color: 'var(--text-charcoal-light)', lineHeight: 1.7 }}>
                 <p style={{ marginBottom: '1rem' }}>
-                  <strong>Lifetime Craftsmanship Guarantee:</strong> We stand behind every ring and fine jewelry piece leaving our Chicago studio. All settings are covered against manufacturing defects for life.
+                  <strong>12-Month Workmanship Warranty:</strong> All jewelry purchased through Avi Jewelers includes a 12-month workmanship warranty from the original date of purchase covering issues arising from defects in craftsmanship or workmanship under normal wear and use.
                 </p>
                 <p>
-                  <strong>Annual Atelier Maintenance:</strong> Complimentary yearly ultrasonic cleaning, prong tightening, and rhodium replating are always available by appointment or mail-in concierge.
+                  <strong>Repairs & Client Benefits:</strong> All previous Avi Jewelers clients receive significantly discounted rates on jewelry repair services, including repairs needed after the 12-month warranty has expired, helping preserve the beauty and longevity of your jewelry.
                 </p>
               </div>
             )}

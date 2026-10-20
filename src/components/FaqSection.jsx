@@ -3,11 +3,20 @@ import React, { useState } from 'react';
 import { FAQS } from '../data/jewelryData';
 import { Plus, Minus, HelpCircle, Phone, Sparkles } from 'lucide-react';
 
-export default function FaqSection({ onStartCustom }) {
+export default function FaqSection({ onStartCustom, onNavigate }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggle = (idx) => {
     setOpenIndex(openIndex === idx ? null : idx);
+  };
+
+  const handleWarrantyLink = (e) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('warranty');
+    } else {
+      window.location.href = '/warranty';
+    }
   };
 
   return (
@@ -89,7 +98,32 @@ export default function FaqSection({ onStartCustom }) {
                       animation: 'fadeIn 0.2s ease-out'
                     }}
                   >
-                    {faq.a}
+                    {faq.isWarranty ? (
+                      <div>
+                        <p style={{ marginBottom: '0.75rem' }}>
+                          {faq.a}
+                        </p>
+                        <a
+                          href="/warranty"
+                          onClick={handleWarrantyLink}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.35rem',
+                            color: 'var(--text-charcoal)',
+                            fontWeight: 600,
+                            fontSize: '0.88rem',
+                            textDecoration: 'underline',
+                            textUnderlineOffset: '4px',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          Read full warranty & aftercare policy →
+                        </a>
+                      </div>
+                    ) : (
+                      faq.a
+                    )}
                   </div>
                 )}
               </div>

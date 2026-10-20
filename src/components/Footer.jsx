@@ -129,17 +129,29 @@ export default function Footer({ onNavigate, onOpenCustom }) {
         >
           {/* Column 1: Brand & Atelier Story */}
           <div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '1rem' }}>
+            <div 
+              onClick={() => onNavigate('home')}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.1rem', cursor: 'pointer' }}
+            >
               <img 
-                src="/images/avi-jewelers-logo-gold-tight.png" 
+                src="/images/avi-lotus-logo.png" 
                 alt="Avi Jewelers USA" 
                 style={{ 
-                  height: '84px', 
+                  height: '46px', 
                   width: 'auto', 
                   objectFit: 'contain',
-                  filter: 'drop-shadow(0 4px 12px rgba(212, 175, 55, 0.25)) brightness(1.08)'
+                  filter: 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.35))'
                 }} 
               />
+              <span style={{ 
+                fontFamily: 'var(--font-serif-display)', 
+                fontSize: '1.5rem', 
+                fontWeight: 700, 
+                color: '#FAF7F2', 
+                letterSpacing: '0.025em' 
+              }}>
+                Avi Jewelers
+              </span>
             </div>
             <p style={{ fontSize: '0.84rem', color: 'rgba(250, 247, 242, 0.7)', lineHeight: 1.6, marginBottom: '1.2rem' }}>
               Chicago's premier atelier for bespoke custom engagement rings, IGI lab-grown diamonds, and certified fine jewelry. Handcrafted with passion on Jewelers Row.
@@ -193,6 +205,11 @@ export default function Footer({ onNavigate, onOpenCustom }) {
               <li>
                 <button onClick={() => onNavigate('shop', 'engagement-rings')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
                   Shop Ready-to-Ship Rings
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('warranty')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
+                  Warranty & Aftercare Policy
                 </button>
               </li>
             </ul>
@@ -279,7 +296,7 @@ export default function Footer({ onNavigate, onOpenCustom }) {
           {/* Policy Links */}
           <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Shipping & Insurance</button>
-            <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Lifetime Warranty</button>
+            <button onClick={() => onNavigate('warranty')} style={{ color: 'inherit' }}>Warranty & Aftercare</button>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Returns & Resizing</button>
             <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Privacy Policy</button>
             <a href="/admin/" style={{ color: 'inherit', textDecoration: 'none', opacity: 0.6 }} title="Staff Concierge Portal">Admin Studio ✦</a>

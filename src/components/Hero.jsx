@@ -20,7 +20,7 @@ const HERO_SLIDES = [
   },
   {
     image: '/images/hero-ring-4.jpg',
-    tag: 'Lifetime Heirloom',
+    tag: 'Timeless Heirloom',
     caption: '3–4 Weeks Concierge Design-to-Delivery'
   }
 ];

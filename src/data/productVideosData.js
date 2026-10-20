@@ -101,7 +101,7 @@ export const PRODUCT_VIDEOS = [
     details: [
       '1.18 ratio elongated cushion',
       'Floating open bridge setting',
-      'Lifetime ultrasonic maintenance'
+      'Complimentary ultrasonic maintenance'
     ]
   },
   {
