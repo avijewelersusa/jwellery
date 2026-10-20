@@ -190,11 +190,12 @@ export default function Hero({ onStartCustom, onShopNow }) {
           </p>
 
           {/* Minimalist High-End Buttons */}
-          <div data-edit-id="hero-buttons" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+          <div data-edit-id="hero-buttons" className="hero-cta-group">
             
             {/* Primary Button */}
             <button 
               onClick={onStartCustom}
+              className="btn btn-gold btn-lg hero-cta-btn"
               style={{
                 backgroundColor: '#FAF7F2',
                 color: '#151515',
@@ -227,6 +228,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
             {/* Secondary Button */}
             <button 
               onClick={onShopNow}
+              className="btn btn-outline btn-lg hero-cta-btn"
               style={{
                 backgroundColor: 'transparent',
                 color: '#FAF7F2',
@@ -257,7 +259,6 @@ export default function Hero({ onStartCustom, onShopNow }) {
               Shop Ready-to-Ship
               <ArrowRight size={15} />
             </button>
-
           </div>
 
           {/* Minimalist Trust Badges */}

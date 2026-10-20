@@ -508,37 +508,53 @@ img {
   min-width: 220px;
 }
 .header-icon-btn {
-  padding: 0.4rem;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  padding: 0 !important;
   color: var(--text-charcoal);
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   border-radius: 4px;
   line-height: 1;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 .header-icon-btn:hover {
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.04);
+  color: var(--text-charcoal);
+}
+.header-icon-btn:active {
+  transform: scale(0.96);
 }
 .header-icon-badge {
   position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 15px;
-  height: 15px;
+  top: -2px;
+  right: -2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
   background-color: var(--text-charcoal);
   color: #FFFFFF;
-  border-radius: 50%;
-  font-size: 0.6rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  border: 1.5px solid #FFFFFF;
+  pointer-events: none;
+  box-sizing: border-box;
 }
 .header-brand-logo-wrap {
   cursor: pointer;
@@ -623,11 +639,21 @@ img {
   }
   .header-side-right {
     min-width: auto !important;
-    gap: 0.22rem !important;
+    gap: 0.3rem !important;
     flex-shrink: 0;
   }
   .header-icon-btn {
-    padding: 0.25rem !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    padding: 0 !important;
+  }
+  .header-icon-btn svg {
+    width: 17px !important;
+    height: 17px !important;
   }
   .header-brand-logo-wrap {
     gap: 0.35rem !important;
@@ -656,13 +682,27 @@ img {
     padding-right: 0.45rem !important;
   }
   .header-side-left {
+    min-width: auto !important;
     gap: 0.15rem !important;
+    flex-shrink: 0;
   }
   .header-side-right {
-    gap: 0.15rem !important;
+    min-width: auto !important;
+    gap: 0.25rem !important;
+    flex-shrink: 0;
   }
   .header-icon-btn {
-    padding: 0.2rem !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
+  }
+  .header-icon-btn svg {
+    width: 16px !important;
+    height: 16px !important;
   }
   .header-brand-logo-wrap {
     gap: 0.25rem !important;
@@ -687,6 +727,22 @@ img {
   .site-header-wrapper .header-main-row .container {
     padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
+  }
+  .header-side-right {
+    gap: 0.18rem !important;
+  }
+  .header-icon-btn {
+    width: 29px !important;
+    height: 29px !important;
+    min-width: 29px !important;
+    max-width: 29px !important;
+    min-height: 29px !important;
+    max-height: 29px !important;
+    padding: 0 !important;
+  }
+  .header-icon-btn svg {
+    width: 15px !important;
+    height: 15px !important;
   }
   .header-brand-lotus {
     height: 23px !important;
@@ -1099,4 +1155,233 @@ html {
     transform: scale(1.25);
   }
 }
+
+/* ==========================================================================
+   Mobile Responsive Buttons & Button Sizing Fixes (No Cut-off, Uniform Sizes)
+   ========================================================================== */
+
+/* General Button mobile safeguards: prevent overflow or cut-off */
+@media (max-width: 640px) {
+  .btn {
+    white-space: normal !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center;
+    word-break: normal;
+    overflow-wrap: break-word;
+    padding: 0.85rem 1.25rem !important;
+    line-height: 1.4;
+  }
+  .btn-lg {
+    padding: 0.95rem 1.4rem !important;
+    font-size: 0.84rem !important;
+  }
+  .btn-sm {
+    padding: 0.55rem 0.95rem !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+/* Hero CTA buttons uniform sizing on mobile */
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.hero-cta-btn {
+  min-height: 52px;
+  box-sizing: border-box;
+}
+@media (max-width: 640px) {
+  .hero-cta-group {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+  .hero-cta-btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 0.85rem 1.2rem !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.1em !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
+/* ==========================================================================
+   Luxury Footer Mobile Responsiveness & Button Styling
+   ========================================================================== */
+
+/* Newsletter Form */
+.footer-newsletter-form {
+  display: flex;
+  max-width: 520px;
+  margin: 0 auto;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.footer-newsletter-input {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.2rem;
+  color: #FAF7F2;
+  font-size: 0.88rem;
+  outline: none;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+.footer-newsletter-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.footer-newsletter-btn {
+  padding: 0.9rem 1.6rem !important;
+  font-size: 0.78rem !important;
+  min-height: 48px;
+  white-space: nowrap !important;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+@media (max-width: 580px) {
+  .footer-newsletter-form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-newsletter-input,
+  .footer-newsletter-btn {
+    width: 100% !important;
+    text-align: center;
+  }
+}
+
+/* Footer Link Buttons */
+.footer-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.84rem;
+  color: rgba(250, 247, 242, 0.8);
+  transition: color 0.2s ease;
+}
+.footer-link-btn:hover {
+  color: #FFFFFF;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 0.76rem;
+  color: rgba(250, 247, 242, 0.55);
+}
+.footer-copyright {
+  line-height: 1.5;
+}
+.footer-policy-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.4rem;
+  align-items: center;
+}
+.footer-policy-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-policy-btn:hover {
+  color: #FAF7F2;
+}
+.footer-payments-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.footer-payment-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+.footer-payment-badges span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  color: rgba(250, 247, 242, 0.85);
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-bar {
+    flex-direction: column !important;
+    text-align: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    padding-top: 1.75rem !important;
+  }
+  .footer-copyright {
+    order: 1;
+    text-align: center;
+    line-height: 1.6;
+    width: 100%;
+  }
+  .footer-policy-links {
+    order: 2;
+    justify-content: center;
+    gap: 0.65rem 1.1rem;
+    width: 100%;
+    line-height: 1.5;
+  }
+  .footer-payments-wrap {
+    order: 3;
+    justify-content: center;
+    width: 100%;
+  }
+  .footer-payment-badges {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-columns-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Product Detail Page Action Buttons */
+.pdp-actions-row {
+  display: flex;
+  gap: 0.75rem;
+}
+@media (max-width: 480px) {
+  .pdp-actions-row {
+    flex-direction: column !important;
+    gap: 0.6rem !important;
+  }
+  .pdp-actions-row .btn {
+    width: 100% !important;
+  }
+}
+
 

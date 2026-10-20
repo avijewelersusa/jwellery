@@ -433,7 +433,7 @@ export default function ProductDetailPage({
             {/* Action Buttons: Add to Bag & Buy Now */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
               
-              <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <div className="pdp-actions-row">
                 <button
                   onClick={handleAdd}
                   className="btn btn-outline"

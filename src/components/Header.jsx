@@ -188,7 +188,7 @@ export default function Header({
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation"
             >
-              {mobileMenuOpen ? <X size={21} /> : <Menu size={21} />}
+              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
 
             <button
@@ -272,51 +272,20 @@ export default function Header({
 
             {/* Client Account / Sign In & Logout */}
             {currentUser ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
                 <button
                   onClick={() => handleNavClick('account')}
-                  className="header-icon-btn"
+                  className={`header-icon-btn ${currentView === 'account' ? 'active' : ''}`}
                   aria-label={`Account: ${currentUser.name}`}
                   title={`Client Portal: ${currentUser.name}`}
-                  style={{
-                    borderRadius: '4px',
-                    border: currentView === 'account' ? '1px solid var(--border-soft)' : '1px solid transparent',
-                    backgroundColor: currentView === 'account' ? 'var(--bg-cream-tint)' : 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.3rem'
-                  }}
                 >
                   <User size={18} />
-                  <span className="hide-mobile" style={{ fontSize: '0.74rem', fontWeight: 600, maxWidth: '85px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {currentUser.firstName || currentUser.name.split(' ')[0]}
-                  </span>
                 </button>
                 <button
                   onClick={onLogout}
-                  className="hide-mobile"
+                  className="header-icon-btn hide-mobile"
                   aria-label="Logout"
                   title="Sign Out / Logout"
-                  style={{
-                    padding: '0.4rem',
-                    color: 'var(--text-muted)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '4px',
-                    border: '1px solid transparent',
-                    backgroundColor: 'transparent',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#C62828';
-                    e.currentTarget.style.backgroundColor = '#FFEBEE';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--text-muted)';
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
                 >
                   <LogOut size={16} />
                 </button>

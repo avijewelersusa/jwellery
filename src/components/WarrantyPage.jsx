@@ -259,23 +259,27 @@ export default function WarrantyPage({ onNavigate }) {
         </div>
 
         {/* Bottom Call to Action */}
-        <div style={{ textAlign: 'center', marginTop: '3.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '3.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem', width: '100%', padding: '0 0.5rem', boxSizing: 'border-box' }}>
           <button 
             onClick={handleContactClick}
             className="btn btn-gold btn-lg"
             style={{
-              padding: '0.95rem 2.2rem',
-              fontSize: '0.95rem',
+              padding: '0.95rem 1.8rem',
+              fontSize: '0.9rem',
               fontWeight: 600,
               display: 'inline-flex',
               alignItems: 'center',
+              justifyContent: 'center',
               gap: '0.6rem',
               borderRadius: '4px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              maxWidth: '100%',
+              whiteSpace: 'normal',
+              textAlign: 'center'
             }}
           >
             <span>Contact us about warranty / repairs / appraisal</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={16} style={{ flexShrink: 0 }} />
           </button>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', fontSize: '0.86rem', color: 'var(--text-muted)' }}>

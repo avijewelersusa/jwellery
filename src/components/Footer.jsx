@@ -82,28 +82,18 @@ export default function Footer({ onNavigate, onOpenCustom }) {
                 <span>Welcome to Avi Jewelers. Check your inbox for your $100 code.</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} style={{ display: 'flex', maxWidth: '520px', margin: '0 auto', gap: '0.5rem' }}>
+              <form onSubmit={handleSubscribe} className="footer-newsletter-form">
                 <input 
                   type="email" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   required
-                  style={{
-                    flex: 1,
-                    backgroundColor: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.18)',
-                    borderRadius: 'var(--radius-sm)',
-                    padding: '0.9rem 1.2rem',
-                    color: '#FAF7F2',
-                    fontSize: '0.88rem',
-                    outline: 'none'
-                  }}
+                  className="footer-newsletter-input"
                 />
                 <button 
                   type="submit"
-                  className="btn btn-gold"
-                  style={{ padding: '0.9rem 1.6rem', fontSize: '0.78rem' }}
+                  className="btn btn-gold footer-newsletter-btn"
                 >
                   Join Circle
                 </button>
@@ -120,6 +110,7 @@ export default function Footer({ onNavigate, onOpenCustom }) {
       {/* 2. Main Footer Navigation & Contact Columns */}
       <div className="container" style={{ padding: 'clamp(3rem, 6vw, 4.5rem) 1.5rem 2.5rem' }}>
         <div 
+          className="footer-columns-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -161,14 +152,14 @@ export default function Footer({ onNavigate, onOpenCustom }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.84rem' }}>
               <a 
                 href="tel:3315754525" 
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#FAF7F2' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#FAF7F2', textDecoration: 'none' }}
               >
                 <Phone size={14} />
                 <span>(331) 575-4525 (Call / Text)</span>
               </a>
               <a 
                 href="mailto:avijewelersusa@gmail.com" 
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(250, 247, 242, 0.8)' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(250, 247, 242, 0.8)', textDecoration: 'none' }}
               >
                 <Mail size={14} />
                 <span>avijewelersusa@gmail.com</span>
@@ -181,34 +172,34 @@ export default function Footer({ onNavigate, onOpenCustom }) {
             <h4 style={{ fontSize: '0.8rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-primary)', marginBottom: '1.2rem', fontWeight: 600 }}>
               Custom Atelier
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.84rem' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.84rem', padding: 0, margin: 0 }}>
               <li>
-                <button onClick={() => onOpenCustom()} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left', transition: 'color 0.2s' }}>
+                <button onClick={() => onOpenCustom()} className="footer-link-btn">
                   ✦ Start Custom Ring (3-4 Wks)
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('custom')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
+                <button onClick={() => onNavigate('custom')} className="footer-link-btn">
                   The 4-Step Bespoke Process
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('custom')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
+                <button onClick={() => onNavigate('custom')} className="footer-link-btn">
                   Custom Ring Budget Calculator
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('contact')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
+                <button onClick={() => onNavigate('contact')} className="footer-link-btn">
                   Schedule 1-on-1 Virtual Consultation
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('shop', 'engagement-rings')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
+                <button onClick={() => onNavigate('shop', 'engagement-rings')} className="footer-link-btn">
                   Shop Ready-to-Ship Rings
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('warranty')} style={{ color: 'rgba(250, 247, 242, 0.8)', textAlign: 'left' }}>
+                <button onClick={() => onNavigate('warranty')} className="footer-link-btn">
                   Warranty & Aftercare Policy
                 </button>
               </li>
@@ -220,34 +211,34 @@ export default function Footer({ onNavigate, onOpenCustom }) {
             <h4 style={{ fontSize: '0.8rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-primary)', marginBottom: '1.2rem', fontWeight: 600 }}>
               Collections
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.84rem' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.84rem', padding: 0, margin: 0 }}>
               <li>
-                <button onClick={() => onNavigate('shop', 'engagement-rings')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
+                <button onClick={() => onNavigate('shop', 'engagement-rings')} className="footer-link-btn">
                   Engagement Rings
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('shop', 'wedding-bands')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
+                <button onClick={() => onNavigate('shop', 'wedding-bands')} className="footer-link-btn">
                   Wedding & Eternity Bands
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('shop', 'earrings')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
+                <button onClick={() => onNavigate('shop', 'earrings')} className="footer-link-btn">
                   Lab-Grown Diamond Studs
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('shop', 'earrings')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
+                <button onClick={() => onNavigate('shop', 'earrings')} className="footer-link-btn">
                   GIA Natural Diamond Earrings
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('shop', 'bracelets')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
+                <button onClick={() => onNavigate('shop', 'bracelets')} className="footer-link-btn">
                   Diamond Tennis Bracelets
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('shop', 'necklaces')} style={{ color: 'rgba(250, 247, 242, 0.8)' }}>
+                <button onClick={() => onNavigate('shop', 'necklaces')} className="footer-link-btn">
                   Solitaire Pendants
                 </button>
               </li>
@@ -276,42 +267,30 @@ export default function Footer({ onNavigate, onOpenCustom }) {
         </div>
 
         {/* 3. Bottom Bar: Payment Icons, Policies, Copyright */}
-        <div 
-          style={{
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-            paddingTop: '2rem',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: '1.2rem',
-            fontSize: '0.76rem',
-            color: 'rgba(250, 247, 242, 0.55)'
-          }}
-        >
-          <div>
+        <div className="footer-bottom-bar">
+          <div className="footer-copyright">
             © {new Date().getFullYear()} Avi Jewelers USA. All Rights Reserved. Handcrafted in Chicago, IL.
           </div>
 
           {/* Policy Links */}
-          <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
-            <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Shipping & Insurance</button>
-            <button onClick={() => onNavigate('warranty')} style={{ color: 'inherit' }}>Warranty & Aftercare</button>
-            <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Returns & Resizing</button>
-            <button onClick={() => onNavigate('policies')} style={{ color: 'inherit' }}>Privacy Policy</button>
-            <a href="/admin/" style={{ color: 'inherit', textDecoration: 'none', opacity: 0.6 }} title="Staff Concierge Portal">Admin Studio ✦</a>
+          <div className="footer-policy-links">
+            <button onClick={() => onNavigate('policies')} className="footer-policy-btn">Shipping & Insurance</button>
+            <button onClick={() => onNavigate('warranty')} className="footer-policy-btn">Warranty & Aftercare</button>
+            <button onClick={() => onNavigate('policies')} className="footer-policy-btn">Returns & Resizing</button>
+            <button onClick={() => onNavigate('policies')} className="footer-policy-btn">Privacy Policy</button>
+            <a href="/admin/" className="footer-policy-btn" style={{ opacity: 0.6 }} title="Staff Concierge Portal">Admin Studio ✦</a>
           </div>
 
           {/* Payment Badges */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <div className="footer-payments-wrap">
             <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)' }}>Secure Checkout:</span>
-            <div style={{ display: 'flex', gap: '0.4rem', fontSize: '0.68rem', fontWeight: 600 }}>
-              <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.4rem', borderRadius: '3px' }}>VISA</span>
-              <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.4rem', borderRadius: '3px' }}>MC</span>
-              <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.4rem', borderRadius: '3px' }}>AMEX</span>
-              <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.4rem', borderRadius: '3px' }}>APPLE PAY</span>
-              <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.4rem', borderRadius: '3px' }}>AFFIRM</span>
-              <span style={{ background: 'rgba(255,255,255,0.1)', padding: '0.2rem 0.4rem', borderRadius: '3px' }}>KLARNA</span>
+            <div className="footer-payment-badges">
+              <span>VISA</span>
+              <span>MC</span>
+              <span>AMEX</span>
+              <span>APPLE PAY</span>
+              <span>AFFIRM</span>
+              <span>KLARNA</span>
             </div>
           </div>
         </div>
