@@ -169,13 +169,14 @@ export default function Header({
 
       {/* 2. Main Luxury Branding Row */}
       <div 
+        className="header-main-row"
         style={{
           backgroundColor: isScrolled ? 'rgba(250, 247, 242, 0.98)' : 'var(--bg-warm-ivory)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           borderBottom: '1px solid var(--border-soft)',
           transition: 'all 0.3s ease',
-          padding: isScrolled ? '0.6rem 0' : '0.9rem 0'
+          padding: isScrolled ? '0.5rem 0' : '0.75rem 0'
         }}
       >
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -183,12 +184,11 @@ export default function Header({
           {/* Left: Mobile Trigger & Search Trigger */}
           <div className="header-side-left">
             <button 
-              className="mobile-menu-trigger show-mobile-only"
+              className="mobile-menu-trigger show-mobile-only header-icon-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation"
-              style={{ padding: '0.3rem', color: 'var(--text-charcoal)' }}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={21} /> : <Menu size={21} />}
             </button>
 
             <button
@@ -236,38 +236,21 @@ export default function Header({
             
             <button 
               onClick={openSearch}
-              className="show-mobile-only"
+              className="show-mobile-only header-icon-btn"
               aria-label="Search"
-              style={{ padding: '0.4rem', color: 'var(--text-charcoal)' }}
             >
-              <Search size={20} />
+              <Search size={18} />
             </button>
 
             {/* Saved Wishlist */}
             <button 
               onClick={openWishlist}
+              className="header-icon-btn"
               aria-label="View Saved Creations"
-              style={{ padding: '0.4rem', color: 'var(--text-charcoal)', position: 'relative', display: 'flex', alignItems: 'center' }}
             >
-              <Heart size={19} />
+              <Heart size={18} />
               {wishlistCount > 0 && (
-                <span 
-                  style={{
-                    position: 'absolute',
-                    top: '0px',
-                    right: '0px',
-                    width: '16px',
-                    height: '16px',
-                    backgroundColor: 'var(--text-charcoal)',
-                    color: '#FFFFFF',
-                    borderRadius: '50%',
-                    fontSize: '0.62rem',
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+                <span className="header-icon-badge">
                   {wishlistCount}
                 </span>
               )}
@@ -276,28 +259,12 @@ export default function Header({
             {/* Luxury Bag / Cart */}
             <button 
               onClick={openCart}
+              className="header-icon-btn"
               aria-label="View Luxury Bag"
-              style={{ padding: '0.4rem', color: 'var(--text-charcoal)', position: 'relative', display: 'flex', alignItems: 'center' }}
             >
-              <ShoppingBag size={19} />
+              <ShoppingBag size={18} />
               {cartCount > 0 && (
-                <span 
-                  style={{
-                    position: 'absolute',
-                    top: '0px',
-                    right: '0px',
-                    width: '16px',
-                    height: '16px',
-                    backgroundColor: 'var(--text-charcoal)',
-                    color: '#FFFFFF',
-                    borderRadius: '50%',
-                    fontSize: '0.62rem',
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+                <span className="header-icon-badge">
                   {cartCount}
                 </span>
               )}
@@ -305,30 +272,29 @@ export default function Header({
 
             {/* Client Account / Sign In & Logout */}
             {currentUser ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem' }}>
                 <button
                   onClick={() => handleNavClick('account')}
+                  className="header-icon-btn"
                   aria-label={`Account: ${currentUser.name}`}
                   title={`Client Portal: ${currentUser.name}`}
                   style={{
-                    padding: '0.4rem 0.55rem',
-                    color: 'var(--text-charcoal)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
                     borderRadius: '4px',
                     border: currentView === 'account' ? '1px solid var(--border-soft)' : '1px solid transparent',
                     backgroundColor: currentView === 'account' ? 'var(--bg-cream-tint)' : 'transparent',
-                    cursor: 'pointer'
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem'
                   }}
                 >
-                  <User size={19} />
+                  <User size={18} />
                   <span className="hide-mobile" style={{ fontSize: '0.74rem', fontWeight: 600, maxWidth: '85px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {currentUser.firstName || currentUser.name.split(' ')[0]}
                   </span>
                 </button>
                 <button
                   onClick={onLogout}
+                  className="hide-mobile"
                   aria-label="Logout"
                   title="Sign Out / Logout"
                   style={{
@@ -358,21 +324,11 @@ export default function Header({
             ) : (
               <button
                 onClick={openAuthModal}
+                className="header-icon-btn"
                 aria-label="Sign In or Register"
                 title="Client Sign In / Register"
-                style={{
-                  padding: '0.4rem 0.55rem',
-                  color: 'var(--text-charcoal)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.35rem',
-                  borderRadius: '4px',
-                  border: '1px solid transparent',
-                  backgroundColor: 'transparent',
-                  cursor: 'pointer'
-                }}
               >
-                <User size={19} />
+                <User size={18} />
               </button>
             )}
 
