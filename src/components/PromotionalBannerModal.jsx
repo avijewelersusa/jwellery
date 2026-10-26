@@ -62,17 +62,19 @@ export default function PromotionalBannerModal({ onApplyPromo }) {
       }}
       onClick={handleClose}
     >
-      <div 
+      <div
+        className="promo-modal-card"
         style={{
           position: 'relative',
           maxWidth: '780px',
           width: '100%',
+          maxHeight: 'calc(100dvh - 2rem)',
+          overflowY: 'auto',
           backgroundColor: '#0F0F0F',
           color: '#FAF7F2',
           borderRadius: '8px',
-          overflow: 'hidden',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
           boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(255, 255, 255, 0.12)',
           border: '1px solid rgba(255, 255, 255, 0.15)'
         }}
@@ -106,7 +108,8 @@ export default function PromotionalBannerModal({ onApplyPromo }) {
         </button>
 
         {/* Left Side: Editorial Ring Image */}
-        <div 
+        <div
+          className="promo-modal-media"
           style={{
             position: 'relative',
             minHeight: '280px',
@@ -131,11 +134,14 @@ export default function PromotionalBannerModal({ onApplyPromo }) {
               background: 'linear-gradient(to right, transparent 60%, #0F0F0F 100%)'
             }}
           />
-          <div 
+          <div
+            className="promo-modal-badge"
             style={{
               position: 'absolute',
               bottom: '1rem',
               left: '1rem',
+              maxWidth: 'calc(100% - 2rem)',
+              lineHeight: 1.35,
               backgroundColor: 'rgba(0, 0, 0, 0.7)',
               backdropFilter: 'blur(4px)',
               padding: '0.35rem 0.75rem',
@@ -155,7 +161,8 @@ export default function PromotionalBannerModal({ onApplyPromo }) {
         </div>
 
         {/* Right Side: Promotion Offer & Email Signup */}
-        <div 
+        <div
+          className="promo-modal-body"
           style={{
             padding: '2.5rem 2rem 2.2rem',
             display: 'flex',
