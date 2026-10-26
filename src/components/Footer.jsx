@@ -269,7 +269,7 @@ export default function Footer({ onNavigate, onOpenCustom }) {
         {/* 3. Bottom Bar: Payment Icons, Policies, Copyright */}
         <div className="footer-bottom-bar">
           <div className="footer-copyright">
-            © {new Date().getFullYear()} Avi Jewelers USA. All Rights Reserved. Handcrafted in Chicago, IL.
+            © {new Date().getFullYear()} Avi Jewelers USA. All Rights Reserved. Handcrafted by experienced luxury artisans.
           </div>
 
           {/* Policy Links */}

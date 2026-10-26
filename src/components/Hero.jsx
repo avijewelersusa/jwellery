@@ -169,8 +169,8 @@ export default function Hero({ onStartCustom, onShopNow }) {
             }}
           >
             Your Vision. <br />
-            <span style={{ fontStyle: 'italic', fontWeight: 300, color: 'rgba(250, 247, 242, 0.9)' }}>
-              Handcrafted in Chicago.
+            <span style={{ fontStyle: 'italic', fontWeight: 300, fontSize: '0.78em', color: 'rgba(250, 247, 242, 0.9)' }}>
+              Handcrafted by Experienced Luxury Artisans.
             </span>
           </h1>
 

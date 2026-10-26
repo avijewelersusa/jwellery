@@ -14,7 +14,7 @@ export const PRODUCT_VIDEOS = [
     estimatedPrice: '$2,850',
     description: 'Bespoke elongated oval lab-grown diamond set on an ultra-slim 1.6mm micro-pavé band with a secret diamond hidden halo.',
     details: [
-      'Handcrafted in Chicago Atelier',
+      'Handcrafted by Experienced Luxury Artisans',
       'IGI Certified Lab-Grown Center',
       'Comfort-fit French pavé shank'
     ]

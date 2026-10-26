@@ -96,7 +96,7 @@ export default function Header({
           
           <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.71rem' }}>
             <Sparkles size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
-            <span>Bespoke Atelier • Handcrafted in Chicago</span>
+            <span>Bespoke Atelier • Handcrafted by Experienced Luxury Artisans</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', margin: '0 auto' }}>

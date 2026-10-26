@@ -476,7 +476,7 @@ export default function LoveInTheMaking({ onStartCustom, onExploreWork }) {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <span style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-charcoal)' }}>
-              Over 1,200 Bespoke Rings Handcrafted in Chicago
+              Over 1,200 Bespoke Rings Handcrafted by Experienced Luxury Artisans
             </span>
             <span style={{ color: 'var(--text-muted)' }}>•</span>
             <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
