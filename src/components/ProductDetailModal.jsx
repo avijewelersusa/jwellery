@@ -207,16 +207,8 @@ export default function ProductDetailModal({
 
             {/* Price */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.85rem', marginBottom: '1.5rem' }}>
-              <span style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
-                ${product.price.toLocaleString()}
-              </span>
-              {product.compareAtPrice && (
-                <span style={{ fontSize: '1.1rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                  ${product.compareAtPrice.toLocaleString()}
-                </span>
-              )}
-              <span style={{ fontSize: '0.75rem', color: '#2E7D32', fontWeight: 600, backgroundColor: '#E8F5E9', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
-                Save ${((product.compareAtPrice || product.price * 1.25) - product.price).toLocaleString()}
+              <span style={{ fontSize: '1.3rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
+                Please inquire for pricing
               </span>
             </div>
 
@@ -468,7 +460,7 @@ export default function ProductDetailModal({
                       {rel.name}
                     </div>
                     <div style={{ fontSize: '0.78rem', color: 'var(--gold-hover)', fontWeight: 600 }}>
-                      ${rel.price.toLocaleString()}
+                      Please inquire for pricing
                     </div>
                   </div>
                 </div>

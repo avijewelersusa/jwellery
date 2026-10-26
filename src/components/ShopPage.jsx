@@ -399,8 +399,6 @@ export default function ShopPage({
               }}
             >
               <option value="featured">Featured Curations</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
               <option value="rating">Highest Rated</option>
             </select>
           </div>
@@ -609,8 +607,8 @@ export default function ShopPage({
               )}
             </div>
 
-            {/* 4. Price Brackets Accordion */}
-            <div style={{ borderBottom: '1px solid var(--border-soft)', paddingBottom: '1.1rem', marginBottom: '1.1rem' }}>
+            {/* 4. Price Brackets Accordion (hidden: pricing is by inquiry) */}
+            <div style={{ display: 'none', borderBottom: '1px solid var(--border-soft)', paddingBottom: '1.1rem', marginBottom: '1.1rem' }}>
               <div 
                 onClick={() => toggleSection('price')}
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', marginBottom: openSections.price ? '0.8rem' : '0' }}
@@ -903,14 +901,9 @@ export default function ShopPage({
                         </div>
 
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
-                          <span style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
-                            ${product.price.toLocaleString()}
+                          <span style={{ fontSize: '0.86rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
+                            Please inquire for pricing
                           </span>
-                          {product.compareAtPrice && product.compareAtPrice > product.price && (
-                            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                              ${product.compareAtPrice.toLocaleString()}
-                            </span>
-                          )}
                         </div>
 
                         <div style={{ fontSize: '0.68rem', color: 'var(--text-charcoal-light)', marginTop: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexWrap: 'wrap' }}>

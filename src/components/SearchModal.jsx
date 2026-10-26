@@ -174,7 +174,7 @@ export default function SearchModal({
                     </div>
                   </div>
                   <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text-charcoal)' }}>
-                    ${prod.price.toLocaleString()}
+                    Please inquire for pricing
                   </div>
                   <ArrowRight size={16} style={{ color: 'var(--text-muted)' }} />
                 </div>

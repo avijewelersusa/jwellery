@@ -305,19 +305,9 @@ export default function ProductDetailPage({
 
               {/* Price */}
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginTop: '0.8rem' }}>
-                <span style={{ fontSize: '2rem', fontWeight: 600, color: 'var(--text-charcoal)', fontFamily: 'var(--font-serif)' }}>
-                  ${product.price.toLocaleString()}
+                <span style={{ fontSize: '1.4rem', fontWeight: 500, color: 'var(--text-charcoal)', fontFamily: 'var(--font-serif)' }}>
+                  Please inquire for pricing
                 </span>
-                {product.compareAtPrice && product.compareAtPrice > product.price && (
-                  <>
-                    <span style={{ fontSize: '1.2rem', textDecoration: 'line-through', color: 'var(--text-muted)' }}>
-                      ${product.compareAtPrice.toLocaleString()}
-                    </span>
-                    <span style={{ fontSize: '0.74rem', fontWeight: 600, color: '#1B5E20', backgroundColor: '#E8F5E9', padding: '0.2rem 0.5rem', borderRadius: '3px' }}>
-                      Save ${(product.compareAtPrice - product.price).toLocaleString()}
-                    </span>
-                  </>
-                )}
               </div>
 
             </div>
@@ -714,7 +704,7 @@ export default function ProductDetailPage({
                       {rel.name}
                     </h4>
                     <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-charcoal)', marginTop: '0.4rem' }}>
-                      ${rel.price.toLocaleString()}
+                      Please inquire for pricing
                     </div>
                   </div>
                 </div>

@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
 import HowCustomWorks from './components/HowCustomWorks';
 import ShopByShape from './components/ShopByShape';
-import CustomShowcase from './components/CustomShowcase';
 import BestSellersGrid from './components/BestSellersGrid';
 import ShopByCategory from './components/ShopByCategory';
 import SplitBanner from './components/SplitBanner';
@@ -471,13 +470,6 @@ export default function App() {
                     navigateTo('shop', 'engagement-rings', shapeId);
                   }
                 }}
-              />
-            </div>
-
-            {/* 5. Custom Showcase (Before/After Gallery) */}
-            <div className="reveal-on-scroll">
-              <CustomShowcase 
-                onStartCustom={() => navigateTo('custom')}
               />
             </div>
 

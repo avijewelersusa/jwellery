@@ -561,14 +561,9 @@ export default function BestSellersGrid({
 
                   {/* Price & Compare At Price */}
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem', marginTop: 'auto', marginBottom: '0.65rem' }}>
-                    <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
-                      ${product.price.toLocaleString()}
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
+                      Please inquire for pricing
                     </span>
-                    {product.compareAtPrice && (
-                      <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                        ${product.compareAtPrice.toLocaleString()}
-                      </span>
-                    )}
                   </div>
 
                   {/* Lead Time & Delivery Trust Tag */}

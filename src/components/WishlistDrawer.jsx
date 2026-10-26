@@ -109,7 +109,7 @@ export default function WishlistDrawer({
                       {item.name}
                     </h4>
                     <div style={{ fontSize: '0.78rem', color: 'var(--gold-hover)', fontWeight: 600 }}>
-                      ${item.price.toLocaleString()}
+                      Please inquire for pricing
                     </div>
                     <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
                       <button

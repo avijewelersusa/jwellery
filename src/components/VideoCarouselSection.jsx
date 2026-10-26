@@ -507,7 +507,7 @@ export default function VideoCarouselSection({ onStartCustom }) {
                         {video.cut}
                       </span>
                       <span style={{ fontSize: '0.78rem', color: '#FAF7F2', fontWeight: 600 }}>
-                        {video.estimatedPrice}
+                        Inquire for pricing
                       </span>
                     </div>
 
@@ -839,10 +839,7 @@ export default function VideoCarouselSection({ onStartCustom }) {
                     marginBottom: '1rem'
                   }}
                 >
-                  {activeModalVideo.estimatedPrice} 
-                  <span style={{ fontSize: '0.75rem', color: 'rgba(250, 247, 242, 0.55)', marginLeft: '6px', fontWeight: 400 }}>
-                    (Estimated Bespoke)
-                  </span>
+                  Please inquire for pricing
                 </div>
 
                 <p 
