@@ -1381,7 +1381,7 @@ export default function AccountPage({
                         Bespoke Ring Commissions
                       </h2>
                       <p style={{ fontSize: '0.8rem', color: 'var(--text-charcoal-light)', marginTop: '0.2rem' }}>
-                        Custom CAD 3D modeling, stone allocation, and Chicago master jeweler consultations.
+                        Custom CAD 3D modeling, stone allocation, and master jeweler consultations.
                       </p>
                     </div>
 

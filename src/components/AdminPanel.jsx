@@ -69,7 +69,7 @@ export default function AdminPanel({ onBackToStore, onRefreshProducts }) {
     secondaryImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=85',
     metalOptions: ['18k White Gold', '18k Yellow Gold', '18k Rose Gold', 'Platinum'],
     leadTime: 'Ships in 3-4 weeks',
-    description: 'Custom handcrafted by Chicago master bench jewelers.',
+    description: 'Custom handcrafted by master bench jewelers.',
     isBestSeller: false,
     isFeatured: true
   });

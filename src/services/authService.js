@@ -428,7 +428,7 @@ export function saveUserOrder(orderData) {
     total: orderData.total || 0,
     items: orderData.items || [],
     timeline: [
-      { title: 'Order Confirmed', date: 'Just now', completed: true, current: true, desc: 'Payment authorized. Order sent directly to Chicago master jeweler.' },
+      { title: 'Order Confirmed', date: 'Just now', completed: true, current: true, desc: 'Payment authorized. Order sent directly to our master jeweler.' },
       { title: 'Precious Metal Casting & CAD', date: 'Estimated 2 days', completed: false, desc: 'Custom setting created in certified gold/platinum alloy.' },
       { title: 'Hand Stone Setting & Polish', date: 'Estimated 4 days', completed: false, desc: 'Master jeweler sets stone with micro-pavé microscope.' },
       { title: 'IGI Certification & Vault Audit', date: 'Estimated 6 days', completed: false, desc: '40x loupe inspection and archival paperwork generation.' },
