@@ -73,7 +73,7 @@ export default function SplitBanner({ onStartCustom }) {
               }}
             >
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#D4AF37', display: 'inline-block' }} />
-              Live Atelier Craftsmanship • Jewelers Row
+              Live Atelier Craftsmanship
             </div>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#FAF7F2', lineHeight: 1.25, fontWeight: 400 }}>
               Master goldsmithing, stone setting & hand-polish in solid 14k/18k gold & 950 platinum.

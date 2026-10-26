@@ -1156,7 +1156,7 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
             <div style={{ marginBottom: '1.5rem' }}>
               <h3 style={{ fontSize: '1.3rem' }}>Showroom & Virtual Consultations</h3>
               <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
-                Scheduled client design appointments on Jewelers Row & Zoom.
+                Scheduled client design appointments in-studio & on Zoom.
               </p>
             </div>
 

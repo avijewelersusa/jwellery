@@ -16,7 +16,7 @@ const HERO_SLIDES = [
   {
     image: '/images/hero-ring-3.jpg',
     tag: 'Emerald & Radiant Atelier',
-    caption: 'Precision Micro-Prongs Cast on Jewelers Row'
+    caption: 'Precision Micro-Prongs Cast by Master Artisans'
   },
   {
     image: '/images/hero-ring-4.jpg',
@@ -150,7 +150,7 @@ export default function Hero({ onStartCustom, onShopNow }) {
                 color: '#FAF7F2'
               }}
             >
-              Chicago Bespoke Atelier • Jewelers Row
+              Chicago Bespoke Atelier
             </span>
           </div>
 

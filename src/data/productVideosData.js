@@ -1,5 +1,5 @@
 // Avi Jewelers USA — Curated Product Video Catalog & Reel Data
-// High-definition 4K real atelier footage captured on Jewelers Row, Chicago
+// High-definition 4K real atelier footage captured in our Chicago atelier
 
 export const PRODUCT_VIDEOS = [
   {
@@ -118,7 +118,7 @@ export const PRODUCT_VIDEOS = [
     details: [
       'Color & clarity matched side stones',
       'Low center of gravity balancing',
-      'Custom stamped Jewelers Row mark'
+      'Custom stamped Avi Jewelers mark'
     ]
   },
   {
@@ -197,9 +197,9 @@ export const PRODUCT_VIDEOS = [
     cut: 'Atelier Craft',
     category: 'craftsmanship',
     tag: 'Behind The Scenes',
-    specs: 'Chicago Jewelers Row Bench Craft',
+    specs: 'Chicago Atelier Bench Craft',
     estimatedPrice: 'Bespoke Process',
-    description: 'Watch master jewelers on Jewelers Row steam-cleaning, prong-tuning, and polishing a custom ring before final inspection.',
+    description: 'Watch our master jewelers steam-cleaning, prong-tuning, and polishing a custom ring before final inspection.',
     details: [
       'Microscope-assisted 20x inspection',
       'Hand-burnished solid gold prongs',

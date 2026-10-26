@@ -155,7 +155,7 @@ export default function BestSellersGrid({
                 lineHeight: 1.55
               }}
             >
-              Our most celebrated bespoke engagement rings and fine jewelry icons, crafted on Jewelers Row with certified lab diamonds and natural diamonds.
+              Our most celebrated bespoke engagement rings and fine jewelry icons, crafted by experienced luxury artisans with certified lab diamonds and natural diamonds.
             </p>
           </div>
 

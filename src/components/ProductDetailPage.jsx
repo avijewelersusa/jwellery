@@ -524,7 +524,7 @@ export default function ProductDetailPage({
                   Questions about this piece?
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                  Connect with an Avi fine jeweler on Jewelers Row.
+                  Connect with an Avi fine jeweler.
                 </div>
               </div>
               <a
@@ -622,7 +622,7 @@ export default function ProductDetailPage({
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-soft)', paddingBottom: '0.5rem' }}>
                     <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Craftsmanship Origin</span>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>Jewelers Row, Chicago, USA</span>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>Chicago, USA</span>
                   </div>
                 </div>
               </div>

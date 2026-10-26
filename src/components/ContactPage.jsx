@@ -59,7 +59,7 @@ export default function ContactPage() {
         
         {/* Minimal Hero Header */}
         <div style={{ textAlign: 'center', marginBottom: '4rem', maxWidth: '640px', margin: '0 auto 4rem' }}>
-          <span className="eyebrow" style={{ letterSpacing: '0.2em' }}>Chicago Jewelers Row Atelier</span>
+          <span className="eyebrow" style={{ letterSpacing: '0.2em' }}>Chicago Atelier</span>
           <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.4rem, 4.5vw, 3.5rem)', color: 'var(--text-charcoal)', marginBottom: '1rem', lineHeight: 1.15 }}>
             Book Your Consultation
           </h1>
@@ -92,11 +92,10 @@ export default function ContactPage() {
               </div>
 
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', marginBottom: '0.5rem', color: 'var(--text-charcoal)' }}>
-                Jewelers Row Historic District
+                By Private Appointment
               </h3>
 
               <p style={{ fontSize: '0.86rem', color: 'var(--text-charcoal-light)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Jewelers Row Historic District <br />
                 Chicago, Illinois <br />
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>1-on-1 Virtual Consultations & Private Atelier Appointments</span>
               </p>

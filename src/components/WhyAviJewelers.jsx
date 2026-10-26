@@ -12,7 +12,7 @@ export default function WhyAviJewelers({ onStartCustom }) {
     {
       icon: Hammer,
       title: "Handcrafted Quality",
-      description: "Directly made in Chicago on historic Jewelers Row. Solid 14k/18k recycled gold and 950 platinum cast and handset under microscopes by veteran jewelers."
+      description: "Directly made in our Chicago atelier. Solid 14k/18k recycled gold and 950 platinum cast and handset under microscopes by veteran jewelers."
     },
     {
       icon: DollarSign,

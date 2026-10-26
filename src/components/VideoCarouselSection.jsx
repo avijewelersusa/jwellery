@@ -199,7 +199,7 @@ export default function VideoCarouselSection({ onStartCustom }) {
             }}
           >
             Experience the mesmerizing fire, light scintillation, and bench-made artistry 
-            of real Avi Jewelers custom engagement rings handcrafted on Jewelers Row.
+            of real Avi Jewelers custom engagement rings handcrafted by experienced luxury artisans.
           </p>
 
           {/* Category Filter Tabs */}

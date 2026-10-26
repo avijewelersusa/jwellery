@@ -145,7 +145,7 @@ export default function Footer({ onNavigate, onOpenCustom }) {
               </span>
             </div>
             <p style={{ fontSize: '0.84rem', color: 'rgba(250, 247, 242, 0.7)', lineHeight: 1.6, marginBottom: '1.2rem' }}>
-              Chicago's premier atelier for bespoke custom engagement rings, IGI lab-grown diamonds, and certified fine jewelry. Handcrafted with passion on Jewelers Row.
+              Chicago's premier atelier for bespoke custom engagement rings, IGI lab-grown diamonds, and certified fine jewelry. Handcrafted with passion by experienced luxury artisans.
             </p>
 
             {/* Direct Phone & Email */}

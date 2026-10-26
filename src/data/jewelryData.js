@@ -1572,7 +1572,7 @@ export const TESTIMONIALS = [
     location: "West Loop, Chicago",
     rating: 5,
     title: "Exceeded every expectation — better than any big luxury house",
-    quote: "We went to Jewelers Row and traditional high-end brands where custom work felt intimidating and overpriced. Avi Jewelers treated us like royalty. In 3 weeks, Matthew proposed with the exact oval ring I’d saved on Instagram for two years. The 3D render was spot on!",
+    quote: "We went to traditional high-end brands where custom work felt intimidating and overpriced. Avi Jewelers treated us like royalty. In 3 weeks, Matthew proposed with the exact oval ring I’d saved on Instagram for two years. The 3D render was spot on!",
     ring: "2.80ct Oval Lab Diamond Hidden Halo in Platinum",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
   },

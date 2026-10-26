@@ -47,7 +47,7 @@ export default function LoveInTheMaking({ onStartCustom, onExploreWork }) {
         subtitle: 'Precision Hand-Setting',
         image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85',
         aspectRatio: '16 / 10.5',
-        story: 'Each prong is micro-clawed under 40x magnification on Jewelers Row, Chicago.'
+        story: 'Each prong is micro-clawed under 40x magnification by our master artisans.'
       },
       // Note: Central Hero Card renders here!
       {
@@ -157,7 +157,7 @@ export default function LoveInTheMaking({ onStartCustom, onExploreWork }) {
               lineHeight: 1.55 
             }}
           >
-            Real couples, Chicago proposals, and bespoke rings handcrafted in our Jewelers Row atelier.
+            Real couples, Chicago proposals, and bespoke rings handcrafted by experienced luxury artisans.
           </p>
         </div>
 

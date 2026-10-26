@@ -28,7 +28,7 @@ export default function HowCustomWorks({ onStartCustom }) {
       number: "03",
       icon: Hammer,
       title: "Master Handcrafting",
-      subtitle: "Cast & set on Jewelers Row",
+      subtitle: "Cast & set by master artisans",
       description: "Our master goldsmiths cast your piece in solid recycled gold or 950 platinum. Certified lab or natural diamonds are microscope-set by hand in Chicago.",
       detail: "Hand-polished & hallmarked with laser serial number.",
       bgImage: "https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=600&q=80"

@@ -963,7 +963,7 @@ export default function Header({
                         Step 3: Chicago Casting
                       </div>
                       <p style={{ fontSize: '0.86rem', color: 'var(--text-charcoal-light)', lineHeight: 1.55 }}>
-                        Cast in recycled solid gold or platinum and micro-set by hand on Jewelers Row, Chicago.
+                        Cast in recycled solid gold or platinum and micro-set by hand by experienced luxury artisans.
                       </p>
                     </div>
                     <div style={{ padding: '1.2rem', backgroundColor: 'var(--bg-warm-ivory)', borderRadius: '6px' }}>

@@ -1820,7 +1820,7 @@ export default function AccountPage({
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', fontSize: '0.82rem' }}>
                     <div>
                       <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Atelier Concierge</span>
-                      <strong>Chicago Jewelers Row (By Appt)</strong>
+                      <strong>Chicago Atelier (By Appt)</strong>
                     </div>
                     <div>
                       <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Direct Phone</span>

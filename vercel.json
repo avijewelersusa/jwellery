@@ -1,12 +1,11 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/admin/:match*",
-      "destination": "/admin/:match*"
+      "source": "/admin",
+      "destination": "/admin/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!admin/).*)",
       "destination": "/index.html"
     }
   ]

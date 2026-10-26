@@ -29,7 +29,7 @@ A luxury, conversion-focused web application for **Avi Jewelers USA**, a Chicago
 3. **How Custom Works (4 Animated Steps)**:
    - `01. Share Your Idea` (upload inspo photos, sketches, or paste web links)
    - `02. Consult & 3D CAD Design` (1-on-1 virtual design session & photorealistic 360° renders)
-   - `03. Master Handcrafting` (handset in solid gold/platinum on Jewelers Row in Chicago)
+   - `03. Master Handcrafting` (handset in solid gold/platinum by experienced luxury artisans)
    - `04. Delivered To Your Door` (certificate, appraisal, luxury wooden box, adult signature)
 4. **Shop by Shape**: Round image tiles for all 9 shapes with cut proportions and silhouette info.
 5. **Custom Showcase**: Interactive Before/After gallery comparing client inspiration photos/sketches to the finished bespoke ring with turnarounds and stories.

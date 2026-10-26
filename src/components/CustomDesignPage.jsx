@@ -475,7 +475,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
                   Precious Metal, Stone & Budget Preference
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-charcoal-light)', marginBottom: '1.8rem' }}>
-                  All Avi Jewelers metals are solid recycled gold or 950 platinum, certified and stamped on Jewelers Row.
+                  All Avi Jewelers metals are solid recycled gold or 950 platinum, certified and hallmark stamped.
                 </p>
 
                 {/* Metal Selection */}
@@ -859,7 +859,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
                       }}
                     >
                       <div style={{ fontWeight: 600, fontSize: '0.84rem' }}>Chicago Showroom</div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Jewelers Row • In-person private room</div>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Chicago • In-person private room</div>
                     </div>
                   </div>
 
