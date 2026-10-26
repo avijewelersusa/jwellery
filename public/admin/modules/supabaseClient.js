@@ -66,6 +66,101 @@ class SupabaseAdapter {
     await this.checkHealth();
   }
 
+  // ---- Admin sign-in (Supabase Auth). Customer tables are only readable by
+  // signed-in users listed in public.admin_roles (see supabase_admin_auth.sql).
+  loadSession() {
+    try {
+      return JSON.parse(localStorage.getItem('avi_admin_session') || 'null');
+    } catch (e) {
+      return null;
+    }
+  }
+
+  saveSession(session) {
+    this.session = session;
+    if (session) localStorage.setItem('avi_admin_session', JSON.stringify(session));
+    else localStorage.removeItem('avi_admin_session');
+  }
+
+  async authRequest(path, body, token = null) {
+    const res = await fetch(`${this.config.url}/auth/v1/${path}`, {
+      method: body ? 'POST' : 'GET',
+      headers: {
+        'apikey': this.config.anonKey,
+        'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error_description || data.msg || data.message || `Sign-in failed (${res.status})`);
+    return data;
+  }
+
+  toSession(data) {
+    return {
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_at: Date.now() + (data.expires_in || 3600) * 1000,
+      email: data.user ? data.user.email : (this.session && this.session.email)
+    };
+  }
+
+  async signIn(email, password) {
+    const data = await this.authRequest('token?grant_type=password', { email: email.trim(), password });
+    this.saveSession(this.toSession(data));
+    if (!(await this.isAdmin())) {
+      this.saveSession(null);
+      throw new Error('This account is not on the admin list.');
+    }
+    return this.session;
+  }
+
+  // Returns a valid session (refreshing it if needed) or null
+  async getSession() {
+    if (!this.session) this.session = this.loadSession();
+    if (!this.session) return null;
+    if (Date.now() < this.session.expires_at - 60000) return this.session;
+    try {
+      const data = await this.authRequest('token?grant_type=refresh_token', { refresh_token: this.session.refresh_token });
+      this.saveSession(this.toSession(data));
+      return this.session;
+    } catch (e) {
+      this.saveSession(null);
+      return null;
+    }
+  }
+
+  async isAdmin() {
+    const rows = await this.query('rpc/is_avi_admin', { method: 'POST', body: {} }).catch(() => null);
+    return rows === true;
+  }
+
+  async changePassword(newPassword) {
+    const session = await this.getSession();
+    if (!session) throw new Error('Please sign in again.');
+    const res = await fetch(`${this.config.url}/auth/v1/user`, {
+      method: 'PUT',
+      headers: { 'apikey': this.config.anonKey, 'Authorization': `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: newPassword })
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.msg || data.message || 'Could not update password.');
+    }
+  }
+
+  signOut() {
+    const session = this.session || this.loadSession();
+    this.saveSession(null);
+    if (session) {
+      fetch(`${this.config.url}/auth/v1/logout`, {
+        method: 'POST',
+        headers: { 'apikey': this.config.anonKey, 'Authorization': `Bearer ${session.access_token}` }
+      }).catch(() => null);
+    }
+  }
+
   async checkHealth() {
     if (!this.config.url || !this.config.anonKey) {
       this.setStatus('Local Demo');
@@ -104,7 +199,8 @@ class SupabaseAdapter {
     }
 
     const { method = 'GET', select = '*', body = null, match = null, order = null, onConflict = null } = options;
-    let url = `${this.config.url}/rest/v1/${table}?select=${encodeURIComponent(select)}`;
+    const isRpc = table.startsWith('rpc/');
+    let url = isRpc ? `${this.config.url}/rest/v1/${table}?` : `${this.config.url}/rest/v1/${table}?select=${encodeURIComponent(select)}`;
     if (onConflict) url += `&on_conflict=${encodeURIComponent(onConflict)}`;
 
     if (match) {
@@ -117,9 +213,10 @@ class SupabaseAdapter {
       url += `&order=${encodeURIComponent(order)}`;
     }
 
+    const session = await this.getSession();
     const headers = {
       'apikey': this.config.anonKey,
-      'Authorization': `Bearer ${this.config.anonKey}`,
+      'Authorization': `Bearer ${session ? session.access_token : this.config.anonKey}`,
       'Content-Type': 'application/json',
       'Prefer': 'return=representation, resolution=merge-duplicates'
     };

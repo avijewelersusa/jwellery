@@ -779,7 +779,7 @@ export default function ShopPage({
                     <div 
                       key={product.id}
                       className="product-card"
-                      onClick={() => handleCardClick(product)}
+                      onClick={() => { if (onSelectProduct) onSelectProduct(product); }}
                       style={{ cursor: 'pointer' }}
                     >
                       {/* Image Wrap with 2s Video & Sparkle Animation */}

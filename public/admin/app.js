@@ -45,6 +45,7 @@ class AdminStudioApp {
   setupAuth() {
     const pinForm = document.getElementById('pin-form');
     const pinInput = document.getElementById('pin-input');
+    const emailInput = document.getElementById('admin-email-input');
     const pinError = document.getElementById('pin-error');
     const pinScreen = document.getElementById('pin-lock-screen');
     const adminRoot = document.getElementById('admin-root');
@@ -58,14 +59,14 @@ class AdminStudioApp {
         pinScreen.style.display = 'flex';
         adminRoot.style.display = 'none';
         pinInput.value = '';
-        pinInput.focus();
+        (emailInput.value ? pinInput : emailInput).focus();
       }
     });
+    authPinManager.restoreSession();
 
     pinForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const val = pinInput.value;
-      const res = await authPinManager.verifyPin(val);
+      const res = await authPinManager.signIn(emailInput.value, pinInput.value);
       if (res.success) {
         pinError.style.display = 'none';
       } else {
@@ -97,11 +98,13 @@ class AdminStudioApp {
 
     changePinForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const curr = document.getElementById('input-curr-pin').value;
       const next = document.getElementById('input-new-pin').value;
-      const res = await authPinManager.changePin(curr, next);
+      const confirm = document.getElementById('input-curr-pin').value;
+      const res = next !== confirm
+        ? { success: false, error: 'Passwords do not match.' }
+        : await authPinManager.changePassword(next);
       if (res.success) {
-        this.showToast('Passcode updated successfully.');
+        this.showToast('Password updated successfully.');
         pinModal.style.display = 'none';
         changePinForm.reset();
       } else {

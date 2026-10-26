@@ -1,5 +1,7 @@
-// Avi Jewelers — Authentication & PIN Lock Module (ES6 Module)
-// Client device convenience lock with salted hashing, cooldown, and idle timeout
+// Avi Jewelers — Admin Authentication Module (ES6 Module)
+// Supabase Auth sign-in (email + password) restricted to public.admin_roles,
+// with failed-attempt cooldown and idle timeout.
+import { supabaseAdapter } from './supabaseClient.js';
 
 class AuthPinManager {
   constructor() {
@@ -10,26 +12,7 @@ class AuthPinManager {
     this.IDLE_TIMEOUT_MS = 15 * 60 * 1000; // 15 mins
     this.listeners = [];
 
-    this.initDefaultPin();
     this.setupIdleDetection();
-  }
-
-  // Hash helper using Web Crypto API
-  async hashPin(pin, salt = 'avi_chicago_luxury_2026') {
-    const enc = new TextEncoder();
-    const data = enc.encode(`${salt}_${pin}`);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-
-  async initDefaultPin() {
-    const existing = localStorage.getItem('avi_admin_pin_hash');
-    if (!existing) {
-      // Default initial PIN: '2026'
-      const defaultHash = await this.hashPin('2026');
-      localStorage.setItem('avi_admin_pin_hash', defaultHash);
-    }
   }
 
   onAuthChange(fn) {
@@ -38,6 +21,14 @@ class AuthPinManager {
 
   notify() {
     this.listeners.forEach(fn => fn(this.isAuthenticated));
+  }
+
+  // Re-open the dashboard if a valid admin session is already stored
+  async restoreSession() {
+    const session = await supabaseAdapter.getSession();
+    this.isAuthenticated = Boolean(session) && await supabaseAdapter.isAdmin();
+    if (!this.isAuthenticated && session) supabaseAdapter.signOut();
+    this.notify();
   }
 
   setupIdleDetection() {
@@ -55,52 +46,48 @@ class AuthPinManager {
     });
   }
 
-  async verifyPin(enteredPin) {
+  async signIn(email, password) {
     const now = Date.now();
     if (this.lockoutUntil > now) {
       const waitSeconds = Math.ceil((this.lockoutUntil - now) / 1000);
       return { success: false, error: `Too many failed attempts. Try again in ${waitSeconds}s.` };
     }
 
-    const clean = enteredPin.trim();
-    const storedHash = localStorage.getItem('avi_admin_pin_hash');
-    const enteredHash = await this.hashPin(clean);
-
-    // Also support fallback emergency master passcode
-    if (enteredHash === storedHash || clean === 'avi2026' || clean === '2026') {
+    try {
+      await supabaseAdapter.signIn(email, password);
       this.isAuthenticated = true;
       this.failedAttempts = 0;
       this.lockoutUntil = 0;
       this.notify();
       return { success: true };
-    } else {
+    } catch (err) {
       this.failedAttempts += 1;
       if (this.failedAttempts >= 3) {
         this.lockoutUntil = Date.now() + 30000; // 30 sec cooldown
         return { success: false, error: '3 failed attempts. Locked out for 30 seconds.' };
       }
-      return { success: false, error: 'Incorrect passcode. Please try again.' };
+      return { success: false, error: err.message || 'Incorrect email or password.' };
     }
   }
 
   lockSession(reason = '') {
     this.isAuthenticated = false;
     clearTimeout(this.idleTimer);
+    supabaseAdapter.signOut();
     this.notify();
     if (reason) console.info('[Admin Studio]', reason);
   }
 
-  async changePin(currentPin, newPin) {
-    const check = await this.verifyPin(currentPin);
-    if (!check.success) return check;
-
-    if (!newPin || newPin.length < 4) {
-      return { success: false, error: 'New PIN must be at least 4 digits.' };
+  async changePassword(newPassword) {
+    if (!newPassword || newPassword.length < 8) {
+      return { success: false, error: 'New password must be at least 8 characters.' };
     }
-
-    const newHash = await this.hashPin(newPin);
-    localStorage.setItem('avi_admin_pin_hash', newHash);
-    return { success: true };
+    try {
+      await supabaseAdapter.changePassword(newPassword);
+      return { success: true };
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
   }
 }
 
