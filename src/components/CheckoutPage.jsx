@@ -529,9 +529,7 @@ export default function CheckoutPage({
 
               <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
                 {[
-                  { id: 'card', label: 'Credit Card', icon: CreditCard },
-                  { id: 'wire', label: 'Wire Transfer (-2%)', icon: Building2 },
-                  { id: 'affirm', label: 'Affirm 0% APR', icon: Sparkles }
+                  { id: 'card', label: 'Credit Card', icon: CreditCard }
                 ].map(method => (
                   <button
                     key={method.id}
@@ -595,18 +593,6 @@ export default function CheckoutPage({
                       />
                     </div>
                   </div>
-                </div>
-              )}
-
-              {formData.paymentMethod === 'wire' && (
-                <div style={{ backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px', fontSize: '0.82rem', lineHeight: 1.6 }}>
-                  <strong style={{ color: 'var(--text-charcoal)' }}>Bank Wire Transfer:</strong> An instant 2% courtesy discount (${wireDiscount.toLocaleString()}) has been deducted from your order total. Bank routing instructions will be displayed upon order placement.
-                </div>
-              )}
-
-              {formData.paymentMethod === 'affirm' && (
-                <div style={{ backgroundColor: 'var(--bg-warm-ivory)', padding: '1rem', borderRadius: '4px', fontSize: '0.82rem', lineHeight: 1.6 }}>
-                  <strong style={{ color: 'var(--text-charcoal)' }}>Affirm / Klarna Installments:</strong> Pay as low as ${Math.round(grandTotal / 12)}/month over 12 months with 0% APR. You will be redirected to complete your eligibility check securely.
                 </div>
               )}
 

@@ -159,15 +159,15 @@ export const PRODUCT_VIDEOS = [
     id: 'vid-10',
     src: '/videos/product-video-10.mp4',
     fallbackSrc: '/videos/IMG_3188.mp4',
-    title: 'Oval Diamond Vintage Setting',
+    title: 'Oval Diamond Versailles Setting',
     cut: 'Oval Cut',
     category: 'solitaires',
     tag: 'Ultra Clean',
     specs: '2.20ct • D Color • VVS2 • 18k Yellow Gold',
     estimatedPrice: '$2,450',
-    description: 'An oval diamond in an ornate vintage-inspired setting with a diamond-accented band in solid 18k yellow gold.',
+    description: 'An oval diamond in an ornate Versailles setting with a diamond-accented band in solid 18k yellow gold.',
     details: [
-      'Vintage-inspired detailing',
+      'Versailles-style detailing',
       'Diamond-accented band',
       'Solid 18k yellow gold'
     ]

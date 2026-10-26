@@ -43,7 +43,7 @@ export default function ProductDetailPage({
   // Selected state
   const metalList = product.metalOptions && product.metalOptions.length > 0 
     ? product.metalOptions 
-    : ["14k White Gold", "14k Yellow Gold", "14k Rose Gold", "Platinum"];
+    : ["18k White Gold", "18k Yellow Gold", "18k Rose Gold", "Platinum"];
 
   const [selectedMetal, setSelectedMetal] = useState(metalList[0]);
   const [selectedSize, setSelectedSize] = useState("6.5");
@@ -303,7 +303,7 @@ export default function ProductDetailPage({
                 {product.name}
               </h1>
 
-              {/* Price & Affirm preview */}
+              {/* Price */}
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginTop: '0.8rem' }}>
                 <span style={{ fontSize: '2rem', fontWeight: 600, color: 'var(--text-charcoal)', fontFamily: 'var(--font-serif)' }}>
                   ${product.price.toLocaleString()}
@@ -320,9 +320,6 @@ export default function ProductDetailPage({
                 )}
               </div>
 
-              <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
-                Starting at <span style={{ fontWeight: 600, color: 'var(--text-charcoal)' }}>${Math.round(product.price / 12)}/mo</span> with 0% APR financing via Affirm or Klarna.
-              </div>
             </div>
 
             {/* Metal Selection */}

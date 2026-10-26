@@ -1,6 +1,6 @@
-// Section 9: Why Avi Jewelers — 5 Brand Pillars
+// Section 9: Why Avi Jewelers — Brand Pillars
 import React from 'react';
-import { Award, Hammer, DollarSign, Shield, CreditCard, Sparkles } from 'lucide-react';
+import { Award, Hammer, DollarSign } from 'lucide-react';
 
 export default function WhyAviJewelers({ onStartCustom }) {
   const pillars = [
@@ -12,22 +12,12 @@ export default function WhyAviJewelers({ onStartCustom }) {
     {
       icon: Hammer,
       title: "Handcrafted Quality",
-      description: "Directly made in our Chicago atelier. Solid 14k/18k recycled gold and 950 platinum cast and handset under microscopes by veteran jewelers."
+      description: "Handmade by custom luxury professional goldsmiths. Solid 14k/18k recycled gold and 950 platinum cast and handset under microscopes."
     },
     {
       icon: DollarSign,
       title: "Transparent Direct Pricing",
       description: "We own our casting and design pipeline. You get honest, wholesale-direct pricing without the 300% markup of legacy Fifth Avenue jewelry corporations."
-    },
-    {
-      icon: Shield,
-      title: "12-Month Warranty & Care",
-      description: "Complimentary annual ultrasonic cleaning, prong inspections, rhodium plating, and one free ring resizing during the first year of ownership."
-    },
-    {
-      icon: CreditCard,
-      title: "Flexible 0% APR Financing",
-      description: "Seamless split-payment options through Affirm and Klarna. Pay over 6, 12, or 24 months with zero surprise penalties."
     }
   ];
 
@@ -38,13 +28,13 @@ export default function WhyAviJewelers({ onStartCustom }) {
         {/* Header */}
         <div className="section-header">
           <span className="eyebrow">The Avi Standard</span>
-          <h2>Why Choose Avi Jewelers</h2>
+          <h2>Why Choose Avi Jewelers?</h2>
           <p className="subheading">
             Modern fine jewelry engineered with absolute integrity, ethical innovation, and true Midwestern craftsmanship.
           </p>
         </div>
 
-        {/* 5 Pillars Layout */}
+        {/* Pillars Layout */}
         <div 
           style={{
             display: 'grid',

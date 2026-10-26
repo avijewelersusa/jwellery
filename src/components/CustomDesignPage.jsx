@@ -182,7 +182,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
               <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> Free 3D CAD Renders
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> IGI & GRA Certified Stones
+              <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> IGI & GIA Certified Stones
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <CheckCircle2 size={16} style={{ color: '#FFFFFF' }} /> Direct Atelier Pricing
@@ -845,22 +845,9 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
                       }}
                     >
                       <div style={{ fontWeight: 600, fontSize: '0.84rem' }}>Virtual Zoom Session</div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Screen-share 3D CAD & diamonds</div>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Screen-share 3D CAD & diamonds • 1-hour session, Monday – Saturday</div>
                     </div>
 
-                    <div
-                      onClick={() => handleInputChange('consultationType', 'Chicago Showroom Appointment')}
-                      style={{
-                        padding: '0.8rem',
-                        border: formData.consultationType === 'Chicago Showroom Appointment' ? '2px solid var(--gold-primary)' : '1px solid var(--border-soft)',
-                        backgroundColor: '#FFFFFF',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      <div style={{ fontWeight: 600, fontSize: '0.84rem' }}>Chicago Showroom</div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Chicago • In-person private room</div>
-                    </div>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -898,11 +885,14 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
                           fontSize: '0.86rem'
                         }}
                       >
+                        <option value="10:00 AM CST">10:00 AM CST</option>
                         <option value="11:00 AM CST">11:00 AM CST</option>
+                        <option value="12:00 PM CST">12:00 PM CST</option>
                         <option value="1:00 PM CST">1:00 PM CST</option>
                         <option value="2:00 PM CST">2:00 PM CST</option>
+                        <option value="3:00 PM CST">3:00 PM CST</option>
                         <option value="4:00 PM CST">4:00 PM CST</option>
-                        <option value="5:30 PM CST">5:30 PM CST</option>
+                        <option value="5:00 PM CST">5:00 PM CST</option>
                       </select>
                     </div>
                   </div>

@@ -15,7 +15,7 @@ export const supabase = isSupabaseConfigured
 
 // LocalStorage Keys for persistent fallback
 const STORAGE_KEYS = {
-  PRODUCTS: 'avi_jewelers_products_v8',
+  PRODUCTS: 'avi_jewelers_products_v9',
   INQUIRIES: 'avi_jewelers_inquiries_v1',
   APPOINTMENTS: 'avi_jewelers_appointments_v1',
   SHOWCASE: 'avi_jewelers_showcase_v2',
@@ -118,7 +118,7 @@ export async function fetchProducts() {
           compareAtPrice: p.compareAtPrice ? Number(p.compareAtPrice) : 0,
           metalOptions: Array.isArray(p.metalOptions) && p.metalOptions.length > 0
             ? p.metalOptions
-            : ["14k Yellow Gold", "14k White Gold", "14k Rose Gold", "Platinum"]
+            : ["18k White Gold", "18k Yellow Gold", "18k Rose Gold", "Platinum"]
         }));
 
         // Mirror to local caches so storefront and admin stay 100% in sync
@@ -160,7 +160,7 @@ export async function saveProduct(product) {
     stock_quantity: parseInt(product.stock_quantity || product.stock, 10) || 10,
     metalOptions: Array.isArray(product.metalOptions) && product.metalOptions.length > 0 
       ? product.metalOptions 
-      : ["14k Yellow Gold", "14k White Gold", "14k Rose Gold", "Platinum"],
+      : ["18k White Gold", "18k Yellow Gold", "18k Rose Gold", "Platinum"],
     updatedAt: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };

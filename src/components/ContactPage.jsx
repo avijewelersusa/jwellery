@@ -1,4 +1,4 @@
-// Avi Jewelers USA — Minimalist & Attractive Contact / Chicago Atelier Showroom Page
+// Avi Jewelers USA — Minimalist & Attractive Contact / Virtual Consultation Page
 import React, { useState } from 'react';
 import { 
   Phone, 
@@ -21,7 +21,7 @@ export default function ContactPage() {
     fullName: '',
     email: '',
     phone: '',
-    consultationType: 'Virtual Video Session', // 'Virtual Video Session' | 'Chicago Showroom Visit'
+    consultationType: 'Virtual Video Session',
     interest: 'Custom Engagement Ring',
     date: '',
     timeSlot: '2:00 PM CST',
@@ -87,7 +87,7 @@ export default function ContactPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.2rem' }}>
                 <Building size={18} style={{ color: 'var(--text-charcoal)' }} />
                 <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.14em', fontWeight: 600, color: 'var(--text-charcoal)' }}>
-                  Chicago Atelier Showroom
+                  Virtual Concierge
                 </span>
               </div>
 
@@ -96,8 +96,8 @@ export default function ContactPage() {
               </h3>
 
               <p style={{ fontSize: '0.86rem', color: 'var(--text-charcoal-light)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Chicago, Illinois <br />
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>1-on-1 Virtual Consultations & Private Atelier Appointments</span>
+                Based in the Chicago area <br />
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>1-on-1 Zoom Consultations, Monday – Saturday</span>
               </p>
 
               <div style={{ borderTop: '1px solid var(--border-soft)', paddingTop: '1.2rem' }}>
@@ -105,9 +105,8 @@ export default function ContactPage() {
                   Hours of Operation (CST)
                 </div>
                 <div style={{ fontSize: '0.84rem', color: 'var(--text-charcoal)' }}>
-                  Monday – Friday: 10:00 AM – 6:00 PM <br />
-                  Saturday: 11:00 AM – 5:00 PM <br />
-                  Sunday: Private Consultations by Appointment
+                  Monday – Saturday: 10:00 AM – 6:00 PM <br />
+                  Sunday: Closed
                 </div>
               </div>
             </div>
@@ -228,7 +227,7 @@ export default function ContactPage() {
                     Schedule Private Session
                   </h3>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                    Complimentary 30-minute consultation with no obligation to purchase.
+                    Complimentary 1-hour Zoom consultation, Monday – Saturday, with no obligation to purchase.
                   </p>
                 </div>
 
@@ -237,10 +236,9 @@ export default function ContactPage() {
                   <label style={{ display: 'block', fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600, marginBottom: '0.5rem' }}>
                     Consultation Format *
                   </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.6rem' }}>
                     {[
-                      { id: 'Virtual Video Session', label: 'Virtual Zoom / Meet', icon: Video },
-                      { id: 'Chicago Showroom Visit', label: 'Chicago Showroom Visit', icon: MapPin }
+                      { id: 'Virtual Video Session', label: 'Virtual Zoom Consultation (1 hour)', icon: Video }
                     ].map(type => (
                       <button
                         key={type.id}
@@ -369,10 +367,14 @@ export default function ContactPage() {
                       onChange={e => setFormData({ ...formData, timeSlot: e.target.value })}
                       style={{ width: '100%', padding: '0.65rem 0.8rem', border: '1px solid var(--border-soft)', borderRadius: '4px', fontSize: '0.84rem', backgroundColor: '#FFFFFF' }}
                     >
-                      <option value="11:00 AM CST">11:00 AM CST (Morning)</option>
-                      <option value="2:00 PM CST">2:00 PM CST (Afternoon)</option>
-                      <option value="4:30 PM CST">4:30 PM CST (Late Afternoon)</option>
-                      <option value="6:00 PM CST">6:00 PM CST (Evening)</option>
+                      <option value="10:00 AM CST">10:00 AM CST</option>
+                      <option value="11:00 AM CST">11:00 AM CST</option>
+                      <option value="12:00 PM CST">12:00 PM CST</option>
+                      <option value="1:00 PM CST">1:00 PM CST</option>
+                      <option value="2:00 PM CST">2:00 PM CST</option>
+                      <option value="3:00 PM CST">3:00 PM CST</option>
+                      <option value="4:00 PM CST">4:00 PM CST</option>
+                      <option value="5:00 PM CST">5:00 PM CST</option>
                     </select>
                   </div>
                 </div>

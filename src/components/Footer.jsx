@@ -184,11 +184,6 @@ export default function Footer({ onNavigate, onOpenCustom }) {
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('custom')} className="footer-link-btn">
-                  Custom Ring Budget Calculator
-                </button>
-              </li>
-              <li>
                 <button onClick={() => onNavigate('contact')} className="footer-link-btn">
                   Schedule 1-on-1 Virtual Consultation
                 </button>
@@ -289,8 +284,6 @@ export default function Footer({ onNavigate, onOpenCustom }) {
               <span>MC</span>
               <span>AMEX</span>
               <span>APPLE PAY</span>
-              <span>AFFIRM</span>
-              <span>KLARNA</span>
             </div>
           </div>
         </div>

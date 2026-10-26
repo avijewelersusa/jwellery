@@ -207,11 +207,11 @@ export default function ShopPage({
 
   const handleQuickAdd = (product, e) => {
     e.stopPropagation();
-    let chosenMetal = "14k White Gold";
-    if (selectedMetal === 'yellow') chosenMetal = "14k Yellow Gold";
-    else if (selectedMetal === 'rose') chosenMetal = "14k Rose Gold";
+    let chosenMetal = "18k White Gold";
+    if (selectedMetal === 'yellow') chosenMetal = "18k Yellow Gold";
+    else if (selectedMetal === 'rose') chosenMetal = "18k Rose Gold";
     else if (selectedMetal === 'platinum') chosenMetal = "Platinum";
-    else if (selectedMetal === 'white') chosenMetal = "14k White Gold";
+    else if (selectedMetal === 'white') chosenMetal = "18k White Gold";
     else if (product.metalOptions && product.metalOptions.length > 0) chosenMetal = product.metalOptions[0];
 
     onAddToCart({
@@ -915,7 +915,7 @@ export default function ShopPage({
 
                         <div style={{ fontSize: '0.68rem', color: 'var(--text-charcoal-light)', marginTop: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.3rem', flexWrap: 'wrap' }}>
                           <span style={{ fontWeight: 600, color: 'var(--text-charcoal)' }}>Metals:</span>
-                          {(product.metalOptions || ['14k White Gold', '14k Yellow Gold']).slice(0, 3).map((m, idx) => (
+                          {(product.metalOptions || ['18k White Gold', '18k Yellow Gold']).slice(0, 3).map((m, idx) => (
                             <span key={idx} style={{ backgroundColor: 'var(--bg-cream-tint)', padding: '0.1rem 0.35rem', borderRadius: '2px', fontSize: '0.64rem' }}>
                               {m.replace('14k ', '').replace('18k ', '')}
                             </span>

@@ -67,7 +67,7 @@ export default function AdminPanel({ onBackToStore, onRefreshProducts }) {
     certification: 'IGI Certified',
     primaryImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85',
     secondaryImage: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=85',
-    metalOptions: ['14k Yellow Gold', '14k White Gold', '14k Rose Gold', 'Platinum'],
+    metalOptions: ['18k White Gold', '18k Yellow Gold', '18k Rose Gold', 'Platinum'],
     leadTime: 'Ships in 3-4 weeks',
     description: 'Custom handcrafted by Chicago master bench jewelers.',
     isBestSeller: false,

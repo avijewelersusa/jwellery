@@ -25,13 +25,13 @@ export class CatalogManager {
     if (cloudProducts && cloudProducts.length > 0) {
       this.products = cloudProducts;
       storageAdapter.setItem('cached_products', cloudProducts);
-      localStorage.setItem('avi_jewelers_products_v8', JSON.stringify(cloudProducts));
+      localStorage.setItem('avi_jewelers_products_v9', JSON.stringify(cloudProducts));
       localStorage.setItem('avi_jewelers_products_v5', JSON.stringify(cloudProducts));
       return this.products;
     }
 
     // 2. Fallback to LocalStorage cache or storefront data
-    const storefrontProducts = localStorage.getItem('avi_jewelers_products_v8');
+    const storefrontProducts = localStorage.getItem('avi_jewelers_products_v9');
     if (storefrontProducts) {
       try {
         const parsed = JSON.parse(storefrontProducts);
@@ -56,7 +56,7 @@ export class CatalogManager {
         const json = await res.json();
         this.products = json;
         storageAdapter.setItem('cached_products', json);
-        localStorage.setItem('avi_jewelers_products_v8', JSON.stringify(json));
+        localStorage.setItem('avi_jewelers_products_v9', JSON.stringify(json));
         return this.products;
       }
     } catch {
@@ -93,7 +93,7 @@ export class CatalogManager {
     // Save locally to both admin & storefront storage keys
     storageAdapter.setItem('cached_products', this.products);
     localStorage.setItem('avi_jewelers_products_v5', JSON.stringify(this.products));
-    localStorage.setItem('avi_jewelers_products_v8', JSON.stringify(this.products));
+    localStorage.setItem('avi_jewelers_products_v9', JSON.stringify(this.products));
 
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('avi_catalog_updated', { detail: this.products }));
@@ -114,7 +114,7 @@ export class CatalogManager {
     this.products = this.products.filter(p => p.id !== productId);
     storageAdapter.setItem('cached_products', this.products);
     localStorage.setItem('avi_jewelers_products_v5', JSON.stringify(this.products));
-    localStorage.setItem('avi_jewelers_products_v8', JSON.stringify(this.products));
+    localStorage.setItem('avi_jewelers_products_v9', JSON.stringify(this.products));
 
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('avi_catalog_updated', { detail: this.products }));

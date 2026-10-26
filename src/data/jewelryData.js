@@ -127,7 +127,7 @@ export const CATEGORIES = [
   {
     "id": "bracelets",
     "name": "Bangles and Bracelets",
-    "description": "14K & 18K solid gold natural and lab diamond tennis bracelets and cuffs",
+    "description": "18K & 18K solid gold natural and lab diamond tennis bracelets and cuffs",
     "image": "https://static.wixstatic.com/media/ec0575_79a5ab119f7144cd803ed71267785588~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg"
   },
   {
@@ -161,8 +161,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_15f3ce294af440c99d28d234bc4404ddf002.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_15f3ce294af440c99d28d234bc4404ddf002.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -171,7 +172,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Indulge in luxury and make all of your on-lookers jealous with this beautiful IGI ceritfied oval cut ring. Every aspect of this ring will literally dance in the light with a capitivating sparkle. Choose from 2 carat center or 3 carat center stones. Stone clarity will be at minimum VS1/2, with color G-H. IGI paperwork and beautiful lighted box will be provided with each purchase. Choose from 14k white or yellow gold. Please allow 2-4 weeks for delivery as each piece is hand-made to order."
+    "description": "Indulge in luxury and make all of your on-lookers jealous with this beautiful IGI ceritfied oval cut ring. Every aspect of this ring will literally dance in the light with a capitivating sparkle. Choose from 2 carat center or 3 carat center stones. Stone clarity will be at minimum VS1/2, with color G-H. IGI paperwork and beautiful lighted box will be provided with each purchase. Choose from 18k white or yellow gold. Please allow 2-4 weeks for delivery as each piece is hand-made to order."
   },
   {
     "id": "avi-002",
@@ -189,8 +190,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_dc50e86533d54fd8bab86e2bc7947c7e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_3e1c88bf60744192b1f1d6a73e1e92f4~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "3 carat",
     "color": "D-F Colorless",
@@ -198,7 +201,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Gorgeous ring- this is our best seller and show stopper! You will love the large center stone, surrounded by a beautiful array of smaller diamonds cascading the sides of the ring. Many sizes and two different gold colors are available. Set in 14K white or yellow gold. Make this piece yours forever! Will come with a beautiful lighted box to show your ring and keep it safe."
+    "description": "Gorgeous ring- this is our best seller and show stopper! You will love the large center stone, surrounded by a beautiful array of smaller diamonds cascading the sides of the ring. Many sizes and two different gold colors are available. Set in 18K white or yellow gold. Make this piece yours forever! Will come with a beautiful lighted box to show your ring and keep it safe."
   },
   {
     "id": "avi-003",
@@ -216,7 +219,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_79a5ab119f7144cd803ed71267785588~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_79a5ab119f7144cd803ed71267785588~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "5.00 ctw",
@@ -243,8 +248,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_02c9ec5776934faea5702affd1f8815e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_02c9ec5776934faea5702affd1f8815e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "5.00 ctw",
     "color": "D-F Colorless",
@@ -270,9 +277,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_b7c8f812cec146f5b3133dab3b119921~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_b7c8f812cec146f5b3133dab3b119921~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "5.00 ctw",
@@ -281,7 +288,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Wonderous tennis bracelet adorned with natural diamonds. Choose between 2 carat or 3 carat total weight. Set in beautiful 14K white, yellow or rose gold."
+    "description": "Wonderous tennis bracelet adorned with natural diamonds. Choose between 2 carat or 3 carat total weight. Set in beautiful 18K white, yellow or rose gold."
   },
   {
     "id": "avi-006",
@@ -299,8 +306,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_eae6e10a348b4fb69f767b1570987e55~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_eae6e10a348b4fb69f767b1570987e55~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "5.00 ctw",
@@ -309,7 +317,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Adorn your wrist with the luxury of this beautiful 14K and natural diamond bracelet. Laden with 3/4 carats of natural diamonds, this beautiful piece will surely bring happiness and awe to you and your onlookers. 7.5 inches in diameter. Available in 14K white, yellow or rose gold."
+    "description": "Adorn your wrist with the luxury of this beautiful 18K and natural diamond bracelet. Laden with 3/4 carats of natural diamonds, this beautiful piece will surely bring happiness and awe to you and your onlookers. 7.5 inches in diameter. Available in 18K white, yellow or rose gold."
   },
   {
     "id": "avi-007",
@@ -327,8 +335,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_a8de28fd2798492cb8411716bbe723c8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a8de28fd2798492cb8411716bbe723c8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "5.00 ctw",
     "color": "D-F Colorless",
@@ -336,7 +346,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Adorn your wrist with the luxury of this beautiful 14K and natural diamond bracelet. Laden with 1.5 carats of natural diamonds, this beautiful piece will surely bring happiness and awe to you and your onlookers. 7.5 inches in diameter. Available in 14K white, yellow or rose gold."
+    "description": "Adorn your wrist with the luxury of this beautiful 18K and natural diamond bracelet. Laden with 1.5 carats of natural diamonds, this beautiful piece will surely bring happiness and awe to you and your onlookers. 7.5 inches in diameter. Available in 18K white, yellow or rose gold."
   },
   {
     "id": "avi-008",
@@ -354,7 +364,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_3167d41ce0ce4f1ba990d0afe67a0374~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_3167d41ce0ce4f1ba990d0afe67a0374~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -363,7 +375,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Wow! Beautiful, sparkly pair of natural diamond drop cluster pear earrings. Total Carat weight is 3.01 carats for two earrings. Elegant pair for everyday or occasional wear. Set in beautiful 14K yellow or white gold. Earrings measure 1.5 long x .7 cm wide. Will come with elegant lighted box."
+    "description": "Wow! Beautiful, sparkly pair of natural diamond drop cluster pear earrings. Total Carat weight is 3.01 carats for two earrings. Elegant pair for everyday or occasional wear. Set in beautiful 18K yellow or white gold. Earrings measure 1.5 long x .7 cm wide. Will come with elegant lighted box."
   },
   {
     "id": "avi-009",
@@ -381,8 +393,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_87e0faa90bf9469c809cf1a4e023efc2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1b6079dde6984d748b59420d4b48538a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -390,7 +404,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, sparkly pair of lab-grown diamond lotus flower earrings. Total carat weight of 0.58 carats. Elegant pair for everyday or occasional wear. Set in beautiful 14K yellow or white gold. Earrings measure 7.30 x 7.30 mm Will come with elegant lighted box."
+    "description": "Beautiful, sparkly pair of lab-grown diamond lotus flower earrings. Total carat weight of 0.58 carats. Elegant pair for everyday or occasional wear. Set in beautiful 18K yellow or white gold. Earrings measure 7.30 x 7.30 mm Will come with elegant lighted box."
   },
   {
     "id": "avi-010",
@@ -408,9 +422,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_e2a1d09c584048feb0d0c5198ffc0374~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_e2a1d09c584048feb0d0c5198ffc0374~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -419,7 +433,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, sparkly pair of natural diamond flower earrings. Three flowers on each earring with a total of 1.5 carats. Elegant pair for everyday or occasional wear. Set in beautiful 14K yellow or white gold. Earrings measure 1.4 cm long by 0.6 cm wide. Will come with elegant lighted box."
+    "description": "Beautiful, sparkly pair of natural diamond flower earrings. Three flowers on each earring with a total of 1.5 carats. Elegant pair for everyday or occasional wear. Set in beautiful 18K yellow or white gold. Earrings measure 1.4 cm long by 0.6 cm wide. Will come with elegant lighted box."
   },
   {
     "id": "avi-011",
@@ -437,8 +451,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_3ef58e2addea4fd5a2bd9a2f80a404b1~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1a941b5627ce4450a7cd87a5dbb2a5e8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -447,7 +462,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautifully set IGI certified earrings with halo. These earrings dance in the light and will be the perfect addition to your collection of adornments. Will come with IGI certificates. Choose from multiple carat sizes (1.0 total carat weight to 4.0 total carat weight) and set in solid 14K white, yellow or rose gold settings. Will come with a lighted box to make your earrings look even more dazzling."
+    "description": "Beautifully set IGI certified earrings with halo. These earrings dance in the light and will be the perfect addition to your collection of adornments. Will come with IGI certificates. Choose from multiple carat sizes (1.0 total carat weight to 4.0 total carat weight) and set in solid 18K white, yellow or rose gold settings. Will come with a lighted box to make your earrings look even more dazzling."
   },
   {
     "id": "avi-012",
@@ -465,8 +480,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_3c3eae0ada6e491faae1460ccf762e6f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_9bdfc4ab3e5449e5a3a78af5c38165e0~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -474,7 +491,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "This gorgeous pair of earrings will light up your life. Such an incredibly brilliant and beautiful pair of earrings that will make anyone smile. Set in solid 14K white, yellow, or rose gold, this pair will be a lifelong treasure for you. Total carat weight is 2 (each earring is 1 carat)."
+    "description": "This gorgeous pair of earrings will light up your life. Such an incredibly brilliant and beautiful pair of earrings that will make anyone smile. Set in solid 18K white, yellow, or rose gold, this pair will be a lifelong treasure for you. Total carat weight is 2 (each earring is 1 carat)."
   },
   {
     "id": "avi-013",
@@ -492,7 +509,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_95cc4521c31e4cbea8802a429245df10~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_d1069153e5c842aaacdf8c6ef144dddf~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -501,7 +520,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "This gorgeous pair of earrings will light up your life. Such an incredibly brilliant and beautiful pair of earrings that will make anyone smile. Set in solid 14K white, yellow, or rose gold, this pair will be a lifelong treasure for you. Total carat weight is 2 (each earring is 1 carat)."
+    "description": "This gorgeous pair of earrings will light up your life. Such an incredibly brilliant and beautiful pair of earrings that will make anyone smile. Set in solid 18K white, yellow, or rose gold, this pair will be a lifelong treasure for you. Total carat weight is 2 (each earring is 1 carat)."
   },
   {
     "id": "avi-014",
@@ -519,8 +538,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_4d8408f600254828947a077f3744d67a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_c5a4920aa39d48ffb39f09caf1b5f908~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -528,7 +549,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "This gorgeous pair of earrings will light up your life. Such an incredibly brilliant and beautiful pair of earrings that will make anyone smile. Set in solid 14K white, yellow, or rose gold, this pair will be a lifelong treasure for you. Total carat weight is 2 (each earring is 1 carat)."
+    "description": "This gorgeous pair of earrings will light up your life. Such an incredibly brilliant and beautiful pair of earrings that will make anyone smile. Set in solid 18K white, yellow, or rose gold, this pair will be a lifelong treasure for you. Total carat weight is 2 (each earring is 1 carat)."
   },
   {
     "id": "avi-015",
@@ -546,9 +567,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_db8801e7291d4ec6846a1c71f752c7f2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_65aa10e320a1454a83754dd440aae7fc~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -557,7 +578,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful 14K Gold setting with a sparkly oval halo surrounding a 1.0 carat stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. GIA certified natural diamond stone. Available in 14K yellow or white gold. Multiple sizes to choose from! Will come with a beautiful lighted box that is sure to make your special day extra amazing."
+    "description": "Beautiful 18K Gold setting with a sparkly oval halo surrounding a 1.0 carat stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. GIA certified natural diamond stone. Available in 18K yellow or white gold. Multiple sizes to choose from! Will come with a beautiful lighted box that is sure to make your special day extra amazing."
   },
   {
     "id": "avi-016",
@@ -575,8 +596,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_ae007dee4bff4d9da1a9c9e1eea0281c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a27d97da452b4c4584857ce893ddf8f2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -585,7 +607,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful 14K Gold setting with a solitaire 1.0 carat stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. GIA certified natural diamond stone. Will come with a beautiful lighted box that is sure to make your special day extra amazing."
+    "description": "Beautiful 18K Gold setting with a solitaire 1.0 carat stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. GIA certified natural diamond stone. Will come with a beautiful lighted box that is sure to make your special day extra amazing."
   },
   {
     "id": "avi-017",
@@ -603,8 +625,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_e6f1c6e1271e418a917e0acd1d4ef8a9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -612,7 +636,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant solitaire OVAL cut lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 14K white or yellow gold! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
+    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant solitaire OVAL cut lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 18K white, yellow or rose gold, or platinum! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
   },
   {
     "id": "avi-018",
@@ -630,7 +654,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_0d13a8bf02e94622a485686207aeceef~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -639,7 +665,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant solitaire HEART cut lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 14K white or yellow gold! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
+    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant solitaire HEART cut lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 18K white, yellow or rose gold, or platinum! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
   },
   {
     "id": "avi-019",
@@ -657,8 +683,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_651d0bd647b14b2ca4604cfee7953419~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -666,7 +694,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant solitaire radiant cut lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 14K white or yellow gold! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
+    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant solitaire radiant cut lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 18K white, yellow or rose gold, or platinum! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
   },
   {
     "id": "avi-020",
@@ -713,8 +741,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_0ea140292c3c4db2b114c8f93a201cee~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_0ea140292c3c4db2b114c8f93a201cee~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -741,8 +770,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_64a256c0564e49a2aa6e7ccb76485e07~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_64a256c0564e49a2aa6e7ccb76485e07~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -768,7 +799,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_39f4277be92147cc86ef27f1a4ea364b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_39f4277be92147cc86ef27f1a4ea364b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -795,8 +828,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_e89c28aad62e47a783d44b9913ade88a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_e89c28aad62e47a783d44b9913ade88a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "1.5 carat",
     "color": "D-F Colorless",
@@ -804,7 +839,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Amazingly beautiful IGI certified lab grown diamond ring set in 14K white gold. 1.5 Carat center stone. The side diamonds are natural. Center stone quality at minimum will be VS1-VS2 and H-I color. IGI Certificates will be provided. Wow! This one is a beauty!! You can choose from multiple ring sizes. Will come with a beautiful lighted box to make it that much more special!!"
+    "description": "Amazingly beautiful IGI certified lab grown diamond ring set in 18K white gold. 1.5 Carat center stone. The side diamonds are natural. Center stone quality at minimum will be VS1-VS2 and H-I color. IGI Certificates will be provided. Wow! This one is a beauty!! You can choose from multiple ring sizes. Will come with a beautiful lighted box to make it that much more special!!"
   },
   {
     "id": "avi-025",
@@ -822,9 +857,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_df68c1cd4a624aa1874884b7ee996b31~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_df68c1cd4a624aa1874884b7ee996b31~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "1.13 carat",
@@ -833,7 +868,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Amazingly beautiful IGI certified lab grown diamond ring set in 14K gold. Wow! This one is a beauty!! You can choose from multiple ring sizes and gold colors (White, Yellow, Rose). Will come with a beautiful lighted box to make it that much more special!!"
+    "description": "Amazingly beautiful IGI certified lab grown diamond ring set in 18K gold. Wow! This one is a beauty!! You can choose from multiple ring sizes and gold colors (White, Yellow, Rose). Will come with a beautiful lighted box to make it that much more special!!"
   },
   {
     "id": "avi-026",
@@ -851,8 +886,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_2ab0a02d80b94d66ab42ff54377730ae~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_faed0b23bf6d4d4eb6ecb682218567d8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -879,8 +915,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_51ea48b2e0d84b0fa7960a715100edc9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_d9dff9d3bd13477e9ee60378f38fd0ef~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -888,7 +926,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, simple and elegant. There's a reason why this is our top seller. Just beautiful! Charm your loved one with a beautiful ring with a brilliant, lustrous lab grown diamond ring. Elegant 14K gold 4 prong setting. Ring will come with IGI certification. F-G color and VS1-VS2 color at minimum. CVD/HPHT. You can customize your ring by center stone carat, gold color, and ring size."
+    "description": "Beautiful, simple and elegant. There's a reason why this is our top seller. Just beautiful! Charm your loved one with a beautiful ring with a brilliant, lustrous lab grown diamond ring. Elegant 18K gold 4 prong setting. Ring will come with IGI certification. F-G color and VS1-VS2 color at minimum. CVD/HPHT. You can customize your ring by center stone carat, gold color, and ring size."
   },
   {
     "id": "avi-028",
@@ -906,7 +944,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_5741c6cf804a4781b7e5a8e50b2c9b88~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_5741c6cf804a4781b7e5a8e50b2c9b88~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -915,7 +955,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful IGI Certified Lab Grown Diamond Ring Set in 14K white gold, perfect for your special occasion! Excellent QUALITY!! Minimum color/clarity: G-H in colorSI clarity Comes in multiple ring sizes and multiple total carat weights. See pricing below."
+    "description": "Beautiful IGI Certified Lab Grown Diamond Ring Set in 18K white gold, perfect for your special occasion! Excellent QUALITY!! Minimum color/clarity: G-H in colorSI clarity Comes in multiple ring sizes and multiple total carat weights. See pricing below."
   },
   {
     "id": "avi-029",
@@ -933,8 +973,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_b0ef76107a9c449fb87687b45b40d8fb~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a55ce8ab2c0e42a8b64bc975d1500ffa~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -942,7 +984,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "GIA Certified Natural Diamond stud earrings, round cut. Certificates will be included. Set in 14K yellow gold, four prongs. With screwback closures. Earrings can be customized to carat size, select your options before purchasing."
+    "description": "GIA Certified Natural Diamond stud earrings, round cut. Certificates will be included. Set in 18K yellow gold, four prongs. With screwback closures. Earrings can be customized to carat size, select your options before purchasing."
   },
   {
     "id": "avi-030",
@@ -960,9 +1002,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_e9f6258b09404209a86393bc1c406c94~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a55ce8ab2c0e42a8b64bc975d1500ffa~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -971,7 +1013,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "IGI Certified Lab-Grown Diamond stud earrings, round cut. Set in 14K white gold, four prongs. With screwback closures. Earrings can be customized to carat size, select your options before purchasing."
+    "description": "IGI Certified Lab-Grown Diamond stud earrings, round cut. Set in 18K white gold, four prongs. With screwback closures. Earrings can be customized to carat size, select your options before purchasing."
   },
   {
     "id": "avi-031",
@@ -989,8 +1031,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_b754459802074fcc9b11385233c902e9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_6421cb5230a94eebaa7bb149305f1e69~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -999,7 +1042,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Solid 14K white gold setting with screwback closure. Beautiful, brilliant natural diamond stones that are GIA certified. We offer two carat sizes to choose from, 1 carat total weight (each stud is 0.5 carats) or 2 carat total weight (each stud is 1 carat total). Larger carat weights can be customized per request!"
+    "description": "Solid 18K white gold setting with screwback closure. Beautiful, brilliant natural diamond stones that are GIA certified. We offer two carat sizes to choose from, 1 carat total weight (each stud is 0.5 carats) or 2 carat total weight (each stud is 1 carat total). Larger carat weights can be customized per request!"
   },
   {
     "id": "avi-032",
@@ -1017,8 +1060,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_1de24fee616740c09c09ae7cd87b9148~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1f8663314f884b44bb0903842d431c6f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1026,7 +1071,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, radiant studs that are sure to catch the viewers' eyes! 1.5 carat total weight (each stud is 0.75 carats)- IGI certified! Set in beautiful 14K white gold with four prong setting. Will come with an alluring lighted box that will surely wow that special someone!"
+    "description": "Beautiful, radiant studs that are sure to catch the viewers' eyes! 1.5 carat total weight (each stud is 0.75 carats)- IGI certified! Set in beautiful 18K white gold with four prong setting. Will come with an alluring lighted box that will surely wow that special someone!"
   },
   {
     "id": "avi-033",
@@ -1044,7 +1089,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_1185f75a54b7456f949b6cb10328f40a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_1185f75a54b7456f949b6cb10328f40a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1071,8 +1118,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_6f9093fa717e43819b0a8a3ff4480050~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_56a6fa9b596c4a75948d500dab4dc292~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2 Carat",
     "color": "D-F Colorless",
@@ -1080,7 +1129,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, elegant 2 carat natural diamond ring set in 14 K solid gold with a beautiful sparkly twist-over band. Brilliant sparkle along the sides of the ring- genuinely a timeless and unique piece!! Available in multiple ring sizes. Yellow, White, or Rose Gold 14K setting. GIA Certified. Will come with a beautiful lighted box for presentation."
+    "description": "Beautiful, elegant 2 carat natural diamond ring set in 14 K solid gold with a beautiful sparkly twist-over band. Brilliant sparkle along the sides of the ring- genuinely a timeless and unique piece!! Available in multiple ring sizes. Yellow, White, or Rose Gold 18K setting. GIA Certified. Will come with a beautiful lighted box for presentation."
   },
   {
     "id": "avi-035",
@@ -1098,9 +1147,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_01ea52413e2743a68920b3ef980e6769~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_b89b86990ec9402e82ee87c491e77738~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2 Carat",
@@ -1109,7 +1158,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, elegant 2 carat lab-grown diamond ring set in 14 K solid gold with a halo surrounding the center stone. Brilliant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 14K setting. IGI Certified. Will come with a beautiful lighted box for presentation."
+    "description": "Beautiful, elegant 2 carat lab-grown diamond ring set in 14 K solid gold with a halo surrounding the center stone. Brilliant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 18K setting. IGI Certified. Will come with a beautiful lighted box for presentation."
   },
   {
     "id": "avi-036",
@@ -1127,8 +1176,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_84f0223cd8c841239757e7f7d6b81560~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_5e7b861cc15445a79e6598eceb4835ef~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2 Carat",
@@ -1137,7 +1187,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, elegant 2 carat natural diamond ring set in 14 K solid gold with a halo surrounding the center stone. Brilliant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 14K setting. GIA Certified. Will come with a beautiful lighted box for presentation."
+    "description": "Beautiful, elegant 2 carat natural diamond ring set in 14 K solid gold with a halo surrounding the center stone. Brilliant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 18K setting. GIA Certified. Will come with a beautiful lighted box for presentation."
   },
   {
     "id": "avi-037",
@@ -1155,8 +1205,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_3f503c9dd83442319d29e01816658bfd~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_ba0436e6f25c4c53949a375514a4b384~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2 Carat",
     "color": "D-F Colorless",
@@ -1164,7 +1216,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, elegant 2 carat lab-grown diamond ring set in 14 K solid gold. Brilliant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 14K setting. IGI Certified. Will come with a beautiful lighted box for presentation."
+    "description": "Beautiful, elegant 2 carat lab-grown diamond ring set in 14 K solid gold. Brilliant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 18K setting. IGI Certified. Will come with a beautiful lighted box for presentation."
   },
   {
     "id": "avi-038",
@@ -1182,7 +1234,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_875235fc1c434c54a5430dd966b53cad~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_feb2da98fed1494e8238aaac4c6ae919~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2 Carat",
@@ -1191,7 +1245,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful, elegant 2 carat natural diamond ring set in 14 K solid gold. Criss cross setting. Briliiant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 14K setting. GIA Certified. Will come with a beautiful lighted box for presentation."
+    "description": "Beautiful, elegant 2 carat natural diamond ring set in 14 K solid gold. Criss cross setting. Briliiant sparkle along the sides of the ring- a show stopper! Available in multiple ring sizes. Yellow, White, or Rose Gold 18K setting. GIA Certified. Will come with a beautiful lighted box for presentation."
   },
   {
     "id": "avi-039",
@@ -1209,8 +1263,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_92c2c1d9d5034cb5bdb2a4eb9c54f8bb~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_92217a57018542f89b3082a97cef7865~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2 Carat",
     "color": "D-F Colorless",
@@ -1236,9 +1292,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_759f660c14f944eaa66cc8d4fb54601e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_81d53dda136241fba4188a77914a9d9f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1247,7 +1303,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful 14K Gold setting with a sparkly halo surrounding a 1.0 carat Natural Diamond stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. GIA certified natural diamond stone. Will come with a beautiful lighted box that is sure to make your special day extra amazing."
+    "description": "Beautiful 18K Gold setting with a sparkly halo surrounding a 1.0 carat Natural Diamond stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. GIA certified natural diamond stone. Will come with a beautiful lighted box that is sure to make your special day extra amazing."
   },
   {
     "id": "avi-041",
@@ -1265,8 +1321,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_650bb5af06324386a2fe25d7afce7676~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_f687104e1f5d45109611a091c2e6e78f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1275,7 +1332,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful 14K Gold setting with a sparkly halo surrounding a 0.5 carat Lab-Grown Diamond stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. IGI certified lab-grown diamond stone. Will come with a beautiful lighted box that is sure to make your special day extra amazing."
+    "description": "Beautiful 18K Gold setting with a sparkly halo surrounding a 0.5 carat Lab-Grown Diamond stone. This ring is so beautiful, it literally dances in the sun. The sparkle is mesmerizing. IGI certified lab-grown diamond stone. Will come with a beautiful lighted box that is sure to make your special day extra amazing."
   },
   {
     "id": "avi-042",
@@ -1293,8 +1350,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_4bcfe2cb3cc7426c88283c9f31469405~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_6cdf8891eede4519a435c1a147f33b2d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "1 Carat",
     "color": "D-F Colorless",
@@ -1302,7 +1361,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Wow, what an incredible piece! Beautifully set in 14K white gold with sparkle adorning the sides of the ring is a center 1 carat round cut natural diamond stone. The sparkle on this ring is incredible and will sure to please anyone who is lucky to wear it!! All rings come with a very elegant lighted box to make that moment extra special."
+    "description": "Wow, what an incredible piece! Beautifully set in 18K white gold with sparkle adorning the sides of the ring is a center 1 carat round cut natural diamond stone. The sparkle on this ring is incredible and will sure to please anyone who is lucky to wear it!! All rings come with a very elegant lighted box to make that moment extra special."
   },
   {
     "id": "avi-043",
@@ -1320,7 +1379,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_fdcf4f1570ec4066b317e2f2eee875b5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_3f8be734d9234cf58ab38027357c5d65~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1329,7 +1390,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful 14K white gold setting with a large 1 carat center stone. This ring is sure to please. Simple and elegant, yet a statement piece. The brilliance is incredible- due to the princess cut, the sparkle dances even more in the light! GIA certified. Multiple sizes to choose from. Will come with a beautiful lighted box to add more awe to your special moment."
+    "description": "Beautiful 18K white gold setting with a large 1 carat center stone. This ring is sure to please. Simple and elegant, yet a statement piece. The brilliance is incredible- due to the princess cut, the sparkle dances even more in the light! GIA certified. Multiple sizes to choose from. Will come with a beautiful lighted box to add more awe to your special moment."
   },
   {
     "id": "avi-044",
@@ -1347,8 +1408,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_4f655d9f98194c88893ea3babc00f1e5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_970bfcbffdff4309aacff1286ae3e224~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1356,7 +1419,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Beautiful Princess Cut Lab-Grown Diamond Ring in Solid 14K gold setting. Adorned with stones along the sides of the ring, this piece definitely gives off a glam factor!! Available in multiple ring sizes and white or yellow gold. Just an incredible statement ring!! IGI Certified. Will come with an elegant lighted box for added elegance when the ring is presented!"
+    "description": "Beautiful Princess Cut Lab-Grown Diamond Ring in Solid 18K gold setting. Adorned with stones along the sides of the ring, this piece definitely gives off a glam factor!! Available in multiple ring sizes and white or yellow gold. Just an incredible statement ring!! IGI Certified. Will come with an elegant lighted box for added elegance when the ring is presented!"
   },
   {
     "id": "avi-045",
@@ -1374,9 +1437,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_6741204319b6445294cec52eaa39b088~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_21bf9ddb41714096bdf41bc88e20df0e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2 Carat",
@@ -1403,8 +1466,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_8e8480940ff14de9a8c357a2acb82041~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_8e8480940ff14de9a8c357a2acb82041~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1431,8 +1495,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_2ded8d24c25840f397df3e8469191894~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_a9ecf1e8e6094c14b779d9969c2b9785~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k Yellow Gold",
-      "18k Yellow Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1440,7 +1506,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "GIA Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "0.46 Ct, 14K Solid White Gold, New"
+    "description": "0.46 Ct, 18K Solid White Gold, New"
   },
   {
     "id": "avi-048",
@@ -1458,7 +1524,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_b9f834f22d274f40b4077fce62e68b46~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_b9f834f22d274f40b4077fce62e68b46~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1485,8 +1553,10 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_590060b6c90944d4986a3062ad28e18d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_590060b6c90944d4986a3062ad28e18d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k Rose Gold",
-      "14k White Gold"
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
+      "Platinum"
     ],
     "carat": "2.50 Carat",
     "color": "D-F Colorless",
@@ -1512,9 +1582,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_419790a938204874842588490b8fd685~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_901163e151784c47abd3f73059fd2728~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -1621,7 +1691,7 @@ export const FAQS = [
   },
   {
     "q": "What warranty and aftercare do you provide?",
-    "a": "All jewelry includes a 12-month workmanship warranty. Previous clients also receive discounted repair services after the warranty period.",
+    "a": "All jewelry includes a 12-month manufacturer-related warranty. Beyond the first 12 months, discounted repair services are provided to all prior clients.",
     "isWarranty": true
   },
   {

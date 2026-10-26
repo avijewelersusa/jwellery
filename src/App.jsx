@@ -1,5 +1,5 @@
 // Avi Jewelers USA — Main Application Controller
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
@@ -46,6 +46,8 @@ export default function App() {
     const path = (window.location.pathname || '').toLowerCase();
     const hash = (window.location.hash || '').toLowerCase();
     if (path.includes('/admin') || hash === '#admin') return 'admin';
+    if (path.startsWith('/product/')) return 'product-detail';
+    if (path.includes('/checkout')) return 'checkout';
     if (path.includes('/custom') || hash === '#custom') return 'custom';
     if (path.includes('/shop') || hash === '#shop') return 'shop';
     if (path.includes('/about') || hash === '#about') return 'about';
@@ -132,7 +134,7 @@ export default function App() {
 
     // Cross-tab synchronization when changes occur in Admin Panel
     const handleStorageChange = (e) => {
-      if (e.key === 'avi_jewelers_products_v8' || e.key === 'avi_admin_cached_products') {
+      if (e.key === 'avi_jewelers_products_v9' || e.key === 'avi_admin_cached_products') {
         try {
           const parsed = JSON.parse(e.newValue);
           if (Array.isArray(parsed) && parsed.length > 0) {
@@ -201,9 +203,43 @@ export default function App() {
     });
   }, []);
 
+  // Keep the latest products reachable from the popstate listener
+  const productsRef = useRef(products);
+  useEffect(() => { productsRef.current = products; }, [products]);
+
+  // Deep link /product/:id — open that product once the catalog is loaded
+  useEffect(() => {
+    const match = (window.location.pathname || '').match(/^\/product\/([^/]+)/i);
+    if (!match || selectedProduct || products.length === 0) return;
+    const found = products.find(p => String(p.id) === decodeURIComponent(match[1]));
+    if (found) setSelectedProduct(found);
+    else setCurrentView('shop');
+  }, [products]);
+
+  // Seed the first history entry so the browser Back button can return to it
+  useEffect(() => {
+    try {
+      if (!window.history.state || !window.history.state.view) {
+        window.history.replaceState({ view: currentView, category: 'all', shape: 'all' }, '', window.location.pathname + window.location.search);
+      }
+    } catch (e) {}
+  }, []);
+
   // Browser History & Popstate Listener for clean URLs (/warranty, /about, /contact, etc.)
   useEffect(() => {
-    const handlePopState = () => {
+    const handlePopState = (event) => {
+      const state = event.state;
+      if (state && state.view) {
+        if (state.view === 'product-detail') {
+          const found = productsRef.current.find(p => String(p.id) === String(state.productId));
+          if (found) setSelectedProduct(found);
+        }
+        if (state.category) setSelectedCategory(state.category);
+        setSelectedShape(state.shape || 'all');
+        setCurrentView(state.view);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       const path = (window.location.pathname || '').toLowerCase();
       const hash = (window.location.hash || '').toLowerCase();
       if (path.includes('/warranty') || hash === '#warranty') setCurrentView('warranty');
@@ -289,8 +325,11 @@ export default function App() {
 
     try {
       const targetPath = view === 'home' ? '/' : `/${view}`;
-      if (window.location.pathname !== targetPath) {
-        window.history.pushState({ view }, '', targetPath);
+      const prev = window.history.state || {};
+      const nextState = { view, category: category ?? prev.category ?? 'all', shape: shape || 'all' };
+      // Push a new entry for every distinct page/filter so Back steps through them
+      if (window.location.pathname !== targetPath || prev.category !== nextState.category || prev.shape !== nextState.shape) {
+        window.history.pushState(nextState, '', targetPath);
       }
     } catch (e) {}
 
@@ -300,6 +339,10 @@ export default function App() {
   const handleOpenProductDetail = (product) => {
     setSelectedProduct(product);
     setCurrentView('product-detail');
+    try {
+      const prev = window.history.state || {};
+      window.history.pushState({ view: 'product-detail', productId: product.id, category: prev.category, shape: prev.shape }, '', `/product/${encodeURIComponent(product.id)}`);
+    } catch (e) {}
     setQuickViewProduct(null);
     setSearchOpen(false);
     setWishlistOpen(false);
@@ -309,6 +352,7 @@ export default function App() {
   const handleOpenCheckout = () => {
     setCartOpen(false);
     setCurrentView('checkout');
+    try { window.history.pushState({ view: 'checkout' }, '', '/checkout'); } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

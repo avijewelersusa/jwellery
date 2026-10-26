@@ -97,7 +97,7 @@ export default function AboutPage({ onStartCustom, onShopNow }) {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
               <div style={{ backgroundColor: '#FFFFFF', padding: '1rem', borderRadius: '4px', border: '1px solid var(--border-soft)', textAlign: 'center' }}>
-                <div style={{ fontWeight: 600, fontSize: '1.2rem', color: 'var(--text-charcoal)', fontFamily: 'var(--font-serif)' }}>IGI & GRA</div>
+                <div style={{ fontWeight: 600, fontSize: '1.2rem', color: 'var(--text-charcoal)', fontFamily: 'var(--font-serif)' }}>IGI & GIA</div>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Certified Authenticity</div>
               </div>
               <div style={{ backgroundColor: '#FFFFFF', padding: '1rem', borderRadius: '4px', border: '1px solid var(--border-soft)', textAlign: 'center' }}>
