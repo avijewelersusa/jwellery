@@ -947,7 +947,7 @@ export default function Header({
                         Step 1: Consultation
                       </div>
                       <p style={{ fontSize: '0.86rem', color: 'var(--text-charcoal-light)', lineHeight: 1.55 }}>
-                        Share Pinterest sketches, stone desires, and ring size. Free private video or showroom session.
+                        Share Pinterest sketches, stone desires, and ring size. Free private Zoom consultation.
                       </p>
                     </div>
                     <div style={{ padding: '1rem', borderRight: '1px solid var(--border-soft)' }}>

@@ -376,7 +376,7 @@ export default function CartDrawer({
                   Order Confirmed!
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-charcoal-light)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Thank you for entrusting Avi Jewelers USA. Your order has been placed into our Chicago master atelier queue. You will receive an email confirmation with FedEx tracking as soon as it departs.
+                  Thank you for entrusting Avi Jewelers USA. Your order has been placed into our master atelier queue. You will receive an email confirmation with FedEx tracking as soon as it departs.
                 </p>
                 <button
                   onClick={() => {

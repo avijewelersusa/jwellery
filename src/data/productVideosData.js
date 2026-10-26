@@ -37,40 +37,6 @@ export const PRODUCT_VIDEOS = [
     ]
   },
   {
-    id: 'vid-3',
-    src: '/videos/product-video-3.mov',
-    fallbackSrc: '/videos/FullSizeRender (3).mov',
-    title: 'Radiant Cut Whispering Vintage Ring',
-    cut: 'Radiant Cut',
-    category: 'solitaires',
-    tag: 'Architectural Art Deco',
-    specs: '3.50ct • F Color • VS1 • 14k Yellow Gold',
-    estimatedPrice: '$3,150',
-    description: 'A brilliant radiant cut diamond on a vintage-inspired twisted band in solid 14k yellow gold.',
-    details: [
-      'Mirror-polished chamfered edges',
-      'Maximum light refraction step cuts',
-      'Custom low-profile daily wear'
-    ]
-  },
-  {
-    id: 'vid-4',
-    src: '/videos/product-video-4.mp4',
-    fallbackSrc: '/videos/FullSizeRender (4).mov',
-    title: 'Oval Royal Pavé Masterpiece',
-    cut: 'Oval Cut',
-    category: 'engagement-rings',
-    tag: 'Timeless Fire',
-    specs: '2.75ct • Ideal Cut • Platinum',
-    estimatedPrice: '$2,900',
-    description: 'Optically brilliant oval diamond with three-sided micro-pavé prongs glistening from every angle.',
-    details: [
-      'Ex-Ex-Ex Symmetry & Polish',
-      'Scalloped micro-prong diamond collar',
-      'Heirloom weight solid platinum'
-    ]
-  },
-  {
     id: 'vid-5',
     src: '/videos/product-video-5.mov',
     fallbackSrc: '/videos/FullSizeRender (5).mov',
@@ -226,7 +192,7 @@ export const PRODUCT_VIDEOS = [
 ];
 
 export const VIDEO_CATEGORIES = [
-  { id: 'all', label: 'All Creations (13)' },
+  { id: 'all', label: 'All Creations (11)' },
   { id: 'engagement-rings', label: 'Engagement Rings' },
   { id: 'solitaires', label: 'Solitaires & Halos' },
   { id: 'fine-jewelry', label: 'Fine Jewelry & Bands' },

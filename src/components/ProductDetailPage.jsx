@@ -585,7 +585,7 @@ export default function ProductDetailPage({
             {activeTab === 'specs' && (
               <div>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-charcoal-light)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                  {product.description || "Every diamond is hand-selected by our Chicago master gemologists for optimal light performance, table proportion, and crystal transparency."}
+                  {product.description || "Every diamond is hand-selected by our master gemologists for optimal light performance, table proportion, and crystal transparency."}
                 </p>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem 2rem' }}>

@@ -1511,7 +1511,7 @@ export default function AccountPage({
                           <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
                               <span style={{ fontSize: '0.86rem', fontWeight: 600, color: 'var(--text-charcoal)' }}>
-                                {appt.type || 'Private Showroom Consultation'}
+                                {appt.type || 'Private Zoom Consultation'}
                               </span>
                               <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: '999px', backgroundColor: '#E8F5E9', color: '#2E7D32', fontWeight: 600 }}>
                                 {appt.status || 'Confirmed'}

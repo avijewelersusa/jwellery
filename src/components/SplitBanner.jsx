@@ -101,7 +101,7 @@ export default function SplitBanner({ onStartCustom }) {
           </h2>
 
           <p style={{ fontSize: '1.02rem', lineHeight: 1.7, color: 'var(--text-charcoal-light)', marginBottom: '1.8rem' }}>
-            Never settle for off-the-shelf compromises. Whether it's an intricate antique setting you saw in a vintage boutique, a composite of multiple ring designs, or a customized setting tailored around an exact diamond ratio—our Chicago master designers turn your unique concept into a reality in 3–4 weeks.
+            Never settle for off-the-shelf compromises. Whether it's an intricate antique setting you saw in a vintage boutique, a composite of multiple ring designs, or a customized setting tailored around an exact diamond ratio—our master designers turn your unique concept into a reality in 3–4 weeks.
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', marginBottom: '2.2rem', fontSize: '0.86rem' }}>
