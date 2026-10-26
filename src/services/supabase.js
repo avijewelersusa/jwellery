@@ -4,8 +4,45 @@
 import { createClient } from '@supabase/supabase-js';
 import { INITIAL_PRODUCTS, CUSTOM_SHOWCASE, TESTIMONIALS } from '../data/jewelryData';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || '';
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Public (publishable) project credentials — safe in the browser; access is governed by RLS
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://cfmmelqvbyatrfqqoajz.supabase.co';
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_mjnZpLZXkvN2HcRw9qfq7A__T85Anwa';
+
+// Columns that exist in each table (see supabase_setup.sql). Anything else the
+// app sends is tucked into the `extra` jsonb column so inserts never fail.
+const TABLE_COLUMNS = {
+  products: ['id', 'name', 'title', 'category', 'shape', 'stoneType', 'badge', 'price', 'compareAtPrice', 'rating', 'reviewCount', 'primaryImage', 'secondaryImage', 'metalOptions', 'carat', 'color', 'clarity', 'cut', 'certification', 'leadTime', 'description', 'isBestSeller', 'isFeatured', 'stock_quantity', 'currency', 'created_at', 'updated_at'],
+  custom_inquiries: ['referenceId', 'firstName', 'lastName', 'email', 'phone', 'ringType', 'ringShape', 'metal', 'stonePreference', 'budgetRange', 'ringSize', 'inspoLink', 'description', 'imageUrls', 'consultationType', 'consultationDate', 'consultationTime', 'status', 'createdAt'],
+  appointments: ['id', 'fullName', 'email', 'phone', 'type', 'date', 'time', 'notes', 'status', 'createdAt'],
+  orders: ['id', 'customer_name', 'customer_email', 'customer_phone', 'shipping_address', 'payment_method', 'payment_status', 'fulfillment_status', 'subtotal', 'tax', 'shipping_cost', 'total', 'currency', 'tracking_number', 'carrier', 'timeline', 'notes', 'created_at', 'updated_at'],
+  order_items: ['order_id', 'product_id', 'name', 'price', 'quantity', 'selected_metal', 'selected_size', 'carat', 'certificate_number', 'image_url']
+};
+
+export function toRow(table, obj) {
+  const cols = TABLE_COLUMNS[table];
+  if (!cols || !obj) return obj;
+  const row = {};
+  const extra = {};
+  Object.keys(obj).forEach(k => {
+    const v = obj[k];
+    if (v === undefined || typeof v === 'function') return;
+    if (cols.includes(k)) row[k] = v;
+    else if (k !== 'extra' && !(typeof File !== 'undefined' && v instanceof File)) extra[k] = v;
+  });
+  row.extra = { ...(obj.extra || {}), ...extra };
+  return row;
+}
+
+// Hidden in the store: trashed/draft rows (kept in the DB so they can be restored)
+function isVisibleProduct(p) {
+  return !p.deleted_at && (!p.status || p.status === 'publish');
+}
+
+function fromRow(row) {
+  if (!row || !row.extra || typeof row.extra !== 'object') return row;
+  const { extra, ...rest } = row;
+  return { ...extra, ...rest };
+}
 
 export const isSupabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 
@@ -108,7 +145,7 @@ export async function fetchProducts() {
         .order('created_at', { ascending: false });
       
       if (!error && data && data.length > 0) {
-        const normalized = data.map(p => ({
+        const normalized = data.map(fromRow).filter(isVisibleProduct).map(p => ({
           ...p,
           name: p.name || p.title || 'Bespoke Fine Jewelry Piece',
           title: p.title || p.name || 'Bespoke Fine Jewelry Piece',
@@ -186,7 +223,8 @@ export async function saveProduct(product) {
 
   if (isSupabaseConfigured && supabase) {
     try {
-      await supabase.from('products').upsert(formattedProduct);
+      const { error } = await supabase.from('products').upsert(toRow('products', formattedProduct));
+      if (error) console.error('Supabase saveProduct error:', error);
     } catch (err) {
       console.error('Supabase saveProduct error:', err);
     }
@@ -285,7 +323,7 @@ export async function importProductsFromCsv(csvText) {
 
   if (isSupabaseConfigured && supabase) {
     try {
-      await supabase.from('products').upsert(parsedProducts);
+      await supabase.from('products').upsert(parsedProducts.map(p => toRow('products', p)));
     } catch (err) {
       console.error('Supabase bulk upsert error:', err);
     }
@@ -314,7 +352,9 @@ export async function submitCustomInquiry(inquiryData) {
   // Cloud Supabase save
   if (isSupabaseConfigured && supabase) {
     try {
-      await supabase.from('custom_inquiries').insert([submission]);
+      const { uploadedImages, ...cloudSubmission } = submission;
+      const { error } = await supabase.from('custom_inquiries').insert([toRow('custom_inquiries', cloudSubmission)]);
+      if (error) console.error('Supabase submitCustomInquiry error:', error);
     } catch (err) {
       console.error('Supabase submitCustomInquiry error:', err);
     }
@@ -399,7 +439,8 @@ export async function submitAppointment(appointmentData) {
 
   if (isSupabaseConfigured && supabase) {
     try {
-      await supabase.from('appointments').insert([appt]);
+      const { error } = await supabase.from('appointments').insert([toRow('appointments', appt)]);
+      if (error) console.error('Supabase appointment save error:', error);
     } catch (err) {
       console.error('Supabase appointment save error:', err);
     }
@@ -638,7 +679,8 @@ export async function saveOrder(orderData) {
         notes: fullOrder.specialInstructions || fullOrder.notes || ''
       };
 
-      const { error: ordErr } = await supabase.from('orders').upsert([dbPayload]);
+      // Plain insert: the public role may create orders but not read/update them (RLS)
+      const { error: ordErr } = await supabase.from('orders').insert([toRow('orders', dbPayload)]);
       if (ordErr) {
         console.error('Supabase saveOrder error:', ordErr);
       }
@@ -658,7 +700,7 @@ export async function saveOrder(orderData) {
           image_url: it.image || it.primaryImage || null
         }));
 
-        const { error: itemsErr } = await supabase.from('order_items').insert(orderItemsRows);
+        const { error: itemsErr } = await supabase.from('order_items').insert(orderItemsRows.map(r => toRow('order_items', r)));
         if (itemsErr) {
           console.warn('Supabase order_items insert warning:', itemsErr);
         }

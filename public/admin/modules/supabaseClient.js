@@ -6,6 +6,28 @@ export const DEFAULT_SUPABASE_CONFIG = {
   anonKey: 'sb_publishable_mjnZpLZXkvN2HcRw9qfq7A__T85Anwa'
 };
 
+// Real table columns (see supabase_setup.sql); other fields go into `extra` jsonb
+const PRODUCT_COLUMNS = ['id', 'name', 'title', 'category', 'shape', 'stoneType', 'badge', 'price', 'compareAtPrice', 'rating', 'reviewCount', 'primaryImage', 'secondaryImage', 'metalOptions', 'carat', 'color', 'clarity', 'cut', 'certification', 'leadTime', 'description', 'isBestSeller', 'isFeatured', 'stock_quantity', 'currency', 'created_at', 'updated_at'];
+
+function toProductRow(product) {
+  const row = {};
+  const extra = {};
+  Object.keys(product || {}).forEach(k => {
+    const v = product[k];
+    if (v === undefined) return;
+    if (PRODUCT_COLUMNS.includes(k)) row[k] = v;
+    else if (k !== 'extra') extra[k] = v;
+  });
+  row.extra = { ...((product && product.extra) || {}), ...extra };
+  return row;
+}
+
+function fromRow(row) {
+  if (!row || !row.extra || typeof row.extra !== 'object') return row;
+  const { extra, ...rest } = row;
+  return { ...extra, ...rest };
+}
+
 class SupabaseAdapter {
   constructor() {
     this.config = this.loadConfig();
@@ -81,8 +103,9 @@ class SupabaseAdapter {
       return null;
     }
 
-    const { method = 'GET', select = '*', body = null, match = null, order = null } = options;
+    const { method = 'GET', select = '*', body = null, match = null, order = null, onConflict = null } = options;
     let url = `${this.config.url}/rest/v1/${table}?select=${encodeURIComponent(select)}`;
+    if (onConflict) url += `&on_conflict=${encodeURIComponent(onConflict)}`;
 
     if (match) {
       Object.keys(match).forEach(k => {
@@ -125,7 +148,7 @@ class SupabaseAdapter {
   async getProducts() {
     try {
       const data = await this.query('products', { order: 'created_at.desc' });
-      if (data && data.length > 0) return data;
+      if (data && data.length > 0) return data.map(fromRow).filter(p => !p.deleted_at && p.status !== 'trash');
     } catch (e) {
       console.warn('Fallback to local storage for products:', e);
     }
@@ -136,7 +159,7 @@ class SupabaseAdapter {
     try {
       return await this.query('products', {
         method: 'POST',
-        body: product
+        body: toProductRow(product)
       });
     } catch (e) {
       console.error('Failed to upsert product to Supabase:', e);
@@ -244,7 +267,8 @@ class SupabaseAdapter {
     try {
       return await this.query('site_overrides', {
         method: 'POST',
-        body: override
+        body: override,
+        onConflict: 'page_key,element_id,is_published'
       });
     } catch (e) {
       console.error('Failed to save site override to Supabase:', e);

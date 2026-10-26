@@ -176,7 +176,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-002",
-    "name": "Princess cut 3 carat Lab-Grown Diamond Ring in 14K gold",
+    "name": "Princess cut 3 carat Lab-Grown Diamond Ring in 18K gold",
     "category": "wedding-bands",
     "shape": "princess",
     "stoneType": "lab-diamond",
@@ -263,7 +263,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-005",
-    "name": "14K Solid Gold Diamond Tennis Bracelet",
+    "name": "18K Solid Gold Diamond Tennis Bracelet",
     "category": "bracelets",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -292,7 +292,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-006",
-    "name": "Natural Diamond and 14K gold Bracelet",
+    "name": "Natural Diamond and 18K gold Bracelet",
     "category": "bracelets",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -321,7 +321,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-007",
-    "name": "Natural Diamond and 14K gold Bracelet",
+    "name": "Natural Diamond and 18K gold Bracelet",
     "category": "bracelets",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -466,7 +466,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-012",
-    "name": "14k Gold Natural Diamond Dangle Earrings",
+    "name": "18k Gold Natural Diamond Dangle Earrings",
     "category": "earrings",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -495,7 +495,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-013",
-    "name": "14k Gold Lab-Grown Diamond Dangle Earrings",
+    "name": "18k Gold Lab-Grown Diamond Dangle Earrings",
     "category": "earrings",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -524,7 +524,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-014",
-    "name": "14k Gold Natural Diamond Dangle Earrings",
+    "name": "18k Gold Natural Diamond Dangle Earrings",
     "category": "earrings",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -785,7 +785,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-023",
-    "name": "IGI certified Marquis Cut Solitaire Diamond Ring in 14K white Gold",
+    "name": "IGI certified Marquis Cut Solitaire Diamond Ring in 18K white Gold",
     "category": "engagement-rings",
     "shape": "marquise",
     "stoneType": "lab-diamond",
@@ -901,7 +901,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-027",
-    "name": "IGI Certified Round Cut Solitaire Ring 14K White Gold",
+    "name": "IGI Certified Round Cut Solitaire Ring 18K White Gold",
     "category": "engagement-rings",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -959,7 +959,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-029",
-    "name": "14K Yellow Gold Natural Diamond Stud Earrings",
+    "name": "18K Yellow Gold Natural Diamond Stud Earrings",
     "category": "earrings",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -988,7 +988,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-030",
-    "name": "14K White Gold Lab-Grown Diamond Stud Earrings",
+    "name": "18K White Gold Lab-Grown Diamond Stud Earrings",
     "category": "earrings",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -1104,7 +1104,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-034",
-    "name": "14K Gold 2 Carat Natural Diamond Solitaire Ring",
+    "name": "18K Gold 2 Carat Natural Diamond Solitaire Ring",
     "category": "wedding-bands",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -1133,7 +1133,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-035",
-    "name": "14K Gold 2 Carat Halo Lab-Grown Diamond Solitaire Ring",
+    "name": "18K Gold 2 Carat Halo Lab-Grown Diamond Solitaire Ring",
     "category": "wedding-bands",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -1162,7 +1162,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-036",
-    "name": "14K Gold 2 Carat Halo Natural Diamond Solitaire Ring",
+    "name": "18K Gold 2 Carat Halo Natural Diamond Solitaire Ring",
     "category": "wedding-bands",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -1191,7 +1191,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-037",
-    "name": "14K Gold 2 Carat Lab-Grown Diamond Solitaire Ring",
+    "name": "18K Gold 2 Carat Lab-Grown Diamond Solitaire Ring",
     "category": "wedding-bands",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -1220,7 +1220,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-038",
-    "name": "14K Gold 2 Carat Natural Diamond XX Solitaire Ring",
+    "name": "18K Gold 2 Carat Natural Diamond XX Solitaire Ring",
     "category": "wedding-bands",
     "shape": "round",
     "stoneType": "natural-diamond",
@@ -1249,7 +1249,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-039",
-    "name": "14K Gold 2 Carat Lab-Grown Diamond Solitaire Ring",
+    "name": "18K Gold 2 Carat Lab-Grown Diamond Solitaire Ring",
     "category": "wedding-bands",
     "shape": "round",
     "stoneType": "lab-diamond",
@@ -1365,7 +1365,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-043",
-    "name": "14K Gold Princess Cut Solitaire Diamond Ring",
+    "name": "18K Gold Princess Cut Solitaire Diamond Ring",
     "category": "engagement-rings",
     "shape": "princess",
     "stoneType": "natural-diamond",
@@ -1394,7 +1394,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-044",
-    "name": "14K Gold Princess Cut Lab-Grown Diamond Ring",
+    "name": "18K Gold Princess Cut Lab-Grown Diamond Ring",
     "category": "wedding-bands",
     "shape": "princess",
     "stoneType": "lab-diamond",
@@ -1423,7 +1423,7 @@ export const INITIAL_PRODUCTS = [
   },
   {
     "id": "avi-045",
-    "name": "14K Gold 2 Carat Natural Diamond 3 Stone Ring",
+    "name": "18K Gold 2 Carat Natural Diamond 3 Stone Ring",
     "category": "engagement-rings",
     "shape": "round",
     "stoneType": "natural-diamond",

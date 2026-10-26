@@ -938,7 +938,7 @@ class AdminStudioApp {
         compareAtPrice: parseFloat(document.getElementById('prod-form-compare-price').value) || undefined,
         stock_quantity: parseInt(document.getElementById('prod-form-stock').value, 10) || 10,
         stoneType: document.getElementById('prod-form-stone').value,
-        badge: document.getElementById('prod-form-stone').value === 'lab-diamond' ? 'IGI Certified Lab Diamond' : 'GRA Certified Moissanite',
+        badge: document.getElementById('prod-form-stone').value === 'lab-diamond' ? 'IGI Certified Lab Diamond' : 'GIA Certified Natural Diamond',
         carat: document.getElementById('prod-form-carat').value,
         leadTime: document.getElementById('prod-form-leadtime').value,
         primaryImage: cleanImageUrl(rawPrimary) || 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=85',
