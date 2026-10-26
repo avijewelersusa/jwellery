@@ -15,7 +15,7 @@ export const supabase = isSupabaseConfigured
 
 // LocalStorage Keys for persistent fallback
 const STORAGE_KEYS = {
-  PRODUCTS: 'avi_jewelers_products_v7',
+  PRODUCTS: 'avi_jewelers_products_v8',
   INQUIRIES: 'avi_jewelers_inquiries_v1',
   APPOINTMENTS: 'avi_jewelers_appointments_v1',
   SHOWCASE: 'avi_jewelers_showcase_v2',

@@ -965,7 +965,7 @@ The Floating Solitaire Pendant,necklaces,round,lab-diamond,IGI Certified Lab Dia
                         Available Metal Choices for This Piece
                       </label>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
-                        {['14k White Gold', '14k Yellow Gold', '14k Rose Gold', 'Platinum', '18k Yellow Gold'].map(metal => {
+                        {['14k White Gold', '14k Yellow Gold', '14k Rose Gold', 'Platinum', '18k White Gold', '18k Yellow Gold', '18k Rose Gold'].map(metal => {
                           const isChecked = (editingProduct.metalOptions || []).includes(metal);
                           return (
                             <button

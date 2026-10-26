@@ -20,7 +20,7 @@ export default function HowCustomWorks({ onStartCustom }) {
       icon: Compass,
       title: "Consult & 3D CAD Design",
       subtitle: "Virtual session & photorealistic render",
-      description: "Meet one-on-one virtually with our Chicago jewelry designers. Review a millimeter-precise 3D render from every angle and make unlimited tweaks until it's 100% perfect.",
+      description: "Meet one-on-one virtually with our jewelry designers. Review a millimeter-precise 3D render from every angle and make unlimited tweaks until it's 100% perfect.",
       detail: "Full diamond video inspection & wax model option.",
       bgImage: "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=600&q=80"
     },
@@ -29,7 +29,7 @@ export default function HowCustomWorks({ onStartCustom }) {
       icon: Hammer,
       title: "Master Handcrafting",
       subtitle: "Cast & set by master artisans",
-      description: "Our master goldsmiths cast your piece in solid recycled gold or 950 platinum. Certified lab or natural diamonds are microscope-set by hand in Chicago.",
+      description: "Our master goldsmiths cast your piece in solid recycled gold or 950 platinum. Certified lab or natural diamonds are microscope-set by talented goldsmiths.",
       detail: "Hand-polished & hallmarked with laser serial number.",
       bgImage: "https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=600&q=80"
     },
@@ -181,7 +181,7 @@ export default function HowCustomWorks({ onStartCustom }) {
             Ready to bring your dream engagement ring to life?
           </h3>
           <p style={{ maxWidth: '580px', margin: '0 auto 1.8rem', fontSize: '0.95rem' }}>
-            Upload an image, pick your favorite stone, and our master Chicago jewelers will prepare your first custom 3D design quote.
+            Upload an image, pick your favorite stone, and our master jewelers will prepare your first custom 3D design quote.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             <button 

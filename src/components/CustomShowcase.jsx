@@ -19,7 +19,7 @@ export default function CustomShowcase({ onStartCustom }) {
           <h2>The Bespoke Showcase</h2>
           <p className="subheading">
             See how client sketches, Instagram saves, and dream concepts are transformed into 
-            hallmarked heirloom jewelry by our master Chicago bench jewelers.
+            hallmarked heirloom jewelry by our master bench jewelers.
           </p>
         </div>
 

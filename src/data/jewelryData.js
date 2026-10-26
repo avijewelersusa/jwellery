@@ -684,9 +684,9 @@ export const INITIAL_PRODUCTS = [
     "primaryImage": "https://static.wixstatic.com/media/ec0575_d211543997094041aa7cb07de530e2e7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "secondaryImage": "https://static.wixstatic.com/media/ec0575_2658c3d671ae4743a45350dde8ac6e98~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
     "metalOptions": [
-      "14k White Gold",
-      "14k Yellow Gold",
-      "14k Rose Gold",
+      "18k White Gold",
+      "18k Yellow Gold",
+      "18k Rose Gold",
       "Platinum"
     ],
     "carat": "2.50 Carat",
@@ -695,7 +695,7 @@ export const INITIAL_PRODUCTS = [
     "cut": "Ideal / Super Ideal Cut",
     "certification": "IGI Certified",
     "leadTime": "Handcrafted in 3–4 weeks, or ready to ship",
-    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 14K white or yellow gold! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
+    "description": "Look at the design! Beautifully adorned ring with a marvelous, brilliant lab grown diamond. Choose 1 carat, 2 carat, or 3 carat solitaire for the center diamond. Choose 18K white, yellow or rose gold, or platinum! All diamonds will come with IGI certification. Will come with lighted box to make your special day even more wonderous!"
   },
   {
     "id": "avi-021",

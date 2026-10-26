@@ -149,7 +149,7 @@ export default function FaqSection({ onStartCustom, onNavigate }) {
               Have a specific diamond or custom setting question?
             </div>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-charcoal-light)' }}>
-              Speak directly with our Chicago jewelry team. No salespeople, just master jewelers.
+              Speak directly with our jewelry team. No salespeople, just master jewelers.
             </p>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
               <a 

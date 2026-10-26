@@ -174,7 +174,7 @@ export default function CustomDesignPage({ onBackToHome, prefilledData = null })
           </h1>
 
           <p style={{ fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', color: 'rgba(250, 247, 242, 0.95)', lineHeight: 1.6, maxWidth: '680px', margin: '0 auto 2rem', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
-            Work 1-on-1 with our master Chicago jewelers. Share your sketches, Pinterest links, or screenshots. We design, 3D model, cast, and deliver your one-of-a-kind ring in 3 to 4 weeks.
+            Work 1-on-1 with our master jewelers. Share your sketches, Pinterest links, or screenshots. We design, 3D model, cast, and deliver your one-of-a-kind ring in 3 to 4 weeks.
           </p>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', fontSize: '0.84rem', color: '#FAF7F2' }}>

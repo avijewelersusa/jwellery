@@ -132,7 +132,7 @@ export default function App() {
 
     // Cross-tab synchronization when changes occur in Admin Panel
     const handleStorageChange = (e) => {
-      if (e.key === 'avi_jewelers_products_v7' || e.key === 'avi_admin_cached_products') {
+      if (e.key === 'avi_jewelers_products_v8' || e.key === 'avi_admin_cached_products') {
         try {
           const parsed = JSON.parse(e.newValue);
           if (Array.isArray(parsed) && parsed.length > 0) {
