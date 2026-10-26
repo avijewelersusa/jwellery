@@ -96,7 +96,7 @@ const INITIAL_DEMO_ORDERS = [
       state: 'IL',
       zip: '60611'
     },
-    paymentMethod: 'Wire Transfer (2% Courtesy Savings)',
+    paymentMethod: 'Credit Card',
     subtotal: 1850,
     shippingCost: 0,
     tax: 152,

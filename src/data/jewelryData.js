@@ -1695,8 +1695,8 @@ export const FAQS = [
     "isWarranty": true
   },
   {
-    "q": "What payment and financing options are available?",
-    "a": "We accept all major credit cards, bank wire transfers (with a 2% courtesy discount), Apple Pay, and flexible 0% APR financing options via Affirm and Klarna, allowing you to split payments over 6, 12, or 24 months."
+    "q": "What payment options are available?",
+    "a": "We accept all major credit cards for a secure, straightforward checkout. If you have any questions about payment, our team is happy to help."
   }
 ];
 
