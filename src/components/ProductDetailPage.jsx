@@ -528,7 +528,7 @@ export default function ProductDetailPage({
                 </div>
               </div>
               <a
-                href="tel:3315754525"
+                href="tel:3317072976"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -543,7 +543,7 @@ export default function ProductDetailPage({
                 }}
               >
                 <Phone size={13} />
-                (331) 575-4525
+                (331) 707-2976
               </a>
             </div>
 

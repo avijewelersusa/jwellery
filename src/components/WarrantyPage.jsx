@@ -3,7 +3,7 @@ import React from 'react';
 import { ShieldCheck, Sparkles, Award, HeartHandshake, MessageCircle, ArrowRight, Phone } from 'lucide-react';
 
 export default function WarrantyPage({ onNavigate }) {
-  const whatsappUrl = `https://wa.me/13315754525?text=${encodeURIComponent("Hello Avi Jewelers! I would like to inquire regarding warranty / repairs / appraisal.")}`;
+  const whatsappUrl = `https://wa.me/13317072976?text=${encodeURIComponent("Hello Avi Jewelers! I would like to inquire regarding warranty / repairs / appraisal.")}`;
 
   const handleContactClick = () => {
     if (onNavigate) {
@@ -301,7 +301,7 @@ export default function WarrantyPage({ onNavigate }) {
             </a>
             <span>•</span>
             <a 
-              href="tel:3315754525"
+              href="tel:3317072976"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -312,7 +312,7 @@ export default function WarrantyPage({ onNavigate }) {
               }}
             >
               <Phone size={14} />
-              <span>(331) 575-4525</span>
+              <span>(331) 707-2976</span>
             </a>
           </div>
         </div>

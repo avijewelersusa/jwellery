@@ -8,7 +8,7 @@ export const STORE_DEFAULTS = {
   brandName: 'Avi Jewelers USA',
   legalName: 'Avi Jewelers LLC',
   address: '5 S Wabash Ave, Suite 710, Chicago, IL 60603',
-  phone: '(331) 575-4525',
+  phone: '(331) 707-2976',
   email: 'avijewelersusa@gmail.com',
   currency: 'USD',
   currencySymbol: '$',

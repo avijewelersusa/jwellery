@@ -917,7 +917,7 @@ export default function VideoCarouselSection({ onStartCustom }) {
                 </button>
 
                 <a
-                  href={`https://wa.me/13315754525?text=${encodeURIComponent(`Hello Avi Jewelers! I am interested in designing a bespoke ring inspired by: ${activeModalVideo.title} (${activeModalVideo.specs}).`)}`}
+                  href={`https://wa.me/13317072976?text=${encodeURIComponent(`Hello Avi Jewelers! I am interested in designing a bespoke ring inspired by: ${activeModalVideo.title} (${activeModalVideo.specs}).`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{

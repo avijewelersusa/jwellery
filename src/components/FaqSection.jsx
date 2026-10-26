@@ -153,10 +153,10 @@ export default function FaqSection({ onStartCustom, onNavigate }) {
             </p>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
               <a 
-                href="tel:3315754525" 
+                href="tel:3317072976" 
                 className="btn btn-gold btn-sm"
               >
-                <Phone size={13} /> Call (331) 575-4525
+                <Phone size={13} /> Call (331) 707-2976
               </a>
               <button 
                 onClick={onStartCustom}

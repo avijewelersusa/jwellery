@@ -252,7 +252,7 @@ export class OrdersManager {
         <div class="header">
           <div>
             <div class="logo">AVI JEWELERS USA</div>
-            <div class="sub">5 S Wabash Ave, Suite 710 • Chicago, IL 60603 • (331) 575-4525</div>
+            <div class="sub">5 S Wabash Ave, Suite 710 • Chicago, IL 60603 • (331) 707-2976</div>
           </div>
           <div style="text-align: right;">
             <div style="font-size: 20px; font-weight: bold;">INVOICE</div>

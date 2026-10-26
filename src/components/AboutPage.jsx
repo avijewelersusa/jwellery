@@ -138,16 +138,16 @@ export default function AboutPage({ onStartCustom, onShopNow }) {
               Have Questions or Custom Ideas?
             </h3>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
-              Call or text our Chicago atelier directly at (331) 575-4525 for immediate concierge assistance.
+              Call or text our Chicago atelier directly at (331) 707-2976 for immediate concierge assistance.
             </p>
           </div>
           <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
             <a 
-              href="tel:3315754525" 
+              href="tel:3317072976" 
               className="btn btn-outline"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', borderColor: 'var(--text-charcoal)', fontSize: '0.78rem' }}
             >
-              <Phone size={14} /> Call / Text 331-575-4525
+              <Phone size={14} /> Call / Text 331-707-2976
             </a>
             <a 
               href="mailto:avijewelersusa@gmail.com" 

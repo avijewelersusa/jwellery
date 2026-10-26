@@ -150,7 +150,7 @@ export default function PromotionalBannerModal({ onApplyPromo }) {
               gap: '0.4rem'
             }}
           >
-            <Sparkles size={11} /> Handcrafted in Chicago
+            <Sparkles size={11} /> Handcrafted by experienced luxury artisans
           </div>
         </div>
 

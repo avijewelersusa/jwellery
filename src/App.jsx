@@ -400,6 +400,11 @@ export default function App() {
               onBookConsult={() => navigateTo('contact')}
             />
 
+            {/* Instagram-Style Gallery Strip (client: directly after hero) */}
+            <div className="reveal-on-scroll">
+              <InstagramStrip />
+            </div>
+
             {/* 2. Trust Bar */}
             <div className="reveal-on-scroll">
               <TrustBar />
@@ -492,11 +497,6 @@ export default function App() {
                 onStartCustom={() => navigateTo('custom')}
                 onNavigate={navigateTo}
               />
-            </div>
-
-            {/* 12. Instagram-Style Gallery Strip */}
-            <div className="reveal-on-scroll">
-              <InstagramStrip />
             </div>
           </>
         )}

@@ -131,13 +131,13 @@ export default function ContactPage() {
                   <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', fontWeight: 600 }}>
                     Direct Jeweler Hotline & SMS
                   </div>
-                  <a href="tel:3315754525" style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-charcoal)', textDecoration: 'none' }}>
-                    (331) 575-4525
+                  <a href="tel:3317072976" style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-charcoal)', textDecoration: 'none' }}>
+                    (331) 707-2976
                   </a>
                 </div>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-charcoal-light)', lineHeight: 1.5 }}>
-                If you need immediate assistance or have custom design questions, please call or text us at 331-575-4525.
+                If you need immediate assistance or have custom design questions, please call or text us at 331-707-2976.
               </p>
             </div>
 

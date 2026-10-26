@@ -151,11 +151,11 @@ export default function Footer({ onNavigate, onOpenCustom }) {
             {/* Direct Phone & Email */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.84rem' }}>
               <a 
-                href="tel:3315754525" 
+                href="tel:3317072976" 
                 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#FAF7F2', textDecoration: 'none' }}
               >
                 <Phone size={14} />
-                <span>(331) 575-4525 (Call / Text)</span>
+                <span>(331) 707-2976 (Call / Text)</span>
               </a>
               <a 
                 href="mailto:avijewelersusa@gmail.com" 

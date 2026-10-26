@@ -572,7 +572,7 @@ img {
   opacity: 0.94;
 }
 .header-brand-lotus {
-  height: 50px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -580,20 +580,21 @@ img {
   filter: drop-shadow(0 2px 8px rgba(180, 140, 45, 0.2));
 }
 .header-brand-lotus.scrolled {
-  height: 44px;
+  height: 54px;
 }
 .header-brand-text {
   font-family: var(--font-serif-display), var(--font-serif), Georgia, serif;
-  font-size: 1.68rem;
+  font-size: 2.05rem;
   font-weight: 700;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-charcoal);
   white-space: nowrap;
   line-height: 1;
   transition: font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .header-brand-logo-wrap.scrolled .header-brand-text {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 @media (max-width: 992px) {
@@ -614,16 +615,16 @@ img {
     padding: 3px 6px;
   }
   .header-brand-lotus {
-    height: 40px;
+    height: 50px;
   }
   .header-brand-lotus.scrolled {
-    height: 36px;
+    height: 44px;
   }
   .header-brand-text {
-    font-size: 1.38rem;
+    font-size: 1.65rem;
   }
   .header-brand-logo-wrap.scrolled .header-brand-text {
-    font-size: 1.28rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -662,17 +663,17 @@ img {
     min-width: 0;
   }
   .header-brand-lotus {
-    height: 31px !important;
+    height: 38px !important;
   }
   .header-brand-lotus.scrolled {
-    height: 27px !important;
+    height: 33px !important;
   }
   .header-brand-text {
-    font-size: 1.15rem !important;
-    letter-spacing: 0.015em !important;
+    font-size: 1.28rem !important;
+    letter-spacing: 0.04em !important;
   }
   .header-brand-logo-wrap.scrolled .header-brand-text {
-    font-size: 1.05rem !important;
+    font-size: 1.16rem !important;
   }
 }
 
@@ -709,17 +710,17 @@ img {
     padding: 1px 1px !important;
   }
   .header-brand-lotus {
-    height: 26px !important;
+    height: 32px !important;
   }
   .header-brand-lotus.scrolled {
-    height: 23px !important;
+    height: 28px !important;
   }
   .header-brand-text {
-    font-size: 1.02rem !important;
-    letter-spacing: 0.01em !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.03em !important;
   }
   .header-brand-logo-wrap.scrolled .header-brand-text {
-    font-size: 0.94rem !important;
+    font-size: 1.02rem !important;
   }
 }
 
@@ -745,16 +746,16 @@ img {
     height: 15px !important;
   }
   .header-brand-lotus {
-    height: 23px !important;
+    height: 27px !important;
   }
   .header-brand-lotus.scrolled {
-    height: 20px !important;
+    height: 24px !important;
   }
   .header-brand-text {
-    font-size: 0.9rem !important;
+    font-size: 0.98rem !important;
   }
   .header-brand-logo-wrap.scrolled .header-brand-text {
-    font-size: 0.85rem !important;
+    font-size: 0.92rem !important;
   }
 }
 

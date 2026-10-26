@@ -111,12 +111,12 @@ export default function Header({
             </span>
             <span style={{ opacity: 0.35 }} className="hide-mobile">•</span>
             <a 
-              href="tel:3315754525" 
+              href="tel:3317072976" 
               className="hide-mobile"
               style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#FFFFFF', fontWeight: 500 }}
             >
               <Phone size={12} style={{ color: 'rgba(255,255,255,0.9)' }} />
-              331-575-4525
+              331-707-2976
             </a>
           </div>
 
@@ -1177,7 +1177,7 @@ export default function Header({
               Atelier Concierge
             </div>
             Virtual & Phone Consultations <br />
-            Call / Text: (331) 575-4525
+            Call / Text: (331) 707-2976
           </div>
         </div>
       )}

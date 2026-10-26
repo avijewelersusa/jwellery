@@ -192,10 +192,10 @@ export default function HowCustomWorks({ onStartCustom }) {
               Start Your Custom Ring Inquiry
             </button>
             <a 
-              href="tel:3315754525"
+              href="tel:3317072976"
               className="btn btn-outline"
             >
-              Call (331) 575-4525
+              Call (331) 707-2976
             </a>
           </div>
         </div>

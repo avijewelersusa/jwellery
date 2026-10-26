@@ -606,7 +606,7 @@ export default function AccountPage({
                 Have questions regarding custom CAD renders, prong tight checks, or armored courier delivery?
               </p>
               <a
-                href="tel:3315754525"
+                href="tel:3317072976"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -618,7 +618,7 @@ export default function AccountPage({
                 }}
               >
                 <Phone size={13} />
-                <span>331-575-4525</span>
+                <span>331-707-2976</span>
               </a>
               <a
                 href="mailto:info@avijewelersusa.com"
@@ -1484,11 +1484,11 @@ export default function AccountPage({
                         No appointments currently scheduled. Book a complimentary private diamond viewing.
                       </p>
                       <a
-                        href="tel:3315754525"
+                        href="tel:3317072976"
                         className="btn btn-outline"
                         style={{ fontSize: '0.8rem' }}
                       >
-                        Call Concierge to Book (331-575-4525)
+                        Call Concierge to Book (331-707-2976)
                       </a>
                     </div>
                   ) : (
@@ -1824,7 +1824,7 @@ export default function AccountPage({
                     </div>
                     <div>
                       <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Direct Phone</span>
-                      <a href="tel:3315754525" style={{ color: '#FFFFFF', textDecoration: 'underline' }}>331-575-4525</a>
+                      <a href="tel:3317072976" style={{ color: '#FFFFFF', textDecoration: 'underline' }}>331-707-2976</a>
                     </div>
                     <div>
                       <span style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(250,247,242,0.5)', textTransform: 'uppercase' }}>Direct Inquiries</span>
@@ -2001,7 +2001,7 @@ export default function AccountPage({
                 AVI JEWELERS CHICAGO ATELIER
               </h2>
               <div style={{ fontSize: '0.74rem', color: 'var(--text-charcoal-light)', letterSpacing: '0.04em', marginTop: '0.2rem' }}>
-                Chicago Diamond District Atelier • 331-575-4525
+                Chicago Diamond District Atelier • 331-707-2976
               </div>
             </div>
 
